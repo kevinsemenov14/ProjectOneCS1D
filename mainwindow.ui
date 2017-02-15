@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>860</width>
-    <height>570</height>
+    <width>948</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,24 +15,31 @@
   </property>
   <property name="styleSheet">
    <string notr="true">gridline-color: rgb(255, 85, 0);
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);
 background-color: rgb(0, 0, 0);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
+      <x>30</x>
+      <y>50</y>
       <width>781</width>
       <height>441</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="stackedWidgetPage1">
      <widget class="QPushButton" name="normalTrip">
@@ -99,7 +106,7 @@ background-color: rgb(0, 0, 0);</string>
        <string>Start Trip</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="LocationsTableWidget">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -132,7 +139,7 @@ background-color: rgb(0, 0, 0);</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Locations:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="Selected_Locations_Label">
       <property name="geometry">
        <rect>
         <x>400</x>
@@ -423,8 +430,91 @@ background-color: rgb(0, 0, 0);</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="stackedWidgetPage3"/>
-    <widget class="QWidget" name="stackedWidgetPage4"/>
+    <widget class="QWidget" name="stackedWidgetPage3">
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>190</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Admin Mode: ON&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="stackedWidgetPage4">
+     <widget class="QLineEdit" name="name">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>130</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="pass">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>180</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>110</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>160</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>220</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>login</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -444,17 +534,21 @@ background-color: rgb(0, 0, 0);</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;Tour de Europe:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="LogOut_Button">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>730</x>
       <y>10</y>
-      <width>75</width>
-      <height>23</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+    </property>
     <property name="text">
-     <string>Log Out</string>
+     <string>Log In</string>
     </property>
    </widget>
   </widget>
@@ -463,7 +557,7 @@ background-color: rgb(0, 0, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>860</width>
+     <width>948</width>
      <height>21</height>
     </rect>
    </property>

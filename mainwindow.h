@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dbmanager.h"
+#include "QMessageBox"
 
 namespace Ui {
 class MainWindow;
@@ -27,10 +28,17 @@ private slots:
 
     void FillTripTable();
 
+    void FillBerlinTable();
+
+    void on_LogOut_Button_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     dbManager db;
     QVector<QString> cityNames;
+    QVector<QString> berlDists;
 
 };
 
