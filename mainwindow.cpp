@@ -175,3 +175,9 @@ void MainWindow::on_pushButton_clicked()
     ui->pass->clear();
 
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
+}
