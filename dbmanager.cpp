@@ -11,8 +11,8 @@
 dbManager::dbManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../project1.sqlite");
-    db.open();
+    db.setDatabaseName("../ProjectOneCS1D/Database/Project1Database.sqllite");
+//    db.open();
     if(!db.open())
         qDebug() << "Not connected to DB.";
     else if(db.open())
@@ -21,27 +21,50 @@ dbManager::dbManager()
 
 QVector<QString> dbManager:: getCityNames()
 {
-
     QSqlQuery query(db);
     QVector<QString> names;
 
     //select in the order they are given
-      query.prepare("SELECT name FROM City ORDER BY CityId");
-    if(query.exec())
+    query.prepare("SELECT name FROM Cities ORDER BY CityId");
+
+    if(!query.exec())
     {
+        qDebug() << query.lastError().text();
+    }
+    else
+    {
+        qDebug() << "made it here\n";
+
         while(query.next()) //these seem to be coming out in alphabetical order by default
         {
-            QString name =query.value(0).toString();
-            //qDebug() << name;
+            QString name = query.value(0).toString();
             names.push_front(name);
+        }
+    }
+    return names;
+}
+
+QVector<QString> dbManager::getBerlinDist()
+{
+    QSqlQuery query(db);
+    QVector<QString> berlDist;
+
+    query.prepare("SELECT Dist2Ber FROM Cities ORDER BY CityId");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            QString dist2Ber = query.value(0).toString();
+            berlDist.push_front(dist2Ber);
         }
     }
     else
     {
-        qDebug() << query.lastError();
+        qDebug() << query.lastError().text();
     }
-    return names;
 
+    return berlDist;
 }
 
 QString dbManager::getSadDist(QString CityName)

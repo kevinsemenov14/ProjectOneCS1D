@@ -204,6 +204,8 @@ public:
      */
     bool updateTotRev(QString CityName, double value);
 
+    QVector<QString> getBerlinDist();
+
 
 
 private:

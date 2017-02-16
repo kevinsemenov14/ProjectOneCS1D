@@ -74,6 +74,7 @@ public:
     QLabel *label_10;
     QWidget *stackedWidgetPage3;
     QLabel *label_14;
+    QLabel *label_15;
     QWidget *stackedWidgetPage4;
     QLineEdit *name;
     QLineEdit *pass;
@@ -101,7 +102,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(30, 50, 781, 441));
+        stackedWidget->setGeometry(QRect(30, 50, 791, 441));
         stackedWidget->setStyleSheet(QLatin1String("background-color: rgb(0, 0, 0);\n"
 "color: rgb(255, 255, 255);\n"
 "color: rgb(255, 255, 255);\n"
@@ -250,6 +251,9 @@ public:
         label_14 = new QLabel(stackedWidgetPage3);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setGeometry(QRect(340, 190, 141, 31));
+        label_15 = new QLabel(stackedWidgetPage3);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(620, 410, 161, 20));
         stackedWidget->addWidget(stackedWidgetPage3);
         stackedWidgetPage4 = new QWidget();
         stackedWidgetPage4->setObjectName(QStringLiteral("stackedWidgetPage4"));
@@ -297,7 +301,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -312,7 +316,7 @@ public:
         startTrip->setText(QApplication::translate("MainWindow", "Start Trip", 0));
         label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#ffffff;\">Locations:</span></p></body></html>", 0));
         Selected_Locations_Label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#ffffff;\">Selected Locations:</span></p></body></html>", 0));
-        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\"> Number of Cities:</span></p></body></html>", 0));
+        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Number of Cities:</span></p></body></html>", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "1", 0)
@@ -344,7 +348,8 @@ public:
         label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">$</span></p></body></html>", 0));
         label_9->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Current Purchase:</span></p></body></html>", 0));
         label_10->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">$</span></p></body></html>", 0));
-        label_14->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">Admin Mode: ON</span></p></body></html>", 0));
+        label_14->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">God Mode: ON</span></p></body></html>", 0));
+        label_15->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">~ Powers under construction ~</span></p></body></html>", 0));
         label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">name</span></p></body></html>", 0));
         label_13->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">password</span></p></body></html>", 0));
         pushButton->setText(QApplication::translate("MainWindow", "login", 0));

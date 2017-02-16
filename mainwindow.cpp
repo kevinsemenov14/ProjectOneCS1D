@@ -169,7 +169,6 @@ void MainWindow::on_pushButton_clicked()
         QMessageBox messageBox;
         messageBox.critical(0,"Invalid Input","Invalid ID or Password");
         messageBox.setFixedSize(1200,400);
-        messaggeBox.
     }
 
     ui->name->clear();
