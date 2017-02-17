@@ -10,10 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->startTrip->hide();
     ui->LogOut_Button->show();
 
-    ui->stackedWidgetPage1->show();
-    ui->stackedWidgetPage2->hide();
-    ui->stackedWidgetPage3->hide();
-    ui->stackedWidgetPage4->hide();
+    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
 
     ui->label_2->hide();
     ui->Selected_Locations_Label->hide();
@@ -154,13 +152,22 @@ void MainWindow::on_LogOut_Button_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QString rightname = "Admin";
-    QString rightpass = "cs1d";
+    QString adminID = "Admin";
+    QString adminPassword = "cs1d";
+    QString userID = "TravellersHub";
+    QString userPassword = "love2travel";
 
-    if(rightname == ui->name->text()&& rightpass == ui->pass->text())
+    if(adminID == ui->name->text() && adminPassword == ui->pass->text())
     {
         ui->stackedWidget->setCurrentIndex(3);
-        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);    //Something's wrong here... Figure it out later
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);
+        ui->LogOut_Button->setText("Log Out");
+    }
+
+    else if(userID == ui->name->text() && userPassword == ui->pass->text())
+    {
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -176,8 +183,3 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
-}

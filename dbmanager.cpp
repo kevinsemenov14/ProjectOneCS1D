@@ -11,7 +11,7 @@
 dbManager::dbManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../ProjectOneCS1D/Database/Project1Database.sqllite");
+    db.setDatabaseName("../ProjectOneCS1D/Project1Database.sqllite");
 //    db.open();
     if(!db.open())
         qDebug() << "Not connected to DB.";
@@ -25,7 +25,7 @@ QVector<QString> dbManager:: getCityNames()
     QVector<QString> names;
 
     //select in the order they are given
-    query.prepare("SELECT name FROM Cities ORDER BY CityId");
+    query.prepare("SELECT city FROM foodTable GROUP BY city");
 
     if(!query.exec())
     {

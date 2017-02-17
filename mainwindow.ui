@@ -14,12 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">gridline-color: rgb(255, 85, 0);
-color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 255);
-background-color: rgb(255, 255, 255);
-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QStackedWidget" name="stackedWidget">
@@ -32,11 +27,7 @@ background-color: rgb(0, 0, 0);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);
-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);
-</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>3</number>
@@ -52,7 +43,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Regular Trip</string>
@@ -68,7 +59,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Custom Trip 1</string>
@@ -84,7 +75,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Custom Trip 2</string>
@@ -100,7 +91,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Start Trip</string>
@@ -148,7 +139,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Locations:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;Locations:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="Selected_Locations_Label">
@@ -161,7 +152,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Distances:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;Distances:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_4">
@@ -174,7 +165,7 @@ color: rgb(0, 0, 0);
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Number of Cities:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Number of Cities:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QComboBox" name="comboBox">
@@ -474,41 +465,25 @@ color: rgb(0, 0, 0);
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>230</y>
+        <x>720</x>
+        <y>20</y>
         <width>51</width>
         <height>21</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>login</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>410</y>
-        <width>101</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(30, 30, 30);</string>
-      </property>
-      <property name="text">
-       <string>Back to Normal</string>
-      </property>
-     </widget>
      <widget class="QSplitter" name="splitter_2">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>180</y>
-        <width>221</width>
+        <x>560</x>
+        <y>20</y>
+        <width>141</width>
         <height>20</height>
        </rect>
       </property>
@@ -517,21 +492,21 @@ color: rgb(0, 0, 0);
       </property>
       <widget class="QLabel" name="label_13">
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Password:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Password:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="pass">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true"/>
        </property>
       </widget>
      </widget>
      <widget class="QSplitter" name="splitter_3">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>130</y>
-        <width>221</width>
+        <x>410</x>
+        <y>20</y>
+        <width>141</width>
         <height>20</height>
        </rect>
       </property>
@@ -540,12 +515,12 @@ color: rgb(0, 0, 0);
       </property>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Username:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Username:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="name">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true"/>
        </property>
       </widget>
      </widget>
@@ -566,7 +541,7 @@ color: rgb(0, 0, 0);
      </font>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; text-decoration: underline; color:#ff0000;&quot;&gt;Tour de Europe:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; text-decoration: underline; color:#000000;&quot;&gt;Tour de Europe:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="LogOut_Button">
@@ -579,8 +554,7 @@ color: rgb(0, 0, 0);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Log In</string>
