@@ -21,10 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget_2->hide();
     ui->comboBox->hide();
 
+    ui->spinBox->setMinimum(1);
+
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
-    FillTripTable();
 
+    FillTripTable();
     FillBerlinTable();
 }
 
@@ -96,7 +98,10 @@ void MainWindow::FillTripTable()
     ui->LocationsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->LocationsTableWidget->insertColumn(col);
-    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names"));
+    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names:"));
+
+//    ui->LocationsTableWidget->insertColumn(col);
+//    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Distance to Berlin:"));
 
     ui->LocationsTableWidget->resizeColumnsToContents();
     ui->LocationsTableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -139,10 +144,9 @@ void MainWindow::FillBerlinTable()
 
 void MainWindow::on_LogOut_Button_clicked()
 {
-    ui->stackedWidgetPage1->hide();
-    ui->stackedWidgetPage2->hide();
-    ui->stackedWidgetPage3->hide();
-    ui->stackedWidgetPage4->show();
+
+    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
 
     if(ui->LogOut_Button->text() == "Log Out")
     {
@@ -153,9 +157,9 @@ void MainWindow::on_LogOut_Button_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     QString adminID = "Admin";
-    QString adminPassword = "cs1d";
-    QString userID = "TravellersHub";
-    QString userPassword = "love2travel";
+    QString adminPassword = "a";
+    QString userID = "User";
+    QString userPassword = "a";
 
     if(adminID == ui->name->text() && adminPassword == ui->pass->text())
     {

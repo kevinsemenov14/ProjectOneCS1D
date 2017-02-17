@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -78,7 +78,6 @@ public:
     QLabel *label_15;
     QWidget *stackedWidgetPage4;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QSplitter *splitter_2;
     QLabel *label_13;
     QLineEdit *pass;
@@ -96,48 +95,45 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(948, 629);
-        MainWindow->setStyleSheet(QLatin1String("gridline-color: rgb(255, 85, 0);\n"
-"color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"background-color: rgb(255, 255, 255);\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 0);"));
+        MainWindow->setStyleSheet(QStringLiteral(""));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setGeometry(QRect(20, 60, 791, 441));
-        stackedWidget->setStyleSheet(QLatin1String("background-color: rgb(0, 0, 0);\n"
-"color: rgb(255, 255, 255);\n"
-"color: rgb(255, 255, 255);\n"
-"color: rgb(0, 0, 0);\n"
-""));
+        stackedWidget->setStyleSheet(QStringLiteral(""));
         stackedWidgetPage1 = new QWidget();
         stackedWidgetPage1->setObjectName(QStringLiteral("stackedWidgetPage1"));
         normalTrip = new QPushButton(stackedWidgetPage1);
         normalTrip->setObjectName(QStringLiteral("normalTrip"));
         normalTrip->setGeometry(QRect(20, 50, 81, 31));
-        normalTrip->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        normalTrip->setCursor(QCursor(Qt::PointingHandCursor));
+        normalTrip->setStyleSheet(QStringLiteral(""));
         CustomTrip1 = new QPushButton(stackedWidgetPage1);
         CustomTrip1->setObjectName(QStringLiteral("CustomTrip1"));
         CustomTrip1->setGeometry(QRect(20, 90, 81, 31));
-        CustomTrip1->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        CustomTrip1->setCursor(QCursor(Qt::PointingHandCursor));
+        CustomTrip1->setStyleSheet(QStringLiteral(""));
         CustomTrip2 = new QPushButton(stackedWidgetPage1);
         CustomTrip2->setObjectName(QStringLiteral("CustomTrip2"));
         CustomTrip2->setGeometry(QRect(20, 130, 81, 31));
-        CustomTrip2->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        CustomTrip2->setCursor(QCursor(Qt::PointingHandCursor));
+        CustomTrip2->setStyleSheet(QStringLiteral(""));
         startTrip = new QPushButton(stackedWidgetPage1);
         startTrip->setObjectName(QStringLiteral("startTrip"));
         startTrip->setGeometry(QRect(640, 390, 81, 31));
-        startTrip->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        startTrip->setCursor(QCursor(Qt::PointingHandCursor));
+        startTrip->setStyleSheet(QStringLiteral(""));
         LocationsTableWidget = new QTableWidget(stackedWidgetPage1);
         LocationsTableWidget->setObjectName(QStringLiteral("LocationsTableWidget"));
         LocationsTableWidget->setGeometry(QRect(150, 50, 221, 381));
+        LocationsTableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         LocationsTableWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         LocationsTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableWidget_2 = new QTableWidget(stackedWidgetPage1);
         tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
         tableWidget_2->setGeometry(QRect(400, 50, 221, 381));
+        tableWidget_2->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         tableWidget_2->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
         label_2 = new QLabel(stackedWidgetPage1);
@@ -149,9 +145,11 @@ public:
         label_4 = new QLabel(stackedWidgetPage1);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(641, 51, 131, 16));
+        label_4->setCursor(QCursor(Qt::IBeamCursor));
         comboBox = new QComboBox(stackedWidgetPage1);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(640, 80, 38, 20));
+        comboBox->setCursor(QCursor(Qt::PointingHandCursor));
         comboBox->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         stackedWidget->addWidget(stackedWidgetPage1);
         stackedWidgetPage2 = new QWidget();
@@ -177,11 +175,13 @@ public:
         pushButton_5 = new QPushButton(stackedWidgetPage2);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(560, 230, 181, 23));
-        pushButton_5->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        pushButton_5->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_5->setStyleSheet(QStringLiteral(""));
         pushButton_6 = new QPushButton(stackedWidgetPage2);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         pushButton_6->setGeometry(QRect(560, 380, 181, 23));
-        pushButton_6->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        pushButton_6->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_6->setStyleSheet(QStringLiteral(""));
         splitter = new QSplitter(stackedWidgetPage2);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setGeometry(QRect(20, 20, 201, 16));
@@ -207,6 +207,8 @@ public:
 
         tableWidget_3 = new QTableWidget(layoutWidget1);
         tableWidget_3->setObjectName(QStringLiteral("tableWidget_3"));
+        tableWidget_3->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
+        tableWidget_3->setSortingEnabled(true);
 
         verticalLayout->addWidget(tableWidget_3);
 
@@ -220,11 +222,13 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         label_11 = new QLabel(layoutWidget2);
         label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setCursor(QCursor(Qt::IBeamCursor));
 
         horizontalLayout->addWidget(label_11);
 
         label_12 = new QLabel(layoutWidget2);
         label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setCursor(QCursor(Qt::IBeamCursor));
 
         horizontalLayout->addWidget(label_12);
 
@@ -238,11 +242,13 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         label_9 = new QLabel(layoutWidget3);
         label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setCursor(QCursor(Qt::IBeamCursor));
 
         horizontalLayout_2->addWidget(label_9);
 
         label_10 = new QLabel(layoutWidget3);
         label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setCursor(QCursor(Qt::IBeamCursor));
 
         horizontalLayout_2->addWidget(label_10);
 
@@ -252,11 +258,13 @@ public:
         splitter_4->setOrientation(Qt::Horizontal);
         comboBox_2 = new QComboBox(splitter_4);
         comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
-        comboBox_2->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        comboBox_2->setCursor(QCursor(Qt::PointingHandCursor));
+        comboBox_2->setStyleSheet(QStringLiteral(""));
         splitter_4->addWidget(comboBox_2);
         spinBox = new QSpinBox(splitter_4);
         spinBox->setObjectName(QStringLiteral("spinBox"));
-        spinBox->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        spinBox->setCursor(QCursor(Qt::PointingHandCursor));
+        spinBox->setStyleSheet(QStringLiteral(""));
         splitter_4->addWidget(spinBox);
         stackedWidget->addWidget(stackedWidgetPage2);
         stackedWidgetPage3 = new QWidget();
@@ -272,33 +280,30 @@ public:
         stackedWidgetPage4->setObjectName(QStringLiteral("stackedWidgetPage4"));
         pushButton = new QPushButton(stackedWidgetPage4);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(470, 230, 51, 21));
-        pushButton->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        pushButton_2 = new QPushButton(stackedWidgetPage4);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(10, 410, 101, 23));
-        pushButton_2->setStyleSheet(QStringLiteral("background-color: rgb(30, 30, 30);"));
+        pushButton->setGeometry(QRect(390, 220, 71, 31));
+        pushButton->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton->setStyleSheet(QStringLiteral(""));
         splitter_2 = new QSplitter(stackedWidgetPage4);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
-        splitter_2->setGeometry(QRect(300, 180, 221, 20));
+        splitter_2->setGeometry(QRect(240, 180, 221, 21));
         splitter_2->setOrientation(Qt::Horizontal);
         label_13 = new QLabel(splitter_2);
         label_13->setObjectName(QStringLiteral("label_13"));
         splitter_2->addWidget(label_13);
         pass = new QLineEdit(splitter_2);
         pass->setObjectName(QStringLiteral("pass"));
-        pass->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        pass->setStyleSheet(QStringLiteral(""));
         splitter_2->addWidget(pass);
         splitter_3 = new QSplitter(stackedWidgetPage4);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
-        splitter_3->setGeometry(QRect(300, 130, 221, 20));
+        splitter_3->setGeometry(QRect(240, 140, 221, 20));
         splitter_3->setOrientation(Qt::Horizontal);
         label_3 = new QLabel(splitter_3);
         label_3->setObjectName(QStringLiteral("label_3"));
         splitter_3->addWidget(label_3);
         name = new QLineEdit(splitter_3);
         name->setObjectName(QStringLiteral("name"));
-        name->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        name->setStyleSheet(QStringLiteral(""));
         splitter_3->addWidget(name);
         stackedWidget->addWidget(stackedWidgetPage4);
         label = new QLabel(centralWidget);
@@ -310,8 +315,8 @@ public:
         LogOut_Button = new QPushButton(centralWidget);
         LogOut_Button->setObjectName(QStringLiteral("LogOut_Button"));
         LogOut_Button->setGeometry(QRect(730, 10, 81, 31));
-        LogOut_Button->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
-"color: rgb(0, 0, 0);"));
+        LogOut_Button->setCursor(QCursor(Qt::PointingHandCursor));
+        LogOut_Button->setStyleSheet(QStringLiteral(""));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -326,7 +331,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -334,53 +339,47 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        normalTrip->setText(QApplication::translate("MainWindow", "Regular Trip", 0));
-        CustomTrip1->setText(QApplication::translate("MainWindow", "Custom Trip 1", 0));
-        CustomTrip2->setText(QApplication::translate("MainWindow", "Custom Trip 2", 0));
-        startTrip->setText(QApplication::translate("MainWindow", "Start Trip", 0));
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#ffffff;\">Locations:</span></p></body></html>", 0));
-        Selected_Locations_Label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#ffffff;\">Distances:</span></p></body></html>", 0));
-        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Number of Cities:</span></p></body></html>", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        normalTrip->setText(QApplication::translate("MainWindow", "Regular Trip", Q_NULLPTR));
+        CustomTrip1->setText(QApplication::translate("MainWindow", "Custom Trip 1", Q_NULLPTR));
+        CustomTrip2->setText(QApplication::translate("MainWindow", "Custom Trip 2", Q_NULLPTR));
+        startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Locations:</span></p></body></html>", Q_NULLPTR));
+        Selected_Locations_Label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Distances:</span></p></body></html>", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Number of Cities:</span></p></body></html>", Q_NULLPTR));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "1", 0)
-         << QApplication::translate("MainWindow", "2", 0)
-         << QApplication::translate("MainWindow", "3", 0)
-         << QApplication::translate("MainWindow", "4", 0)
-         << QApplication::translate("MainWindow", "5", 0)
-         << QApplication::translate("MainWindow", "6", 0)
-         << QApplication::translate("MainWindow", "7", 0)
-         << QApplication::translate("MainWindow", "8", 0)
-         << QApplication::translate("MainWindow", "9", 0)
-         << QApplication::translate("MainWindow", "10", 0)
-         << QApplication::translate("MainWindow", "11", 0)
-         << QApplication::translate("MainWindow", "12", 0)
-         << QApplication::translate("MainWindow", "13", 0)
+         << QApplication::translate("MainWindow", "1", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "2", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "3", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "4", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "5", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "6", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "7", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "8", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "9", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "10", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "11", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "12", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "13", Q_NULLPTR)
         );
-        label_8->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Menu:</span></p></body></html>", 0));
-        pushButton_5->setText(QApplication::translate("MainWindow", "Purchase", 0));
-        pushButton_6->setText(QApplication::translate("MainWindow", "Next City", 0));
-        label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Current Location: </span></p></body></html>", 0));
-        label_6->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">NameOfCity</span></p></body></html>", 0));
-        label_7->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Menu:</span></p></body></html>", 0));
-        label_11->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Total Purchase:</span></p></body></html>", 0));
-        label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">$</span></p></body></html>", 0));
-        label_9->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Current Purchase:</span></p></body></html>", 0));
-        label_10->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">$</span></p></body></html>", 0));
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "Kev", 0)
-         << QApplication::translate("MainWindow", "Rahil", 0)
-        );
-        label_14->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">God Mode: ON</span></p></body></html>", 0));
-        label_15->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">~ Powers under construction ~</span></p></body></html>", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "login", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Back to Normal", 0));
-        label_13->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Password:</span></p></body></html>", 0));
-        label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Username:</span></p></body></html>", 0));
-        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; text-decoration: underline; color:#ff0000;\">Tour de Europe:</span></p></body></html>", 0));
-        LogOut_Button->setText(QApplication::translate("MainWindow", "Log In", 0));
+        label_8->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Selected Food Items:</span></p></body></html>", Q_NULLPTR));
+        pushButton_5->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
+        pushButton_6->setText(QApplication::translate("MainWindow", "Next City", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Location: </span></p></body></html>", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">NameOfCity</span></p></body></html>", Q_NULLPTR));
+        label_7->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Menu:</span></p></body></html>", Q_NULLPTR));
+        label_11->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Total Purchase:</span></p></body></html>", Q_NULLPTR));
+        label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">$</span></p></body></html>", Q_NULLPTR));
+        label_9->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Purchase:</span></p></body></html>", Q_NULLPTR));
+        label_10->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">$</span></p></body></html>", Q_NULLPTR));
+        label_14->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; color:#000000;\">God Mode: ON</span></p></body></html>", Q_NULLPTR));
+        label_15->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">~ Powers under construction ~</span></p></body></html>", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Log In", Q_NULLPTR));
+        label_13->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Password:</span></p></body></html>", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Username:</span></p></body></html>", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; text-decoration: underline; color:#000000;\">Tour de Europe:</span></p></body></html>", Q_NULLPTR));
+        LogOut_Button->setText(QApplication::translate("MainWindow", "Log In", Q_NULLPTR));
     } // retranslateUi
 
 };
