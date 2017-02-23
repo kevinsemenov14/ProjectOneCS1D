@@ -11,7 +11,7 @@
 dbManager::dbManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../ProjectOneCS1D/Project1Database.sqllite");
+    db.setDatabaseName("Project1Database.sqllite");
 //    db.open();
     if(!db.open())
         qDebug() << "Not connected to DB.";
@@ -71,32 +71,32 @@ QString dbManager::getSadDist(QString CityName)
 {
     QSqlQuery query(db);
     //QString dist;
-    query.prepare("SELECT Dis2Sad FROM City WHERE name = (:CityName)");
-    query.bindValue(":CityName", CityName);
-    if(query.exec())
-    {
-        if(query.next())
-        {
-            double dist = query.value(0).toDouble();
-           // qDebug() << dist;
-            return QString::number(dist);
-        }
-        else
-        {
-            return "Error";
-        }
-    }
-    else
-    {
-        qDebug() << query.lastError();
+//    query.prepare("SELECT Dis2Sad FROM City WHERE name = (:CityName)");
+//    query.bindValue(":CityName", CityName);
+//    if(query.exec())
+//    {
+//        if(query.next())
+//        {
+//            double dist = query.value(0).toDouble();
+//           // qDebug() << dist;
+//            return QString::number(dist);
+//        }
+//        else
+//        {
+//            return "Error";
+//        }
+//    }
+//    else
+//    {
+//        qDebug() << query.lastError();
         return "NO City found";
-    }
+//    }
 }
 QString dbManager::getRev(QString CityName)
 {
     QSqlQuery query(db);
 
-    query.prepare("SELECT totRev FROM City WHERE name = (:CityName)");
+    query.prepare("SELECT totRev FROM Cities WHERE name = (:CityName)");
     query.bindValue(":CityName", CityName);
     if(query.exec())
     {

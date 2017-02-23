@@ -95,6 +95,8 @@ void MainWindow::FillTripTable()
     int col = 0;                          //Initialize row and column to 0
     int row = 0;
 
+
+
     ui->LocationsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->LocationsTableWidget->insertColumn(col);
@@ -148,13 +150,13 @@ void MainWindow::on_LogOut_Button_clicked()
     ui->stackedWidget->setCurrentIndex(4);
     ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
 
-    if(ui->LogOut_Button->text() == "Log Out")
-    {
-        ui->LogOut_Button->setText("Log In");
-    }
+//    if(ui->LogOut_Button->text() == "Log Out")
+//    {
+//        ui->LogOut_Button->setText("Log In");
+//    }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_LogInButton_clicked()
 {
     QString adminID = "Admin";
     QString adminPassword = "a";
