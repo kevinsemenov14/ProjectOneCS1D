@@ -32,9 +32,7 @@ private slots:
 
     void on_LogOut_Button_clicked();
 
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
+    void on_LogInButton_clicked();
 
 private:
     Ui::MainWindow *ui;

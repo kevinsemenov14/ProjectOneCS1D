@@ -21,10 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget_2->hide();
     ui->comboBox->hide();
 
+    ui->spinBox->setMinimum(1);
+
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
-    FillTripTable();
 
+    FillTripTable();
     FillBerlinTable();
 }
 
@@ -93,10 +95,15 @@ void MainWindow::FillTripTable()
     int col = 0;                          //Initialize row and column to 0
     int row = 0;
 
+
+
     ui->LocationsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->LocationsTableWidget->insertColumn(col);
-    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names"));
+    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names:"));
+
+//    ui->LocationsTableWidget->insertColumn(col);
+//    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Distance to Berlin:"));
 
     ui->LocationsTableWidget->resizeColumnsToContents();
     ui->LocationsTableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -139,26 +146,34 @@ void MainWindow::FillBerlinTable()
 
 void MainWindow::on_LogOut_Button_clicked()
 {
-    ui->stackedWidgetPage1->hide();
-    ui->stackedWidgetPage2->hide();
-    ui->stackedWidgetPage3->hide();
-    ui->stackedWidgetPage4->show();
 
-    if(ui->LogOut_Button->text() == "Log Out")
-    {
-        ui->LogOut_Button->setText("Log In");
-    }
+    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
+
+//    if(ui->LogOut_Button->text() == "Log Out")
+//    {
+//        ui->LogOut_Button->setText("Log In");
+//    }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_LogInButton_clicked()
 {
-    QString rightname = "Admin";
-    QString rightpass = "cs1d";
+    QString adminID = "Admin";
+    QString adminPassword = "a";
+    QString userID = "User";
+    QString userPassword = "a";
 
-    if(rightname == ui->name->text()&& rightpass == ui->pass->text())
+    if(adminID == ui->name->text() && adminPassword == ui->pass->text())
     {
         ui->stackedWidget->setCurrentIndex(3);
-        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);    //Something's wrong here... Figure it out later
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);
+        ui->LogOut_Button->setText("Log Out");
+    }
+
+    else if(userID == ui->name->text() && userPassword == ui->pass->text())
+    {
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -174,8 +189,3 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
-}
