@@ -30,9 +30,16 @@ private slots:
 
     void FillBerlinTable();
 
+    void FillAdminTableView();
+
+
     void on_LogOut_Button_clicked();
 
     void on_LogInButton_clicked();
+
+    void on_LogOut_Button_2_clicked();
+
+    void on_pass_returnPressed();
 
 private:
     Ui::MainWindow *ui;
