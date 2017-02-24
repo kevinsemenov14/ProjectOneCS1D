@@ -7,27 +7,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->startTrip->hide();
-    ui->LogOut_Button->show();
-
     ui->stackedWidget->setCurrentIndex(4);
     ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
 
-    ui->label_2->hide();
-    ui->Selected_Locations_Label->hide();
-    ui->label_4->hide();
-
-    ui->LocationsTableWidget->hide();
-    ui->tableWidget_2->hide();
-    ui->comboBox->hide();
-
     ui->spinBox->setMinimum(1);
-
+    ui->AddedCityBerlDist->setMinimum(1);
+    ui->AddedCityBerlDist->setSuffix(" km");
+    ui->AddedItemPrice->setMinimum(1.25);
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
-
-    FillTripTable();
-    FillBerlinTable();
 }
 
 MainWindow::~MainWindow()
@@ -37,56 +25,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_normalTrip_clicked()
 {
-    ui->startTrip->show();
 
-    ui->label_2->show();
-
-    ui->Selected_Locations_Label->hide();
-
-    ui->LocationsTableWidget->hide();
-
-    ui->comboBox->hide();
-
-    ui->label_4->hide();
-
-    ui->LocationsTableWidget->show();
-
-    ui->tableWidget_2->show();
-
-    ui->LogOut_Button->show();
 }
 
 void MainWindow::on_CustomTrip1_clicked()
 {
-    ui->startTrip->show();
-
-    ui->label_2->show();
-    ui->Selected_Locations_Label->show();
-
-     ui->comboBox->hide();
-     ui->label_4->hide();
-
-    ui->LocationsTableWidget->show();
-    ui->tableWidget_2->show();
 
 }
 
 void MainWindow::on_CustomTrip2_clicked()
 {
-    ui->startTrip->show();
 
-    ui->label_4->show();
-
-    ui->Selected_Locations_Label->hide();
-
-    ui->comboBox->show();
     ui->comboBox->setBaseSize(1, 13);
 }
 
 void MainWindow::on_startTrip_clicked()
 {
-    ui->stackedWidgetPage1->hide();
-    ui->stackedWidgetPage2->show();
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
+
 }
 
 void MainWindow::FillTripTable()
@@ -95,15 +52,10 @@ void MainWindow::FillTripTable()
     int col = 0;                          //Initialize row and column to 0
     int row = 0;
 
-
-
     ui->LocationsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->LocationsTableWidget->insertColumn(col);
     ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names:"));
-
-//    ui->LocationsTableWidget->insertColumn(col);
-//    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Distance to Berlin:"));
 
     ui->LocationsTableWidget->resizeColumnsToContents();
     ui->LocationsTableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -150,10 +102,6 @@ void MainWindow::on_LogOut_Button_clicked()
     ui->stackedWidget->setCurrentIndex(4);
     ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
 
-//    if(ui->LogOut_Button->text() == "Log Out")
-//    {
-//        ui->LogOut_Button->setText("Log In");
-//    }
 }
 
 void MainWindow::on_LogInButton_clicked()
@@ -167,6 +115,7 @@ void MainWindow::on_LogInButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(3);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);
+        FillAdminTableView();
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -174,6 +123,8 @@ void MainWindow::on_LogInButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
+        FillTripTable();
+        FillBerlinTable();
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -189,3 +140,37 @@ void MainWindow::on_LogInButton_clicked()
 
 }
 
+
+void MainWindow::on_LogOut_Button_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
+}
+
+void MainWindow::FillAdminTableView(){
+
+        int col = 0;                          //Initialize row and column to 0
+        int row = 0;
+
+        ui->tableWidgetAdmin->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
+
+        ui->tableWidgetAdmin->insertColumn(col);
+        ui->tableWidgetAdmin->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names"));
+
+        ui->tableWidgetAdmin->resizeColumnsToContents();
+        ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
+
+        for(int i = 0; i < cityNames.size(); i++)
+        {
+            ui->tableWidgetAdmin->insertRow(row);
+            ui->tableWidgetAdmin->setItem(row, 0, new QTableWidgetItem(cityNames.at(i)));
+        }
+
+        ui->tableWidgetAdmin->resizeColumnsToContents();
+        ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
+    }
+
+void MainWindow::on_pass_returnPressed()
+{
+    ui->LogInButton->click();
+}
