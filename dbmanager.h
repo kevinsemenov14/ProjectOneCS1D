@@ -94,7 +94,7 @@ public:
      * \param CityName
      * \return menu item names
      */
-    QVector<QString> getMenuItems(QString CityName);
+    QVector<QString> getCityItems(QString CityName);
 
 
     /*!
@@ -204,6 +204,12 @@ public:
      */
     bool updateTotRev(QString CityName, double value);
 
+    /*!
+     * \brief updateTotRev
+     *
+     * Accumulates each city's distance to Berlin
+     * \return t/f result of the operation
+     */
     QVector<QString> getBerlinDist();
 
 

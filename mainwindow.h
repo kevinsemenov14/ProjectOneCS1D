@@ -30,22 +30,35 @@ private slots:
 
     void FillBerlinTable();
 
+    void FillItemMenu(QString CityName);
+
     void FillAdminTableView();
-
-
-    void on_LogOut_Button_clicked();
 
     void on_LogInButton_clicked();
 
+    void on_pass_returnPressed();
+
+    void on_LogOut_Button_clicked();
+
     void on_LogOut_Button_2_clicked();
 
-    void on_pass_returnPressed();
+    void clearCityTable();
+
+    void clearItemsTable();
+
+    void clearselectedCitiesTable();
+
+    void ClearAdminTable();
 
 private:
     Ui::MainWindow *ui;
-    dbManager db;
-    QVector<QString> cityNames;
-    QVector<QString> berlDists;
+    dbManager db;                   //Instance of the database
+
+    int tripnum;                    //1 is Regular, 2 is custom, 3 is custom
+
+    QVector<QString> cityNames;     //Names of all cities
+    QVector<QString> berlDists;     //Distance for all cities from berlin
+    QVector<QString> cityfoodItems; //food items for a given city
 
 };
 

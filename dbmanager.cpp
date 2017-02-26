@@ -19,6 +19,8 @@ dbManager::dbManager()
         qDebug() << "Connected to DB.";
 }
 
+
+
 QVector<QString> dbManager:: getCityNames()
 {
     QSqlQuery query(db);
@@ -44,6 +46,8 @@ QVector<QString> dbManager:: getCityNames()
     return names;
 }
 
+
+
 QVector<QString> dbManager::getBerlinDist()
 {
     QSqlQuery query(db);
@@ -67,31 +71,8 @@ QVector<QString> dbManager::getBerlinDist()
     return berlDist;
 }
 
-QString dbManager::getSadDist(QString CityName)
-{
-    QSqlQuery query(db);
-    //QString dist;
-//    query.prepare("SELECT Dis2Sad FROM City WHERE name = (:CityName)");
-//    query.bindValue(":CityName", CityName);
-//    if(query.exec())
-//    {
-//        if(query.next())
-//        {
-//            double dist = query.value(0).toDouble();
-//           // qDebug() << dist;
-//            return QString::number(dist);
-//        }
-//        else
-//        {
-//            return "Error";
-//        }
-//    }
-//    else
-//    {
-//        qDebug() << query.lastError();
-        return "NO City found";
-//    }
-}
+
+
 QString dbManager::getRev(QString CityName)
 {
     QSqlQuery query(db);
@@ -118,6 +99,8 @@ QString dbManager::getRev(QString CityName)
         return "NO City found";
     }
 }
+
+
 
 
 QString dbManager::getNumItems(QString CityName)
@@ -147,18 +130,20 @@ QString dbManager::getNumItems(QString CityName)
     }
 }
 
-QVector<QString> dbManager::getMenuItems(QString CityName)
+
+
+QVector<QString> dbManager::getCityItems(QString CityName)
 {
 
     QSqlQuery query(db);
     QVector<QString> names;
 
-    query.prepare("SELECT Name FROM MenuItems WHERE Owner = (:CityName)");
+    query.prepare("SELECT food FROM foodTable WHERE city = (:CityName)");
     query.bindValue(":CityName", CityName );
 
     if(query.exec())
     {
-
+        qDebug() << "Getting items";
         while(query.next()) //these seem to be coming out in alphabetical order by default
         {
 
@@ -170,14 +155,18 @@ QVector<QString> dbManager::getMenuItems(QString CityName)
     {
         qDebug() << query.lastError();
     }
+
     return names;
 
 }
+
+
+
 QString dbManager::getItemPrice(QString CityName, QString itemName)
 {
     QSqlQuery query(db);
 
-    query.prepare("SELECT Price FROM MenuItems WHERE Owner = (:CityName) AND Name = (:itemName)");
+    query.prepare("SELECT cost FROM foodTable WHERE city = (:CityName) AND food = (:itemName)");
     query.bindValue(":CityName", CityName);
     query.bindValue(":itemName", itemName);
 
@@ -196,6 +185,9 @@ QString dbManager::getItemPrice(QString CityName, QString itemName)
     }
     return "price" ;
 }
+
+
+
 bool dbManager::Exists(QString CityName, QString itemName)
 {
     QSqlQuery query(db);
@@ -220,6 +212,10 @@ bool dbManager::Exists(QString CityName, QString itemName)
         return false;
     }
 }
+
+
+
+
 bool dbManager::removeItem(QString CityName, QString itemName)
 {
     QSqlQuery query(db);
@@ -267,6 +263,7 @@ bool dbManager::removeItem(QString CityName, QString itemName)
         return false;
     }
 }
+
 
 
 bool dbManager::updateItem(QString CityName, QString itemName, double price)
