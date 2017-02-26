@@ -34,6 +34,8 @@ private slots:
 
     void FillAdminTableView();
 
+    void FillAdminCB();
+
     void on_LogInButton_clicked();
 
     void on_pass_returnPressed();
@@ -49,6 +51,10 @@ private slots:
     void clearselectedCitiesTable();
 
     void ClearAdminTable();
+
+    void on_addCityButton_clicked();
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::MainWindow *ui;

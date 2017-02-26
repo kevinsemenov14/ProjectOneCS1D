@@ -353,13 +353,13 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
     return false;
 }
 
-bool dbManager::addCity(QString CityName, double sadDist, QVector<double> distances)
+bool dbManager::addCity(QString CityName, double berDist, QVector<double> distances)
 {
     QSqlQuery query(db);
     QString distancesStr = distancesToString(distances);
-    query.prepare("INSERT INTO City (name, dis2Sad, distances) VALUES (:CityName, :sadDist, :distStr)");
+    query.prepare("INSERT INTO Cities (name, Dist2Ber, Distances) VALUES (:CityName, :berDist, :distStr)");
     query.bindValue(":CityName", CityName);
-    query.bindValue(":sadDist", sadDist);
+    query.bindValue(":sadDist", berDist);
     query.bindValue(":distStr", distancesStr +" " + "0.0");
     if(query.exec())
     {

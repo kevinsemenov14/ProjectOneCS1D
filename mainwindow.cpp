@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 /*
- * WORKING ON: Selecting items from ItemsTableWidget to SelectedItemsTableWidget
+ *
  */
 
 
@@ -20,7 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->spinBox->setMinimum(1);
     ui->AddedCityBerlDist->setMinimum(1);
     ui->AddedCityBerlDist->setSuffix(" km");
-    ui->AddedItemPrice->setMinimum(1.25);
+    ui->AddedItemPrice->setMinimum(0.50);
+
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
 }
@@ -30,34 +31,67 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+//This function starts the normal trip.
+//Here we will start at London.
+//We will then visit all possible cities
 void MainWindow::on_normalTrip_clicked()
 {
     tripnum = 1;
 }
 
+
+//Function: CustomTrip1
+// Trip starts at Paris
+// User gets to select number of cities they want to visit(including Paris).
 void MainWindow::on_CustomTrip1_clicked()
 {
     tripnum = 2;
+    ui->comboBox->setBaseSize(1, 13);
 }
 
+
+//Function: CustomTrip2
+//User will select a list of cities they want to visit.
+//First place they select is the starting city
+//All following cities will be calculated for nearest distance
 void MainWindow::on_CustomTrip2_clicked()
 {
 
-    tripnum = 2;
-    ui->comboBox->show();
-    ui->comboBox->setBaseSize(1, 13);
+    tripnum = 3;
+
 
 }
 
+
+//StartTrip Button:
+//Pressing this button will start the selected trip.
 void MainWindow::on_startTrip_clicked()
 {
-    ui->comboBox->hide();
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
-    FillItemMenu("Amsterdam");
-    ui->CurrentCityLabel->setText("Hardcoded: Amsterdam");
+    if(tripnum == 0)
+    {
+        QMessageBox errorBox;
+        errorBox.critical(0,"Invalid Selection","Please select a trip!");
+        errorBox.setFixedSize(1200,400);
+    }
+    else
+    {
+        ui->comboBox->hide();
+        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
+        FillItemMenu("Amsterdam");
+        ui->CurrentCityLabel->setText("Hardcoded: Amsterdam");
+    }
 }
 
+
+
+
+/*
+ * Function: FillTripTable
+ * Task: To take the data from the database and populate the TableWidget for
+ *          the user to view in the UI.
+ */
 void MainWindow::FillTripTable()
 {
     ui->LocationsTableWidget->clear();    //Clear the table
@@ -82,6 +116,14 @@ void MainWindow::FillTripTable()
     ui->LocationsTableWidget->horizontalHeader()->setStretchLastSection(true);
 }
 
+
+
+
+/*
+ * Function: FillBerlinTable
+ * Task: To take the distance of each city from Berlin from the database
+ *        and populate the TableWidget for the user to view in the UI.
+ */
 void MainWindow::FillBerlinTable()
 {
     ui->selectedCitiesTable->clear();
@@ -108,6 +150,11 @@ void MainWindow::FillBerlinTable()
 
 
 
+/*
+ * Function: FillItemMenu
+ * Task: To take the items of a given city from the database and populate the
+ *        TableWidget for the user to view in the UI.
+ */
 void MainWindow::FillItemMenu(QString CityName)
 {
     cityfoodItems = db.getCityItems(CityName);
@@ -121,11 +168,11 @@ void MainWindow::FillItemMenu(QString CityName)
     ui->ItemsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->ItemsTableWidget->insertColumn(col);
-    ui->ItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
+    ui->ItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Price:"));
 
 
     ui->ItemsTableWidget->insertColumn(col);
-    ui->ItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Price:"));
+    ui->ItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
 
 
     ui->ItemsTableWidget->resizeColumnsToContents();
@@ -147,30 +194,57 @@ void MainWindow::FillItemMenu(QString CityName)
 }
 
 
+
+/*
+ * Function: FillAdminTableView
+ * Task: To take the items of a given city from the database and populate the
+ *        TableWidget for the admin to view in the UI.
+ */
 void MainWindow::FillAdminTableView()
 {
+    int col = 0;                          //Initialize row and column to 0
+    int row = 0;
 
-        int col = 0;                          //Initialize row and column to 0
-        int row = 0;
+    ui->tableWidgetAdmin->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
-        ui->tableWidgetAdmin->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
+    ui->tableWidgetAdmin->insertColumn(col);
+    ui->tableWidgetAdmin->setHorizontalHeaderItem(col, new QTableWidgetItem("Food Items"));
 
-        ui->tableWidgetAdmin->insertColumn(col);
-        ui->tableWidgetAdmin->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names"));
+    ui->tableWidgetAdmin->resizeColumnsToContents();
+    ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
 
-        ui->tableWidgetAdmin->resizeColumnsToContents();
-        ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
+    for(int i = 0; i < cityNames.size(); i++)
+    {
+        ui->tableWidgetAdmin->insertRow(row);
+        ui->tableWidgetAdmin->setItem(row, 0, new QTableWidgetItem(cityNames.at(i)));
+    }
 
-        for(int i = 0; i < cityNames.size(); i++)
-        {
-            ui->tableWidgetAdmin->insertRow(row);
-            ui->tableWidgetAdmin->setItem(row, 0, new QTableWidgetItem(cityNames.at(i)));
-        }
-
-        ui->tableWidgetAdmin->resizeColumnsToContents();
-        ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidgetAdmin->resizeColumnsToContents();
+    ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
 }
 
+void MainWindow::FillAdminCB()
+{
+
+    ui->RemoveCity_CB->clear();
+    ui->AI_CN_CB->clear();
+    ui->AdminViewCB->clear();
+
+    for(int i = 0; i < cityNames.size(); i++)
+    {
+        ui->RemoveCity_CB->addItem(cityNames.at(i));
+        ui->AI_CN_CB->addItem(cityNames.at(i));
+        ui->AdminViewCB->addItem(cityNames.at(i));
+    }
+}
+
+
+
+/*
+ * Function: LogInButton_clicked
+ * Task: Allow user or admin to log in with a valid ID.
+ *        Print an error if they enter an incorrect ID or Password.
+ */
 void MainWindow::on_LogInButton_clicked()
 {
     QString adminID = "Admin";
@@ -183,6 +257,7 @@ void MainWindow::on_LogInButton_clicked()
         ui->stackedWidget->setCurrentIndex(3);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);
         FillAdminTableView();
+        FillAdminCB();
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -206,10 +281,20 @@ void MainWindow::on_LogInButton_clicked()
     ui->pass->clear();
 
 }
+
+/*
+ * Function: pass_returnPressed
+ * Task: Shortcut to login without having to drag the mouse over LogIn button.
+ */
 void MainWindow::on_pass_returnPressed()
 {
     ui->LogInButton->click();
 }
+
+/*
+ * Function: LogOut_Button
+ * Task: Log out the Admin.
+ */
 void MainWindow::on_LogOut_Button_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
@@ -220,6 +305,11 @@ void MainWindow::on_LogOut_Button_clicked()
     clearselectedCitiesTable();
     ClearAdminTable();
 }
+
+/*
+ * Function: LogOut_Button_2
+ * Task: Log out the User.
+ */
 void MainWindow::on_LogOut_Button_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
@@ -232,6 +322,12 @@ void MainWindow::on_LogOut_Button_2_clicked()
 }
 
 
+
+/*
+ * Function: clearCityTable
+ * Task: To clear the TableWigdet so that data does not repeat incase of
+ *        the user decides to make another trip.
+ */
 void MainWindow::clearCityTable()
 {
     int currentRows = ui->LocationsTableWidget->rowCount();
@@ -255,6 +351,12 @@ void MainWindow::clearCityTable()
     }
 }
 
+
+/*
+ * Function: clearItemsTable
+ * Task: To clear the TableWigdet so that data does not repeat incase of
+ *        the user decides to make another trip.
+ */
 void MainWindow::clearItemsTable()
 {
     int currentRows = ui->ItemsTableWidget->rowCount();
@@ -278,6 +380,13 @@ void MainWindow::clearItemsTable()
     }
 }
 
+
+
+/*
+ * Function: clearselectedCitiesTable
+ * Task: To clear the TableWigdet so that data does not repeat incase of
+ *        the user decides to make another trip.
+ */
 void MainWindow::clearselectedCitiesTable()
 {
     int currentRows = ui->selectedCitiesTable->rowCount();
@@ -301,6 +410,12 @@ void MainWindow::clearselectedCitiesTable()
     }
 }
 
+
+
+/*
+ * Function: clearAdminTable
+ * Task: To clear the TableWigdet so that data does not repeat.
+ */
 void MainWindow::ClearAdminTable()
 {
     int currentRows = ui->tableWidgetAdmin->rowCount();
@@ -322,4 +437,26 @@ void MainWindow::ClearAdminTable()
     {
         ui->tableWidgetAdmin->removeColumn(0);
     }
+}
+
+
+
+/*
+ * Function: addCityButton
+ * Task: To add new city to the database.
+ * Restriction: User has to enter a name and distance to berlin.
+ *              Without the above data, the city will not be added to database
+ */
+void MainWindow::on_addCityButton_clicked()
+{
+    if((ui->AddCityName->text() != "") && (ui->AddedCityBerlDist->value() != 0))
+    {
+
+    }
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+    ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage5);
 }
