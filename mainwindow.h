@@ -60,6 +60,8 @@ private slots:
 
     void on_AI_CN_CB_currentIndexChanged(const QString &arg1);
 
+    void on_AddItemButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     dbManager db;                   //Instance of the database

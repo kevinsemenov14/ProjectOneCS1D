@@ -107,7 +107,7 @@ QString dbManager::getNumItems(QString CityName)
 {
     QSqlQuery query(db);
 
-    query.prepare("SELECT numItems FROM City WHERE name = (:CityName)");
+    query.prepare("SELECT numItems FROM Cities WHERE name = (:CityName)");
     query.bindValue(":CityName", CityName);
     if(query.exec())
     {
@@ -192,7 +192,7 @@ bool dbManager::Exists(QString CityName, QString itemName)
 {
     QSqlQuery query(db);
 
-    query.prepare("SELECT * FROM MenuItems WHERE Owner = (:CityName) AND Name = (:itemName)");
+    query.prepare("SELECT * FROM foodTable WHERE city = (:CityName) AND food = (:itemName)");
     query.bindValue(":CityName", CityName);
     query.bindValue(":itemName", itemName);
     if(query.exec())
@@ -219,13 +219,13 @@ bool dbManager::Exists(QString CityName, QString itemName)
 bool dbManager::removeItem(QString CityName, QString itemName)
 {
     QSqlQuery query(db);
-    query.prepare("DELETE FROM MenuItems WHERE Owner = (:CityName) AND Name = (:itemName)");
+    query.prepare("DELETE FROM foodTable WHERE city = (:CityName) AND food = (:itemName)");
     query.bindValue(":CityName", CityName);
     query.bindValue(":itemName", itemName);
     if(query.exec())
     {
         QSqlQuery query2(db);
-        query2.prepare("SELECT numItems FROM City WHERE name = (:CityName) ");
+        query2.prepare("SELECT numItems FROM Cities WHERE name = (:CityName) ");
         query2.bindValue(":CityName", CityName);
         if(query2.exec())
         {
@@ -233,7 +233,7 @@ bool dbManager::removeItem(QString CityName, QString itemName)
             {
                 int count= query2.value(0).toInt(); //update the item count for the City
                 QSqlQuery query3(db);
-                query3.prepare("UPDATE City SET numItems = (:count) WHERE name = (:CityName)");
+                query3.prepare("UPDATE Cities SET numItems = (:count) WHERE name = (:CityName)");
                 query3.bindValue(":CityName", CityName);
                 query3.bindValue(":count", (count-1));
                 if(query3.exec())
@@ -271,7 +271,7 @@ bool dbManager::updateItem(QString CityName, QString itemName, double price)
     QSqlQuery query(db);
     if(Exists(CityName, itemName))
     {
-        query.prepare("UPDATE MenuItems SET Price = (:price) WHERE Owner = (:CityName) AND Name = (:itemName)");
+        query.prepare("UPDATE foodTable SET cost = (:price) WHERE city = (:CityName) AND food = (:itemName)");
         query.bindValue(":CityName", CityName);
         query.bindValue(":itemName", itemName);
         query.bindValue(":price", price);
@@ -297,7 +297,7 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
     QSqlQuery query(db);
     if(!Exists(CityName, itemName))
     {
-        query.prepare("INSERT INTO MenuItems (Owner, Name, Price) VALUES (:CityName, :itemName, :price)");
+        query.prepare("INSERT INTO foodTable (city, food, cost) VALUES (:CityName, :itemName, :price)");
         query.bindValue(":CityName", CityName);
         query.bindValue(":itemName", itemName);
         query.bindValue(":price", price);
@@ -307,7 +307,7 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
            // qDebug() << "We good";
 
             QSqlQuery query2(db);
-            query2.prepare("SELECT numItems FROM City WHERE name = (:CityName) ");
+            query2.prepare("SELECT numItems FROM Cities WHERE name = (:CityName) ");
             query2.bindValue(":CityName", CityName);
             if(query2.exec())
             {
@@ -315,7 +315,7 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
                 {
                     int count= query2.value(0).toInt(); //update the item count for the City
                     QSqlQuery query3(db);
-                    query3.prepare("UPDATE City SET numItems = (:count) WHERE name = (:CityName)");
+                    query3.prepare("UPDATE Cities SET numItems = (:count) WHERE name = (:CityName)");
                     query3.bindValue(":CityName", CityName);
                     query3.bindValue(":count", (count+1));
                     if(query3.exec())
@@ -391,7 +391,7 @@ bool dbManager::updateDistances(QVector<double> distances)
     qDebug() << distances.size();
      for(int i = 0; i < distances.size(); i++)
      {
-         query.prepare("SELECT distances FROM City WHERE CityId = (:iId)");
+         query.prepare("SELECT Distances FROM Cities WHERE CityId = (:iId)");
          query.bindValue(":iId", i);
          if(query.exec())
          {
@@ -401,7 +401,7 @@ bool dbManager::updateDistances(QVector<double> distances)
                 QSqlQuery query2(db);
               //  qDebug() << dist;
                // qDebug() <<
-                query2.prepare("UPDATE City SET distances = (:distStr) WHERE CityId = (:iId)");
+                query2.prepare("UPDATE Cities SET Distances = (:distStr) WHERE CityId = (:iId)");
                 query2.bindValue(":iId", i);
                 query2.bindValue(":distStr", (dist + " " + QString::number(distances.at(i))));
                 if(query2.exec())
@@ -450,7 +450,7 @@ bool dbManager::updateDistances(QVector<double> distances)
 QString dbManager::getDistances(QString CityName)
 {
     QSqlQuery query(db);
-    query.prepare("SELECT Distances FROM City WHERE name = (:CityName)");
+    query.prepare("SELECT Distances FROM Cities WHERE name = (:CityName)");
         query.bindValue(":CityName", CityName );
         if(query.exec())
         {
@@ -476,7 +476,7 @@ QString dbManager::getDistances(QString CityName)
 bool dbManager::updateTotRev(QString CityName, double value)
 {
     QSqlQuery query(db);
-    query.prepare("SELECT totRev FROM City WHERE name = (:CityName)");
+    query.prepare("SELECT totRev FROM Cities WHERE name = (:CityName)");
      query.bindValue(":CityName", CityName );
 
      if(query.exec())
@@ -487,7 +487,7 @@ bool dbManager::updateTotRev(QString CityName, double value)
 
 
              QSqlQuery query2(db);
-             query2.prepare("UPDATE City SET totRev = (:newRev) WHERE name = (:CityName)");
+             query2.prepare("UPDATE Cities SET totRev = (:newRev) WHERE name = (:CityName)");
              query2.bindValue(":CityName", CityName );
              query2.bindValue(":newRev", rev+value );
              if(query2.exec())

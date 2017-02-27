@@ -18,9 +18,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
 
     ui->spinBox->setMinimum(1);
+
     ui->AddedCityBerlDist->setMinimum(1);
+    ui->AddedCityBerlDist->setMaximum(15000);
     ui->AddedCityBerlDist->setSuffix(" km");
-    ui->AddedItemPrice->setMinimum(0.50);
+
+    ui->AddedItemPrice->setMinimum(1.00);
 
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
@@ -57,10 +60,7 @@ void MainWindow::on_CustomTrip1_clicked()
 //All following cities will be calculated for nearest distance
 void MainWindow::on_CustomTrip2_clicked()
 {
-
     tripnum = 3;
-
-
 }
 
 
@@ -263,9 +263,12 @@ void MainWindow::on_LogInButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(3);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);
+
         ClearAdminTable();
+
         FillAdminTableView("Amsterdam");
         FillAdminCB();
+
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -273,8 +276,14 @@ void MainWindow::on_LogInButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(1);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage1);
+
+        clearCityTable();
+        clearselectedCitiesTable();
+        clearItemsTable();
+
         FillTripTable();
         FillBerlinTable();
+
         ui->LogOut_Button->setText("Log Out");
     }
 
@@ -457,7 +466,7 @@ void MainWindow::ClearAdminTable()
  */
 void MainWindow::on_addCityButton_clicked()
 {
-    if((ui->AddCityName->text() != "") && (ui->AddedCityBerlDist->value() != 0))
+    if((ui->AddCityName->text() != "") && (ui->AddedCityBerlDist->value() > 0))
     {
 
     }
@@ -488,3 +497,63 @@ void MainWindow::on_AI_CN_CB_currentIndexChanged(const QString &arg1)
     ui->label_27->setText(arg1);
 }
 
+
+void MainWindow::on_AddItemButton_clicked()
+{
+    QString nameToAdd = ui->AddedItemName->text();
+    bool failed = false;
+
+    if(db.Exists(ui->AI_CN_CB->currentText(), nameToAdd))
+    {
+        QMessageBox ExistingBox;
+        ExistingBox.critical(0, "Item already exists!", "Price updated to new value");
+        ExistingBox.setFixedSize(1200, 400);
+//      Update the item price using following statement:
+//      db.updateItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+    }
+
+    if(nameToAdd.isEmpty() || (nameToAdd.size()==1 && nameToAdd.at(0).isSpace()))
+    {
+        QMessageBox msgBox;
+        msgBox.critical(0,"Invalid Input","Name required inorder to add item");
+        msgBox.setFixedSize(1200,400);
+    }
+    else
+    {
+        for(int i = 0; i < nameToAdd.size(); i++)
+        {
+            if(nameToAdd.at(i).isDigit())
+            {
+                QMessageBox msgBox;
+                msgBox.critical(0,"Invalid Input","Numbers are prohibited");
+                msgBox.setFixedSize(1200,400);
+                failed = true;
+                break;
+            }
+            else if(nameToAdd.at(i).isPunct())
+            {
+                QMessageBox msgBox;
+                msgBox.critical(0,"Invalid Input","Punctuations are prohibited");
+                msgBox.setFixedSize(1200,400);
+                failed = true;
+                break;
+            }
+            else if(nameToAdd.at(i).isSymbol())
+            {
+                QMessageBox msgBox;
+                msgBox.critical(0,"Invalid Input","Symbols are prohibited");
+                msgBox.setFixedSize(1200,400);
+                failed = true;
+                break;
+            }
+        }
+    }
+
+    //If all tests for invalid input fail, then the input must be valid.
+    //Add it to the database
+    if(!failed)
+    {
+        //ADD ITEM using:
+        //db.addItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+    }
+}
