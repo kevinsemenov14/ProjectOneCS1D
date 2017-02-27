@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="stackedWidgetPage1">
      <widget class="QWidget" name="layoutWidget">
@@ -603,6 +603,11 @@
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QLabel" name="label_17">
+         <property name="font">
+          <font>
+           <underline>true</underline>
+          </font>
+         </property>
          <property name="text">
           <string>Add City:</string>
          </property>
@@ -726,6 +731,11 @@
       <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
         <widget class="QLabel" name="label_18">
+         <property name="font">
+          <font>
+           <underline>true</underline>
+          </font>
+         </property>
          <property name="text">
           <string>Add item/Update Price:</string>
          </property>
@@ -805,30 +815,71 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>297</x>
+        <x>298</x>
         <y>10</y>
-        <width>251</width>
+        <width>258</width>
         <height>401</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="0" column="0">
+       <item row="1" column="0">
         <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <underline>true</underline>
+          </font>
+         </property>
          <property name="text">
           <string>View Data for City:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QComboBox" name="AdminViewCB"/>
-       </item>
-       <item row="1" column="0" colspan="2">
+       <item row="2" column="0" colspan="5">
         <widget class="QTableWidget" name="tableWidgetAdmin">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <spacer name="horizontalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="3">
+        <spacer name="horizontalSpacer_13">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_27">
+         <property name="text">
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>

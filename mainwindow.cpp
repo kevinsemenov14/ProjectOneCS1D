@@ -157,6 +157,7 @@ void MainWindow::FillBerlinTable()
  */
 void MainWindow::FillItemMenu(QString CityName)
 {
+    cityfoodItems.clear();
     cityfoodItems = db.getCityItems(CityName);
 
     ui->ItemsComboBox->clear();
@@ -200,23 +201,30 @@ void MainWindow::FillItemMenu(QString CityName)
  * Task: To take the items of a given city from the database and populate the
  *        TableWidget for the admin to view in the UI.
  */
-void MainWindow::FillAdminTableView()
+void MainWindow::FillAdminTableView(QString CityName)
 {
+    cityfoodItems.clear();
+    cityfoodItems = db.getCityItems(CityName);
+
     int col = 0;                          //Initialize row and column to 0
     int row = 0;
 
     ui->tableWidgetAdmin->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->tableWidgetAdmin->insertColumn(col);
-    ui->tableWidgetAdmin->setHorizontalHeaderItem(col, new QTableWidgetItem("Food Items"));
+    ui->tableWidgetAdmin->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Price"));
+
+    ui->tableWidgetAdmin->insertColumn(col);
+    ui->tableWidgetAdmin->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name"));
 
     ui->tableWidgetAdmin->resizeColumnsToContents();
     ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
 
-    for(int i = 0; i < cityNames.size(); i++)
+    for(int i = 0; i < cityfoodItems.size(); i++)
     {
         ui->tableWidgetAdmin->insertRow(row);
-        ui->tableWidgetAdmin->setItem(row, 0, new QTableWidgetItem(cityNames.at(i)));
+        ui->tableWidgetAdmin->setItem(row, 0, new QTableWidgetItem(cityfoodItems.at(i)));
+        ui->tableWidgetAdmin->setItem(row, 1, new QTableWidgetItem(db.getItemPrice(CityName, cityfoodItems.at(i))));
     }
 
     ui->tableWidgetAdmin->resizeColumnsToContents();
@@ -228,14 +236,13 @@ void MainWindow::FillAdminCB()
 
     ui->RemoveCity_CB->clear();
     ui->AI_CN_CB->clear();
-    ui->AdminViewCB->clear();
 
     for(int i = 0; i < cityNames.size(); i++)
     {
         ui->RemoveCity_CB->addItem(cityNames.at(i));
         ui->AI_CN_CB->addItem(cityNames.at(i));
-        ui->AdminViewCB->addItem(cityNames.at(i));
     }
+
 }
 
 
@@ -256,7 +263,8 @@ void MainWindow::on_LogInButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(3);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage3);
-        FillAdminTableView();
+        ClearAdminTable();
+        FillAdminTableView("Amsterdam");
         FillAdminCB();
         ui->LogOut_Button->setText("Log Out");
     }
@@ -455,8 +463,28 @@ void MainWindow::on_addCityButton_clicked()
     }
 }
 
+
+
 void MainWindow::on_pushButton_6_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
     ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage5);
 }
+
+
+void MainWindow::on_RemoveCity_CB_currentIndexChanged(const QString &arg1)
+{
+    ClearAdminTable();
+    FillAdminTableView(arg1);
+    ui->label_27->setText(arg1);
+}
+
+
+
+void MainWindow::on_AI_CN_CB_currentIndexChanged(const QString &arg1)
+{
+    ClearAdminTable();
+    FillAdminTableView(arg1);
+    ui->label_27->setText(arg1);
+}
+

@@ -32,7 +32,7 @@ private slots:
 
     void FillItemMenu(QString CityName);
 
-    void FillAdminTableView();
+    void FillAdminTableView(QString CityName);
 
     void FillAdminCB();
 
@@ -55,6 +55,10 @@ private slots:
     void on_addCityButton_clicked();
 
     void on_pushButton_6_clicked();
+
+    void on_RemoveCity_CB_currentIndexChanged(const QString &arg1);
+
+    void on_AI_CN_CB_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
