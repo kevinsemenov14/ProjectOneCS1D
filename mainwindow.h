@@ -56,11 +56,13 @@ private slots:
 
     void on_pushButton_6_clicked();
 
-    void on_RemoveCity_CB_currentIndexChanged(const QString &arg1);
+    void on_RemoveItemCityCB_currentIndexChanged(const QString &arg1);
 
     void on_AI_CN_CB_currentIndexChanged(const QString &arg1);
 
     void on_AddItemButton_clicked();
+
+    void on_RemoveItemButton_clicked();
 
 private:
     Ui::MainWindow *ui;

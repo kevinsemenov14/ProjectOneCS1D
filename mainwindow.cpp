@@ -205,6 +205,7 @@ void MainWindow::FillAdminTableView(QString CityName)
 {
     cityfoodItems.clear();
     cityfoodItems = db.getCityItems(CityName);
+    ui->RemoveItemCB->clear();
 
     int col = 0;                          //Initialize row and column to 0
     int row = 0;
@@ -225,8 +226,8 @@ void MainWindow::FillAdminTableView(QString CityName)
         ui->tableWidgetAdmin->insertRow(row);
         ui->tableWidgetAdmin->setItem(row, 0, new QTableWidgetItem(cityfoodItems.at(i)));
         ui->tableWidgetAdmin->setItem(row, 1, new QTableWidgetItem(db.getItemPrice(CityName, cityfoodItems.at(i))));
+        ui->RemoveItemCB->addItem(cityfoodItems.at(i));
     }
-
     ui->tableWidgetAdmin->resizeColumnsToContents();
     ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
 }
@@ -234,12 +235,12 @@ void MainWindow::FillAdminTableView(QString CityName)
 void MainWindow::FillAdminCB()
 {
 
-    ui->RemoveCity_CB->clear();
+    ui->RemoveItemCityCB->clear();
     ui->AI_CN_CB->clear();
 
     for(int i = 0; i < cityNames.size(); i++)
     {
-        ui->RemoveCity_CB->addItem(cityNames.at(i));
+        ui->RemoveItemCityCB->addItem(cityNames.at(i));
         ui->AI_CN_CB->addItem(cityNames.at(i));
     }
 
@@ -481,7 +482,7 @@ void MainWindow::on_pushButton_6_clicked()
 }
 
 
-void MainWindow::on_RemoveCity_CB_currentIndexChanged(const QString &arg1)
+void MainWindow::on_RemoveItemCityCB_currentIndexChanged(const QString &arg1)
 {
     ClearAdminTable();
     FillAdminTableView(arg1);
@@ -505,18 +506,21 @@ void MainWindow::on_AddItemButton_clicked()
 
     if(db.Exists(ui->AI_CN_CB->currentText(), nameToAdd))
     {
+//      Update the item price using following statement:
+        db.updateItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+
+        on_AI_CN_CB_currentIndexChanged(ui->AI_CN_CB->currentText());
+
         QMessageBox ExistingBox;
         ExistingBox.critical(0, "Item already exists!", "Price updated to new value");
         ExistingBox.setFixedSize(1200, 400);
-//      Update the item price using following statement:
-//      db.updateItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
     }
 
-    if(nameToAdd.isEmpty() || (nameToAdd.size()==1 && nameToAdd.at(0).isSpace()))
+    else if(nameToAdd.isEmpty() || (nameToAdd.size()==1 && nameToAdd.at(0).isSpace()))
     {
         QMessageBox msgBox;
-        msgBox.critical(0,"Invalid Input","Name required inorder to add item");
-        msgBox.setFixedSize(1200,400);
+        msgBox.critical(0,"Name not found!","Enter a name");
+        msgBox.setFixedSize(1200,600);
     }
     else
     {
@@ -554,6 +558,22 @@ void MainWindow::on_AddItemButton_clicked()
     if(!failed)
     {
         //ADD ITEM using:
-        //db.addItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+        db.addItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
     }
+}
+
+
+void MainWindow::on_RemoveItemButton_clicked()
+{
+    QString cityforItemRemove = ui->RemoveItemCityCB->currentText();
+    QString itemToRemove = ui->RemoveItemCB->currentText();
+
+    db.removeItem(cityforItemRemove, itemToRemove);
+
+    on_RemoveItemCityCB_currentIndexChanged(ui->RemoveItemCityCB->currentText());
+
+    QMessageBox pop;
+    pop.critical(0, "YOOO", "value deleted!");
+    pop.setFixedSize(1200, 400);
+
 }

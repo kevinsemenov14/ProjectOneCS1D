@@ -304,11 +304,12 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
         if(query.exec())
         {
 
-           // qDebug() << "We good";
+            qDebug() << "Value inserted";
 
             QSqlQuery query2(db);
             query2.prepare("SELECT numItems FROM Cities WHERE name = (:CityName) ");
             query2.bindValue(":CityName", CityName);
+
             if(query2.exec())
             {
                 if(query2.next())
@@ -347,9 +348,7 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
     {
         //do something if the item exists
         return false;
-
     }
-
     return false;
 }
 

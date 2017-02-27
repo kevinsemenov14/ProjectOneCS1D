@@ -106,13 +106,6 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *addCityButton;
     QWidget *layoutWidget7;
-    QGridLayout *gridLayout_4;
-    QLabel *label_15;
-    QSpacerItem *horizontalSpacer_5;
-    QSplitter *splitter_6;
-    QComboBox *RemoveCity_CB;
-    QPushButton *removeCityButton;
-    QWidget *layoutWidget8;
     QGridLayout *gridLayout_5;
     QLabel *label_18;
     QSpacerItem *horizontalSpacer_6;
@@ -127,13 +120,21 @@ public:
     QDoubleSpinBox *AddedItemPrice;
     QSpacerItem *horizontalSpacer_7;
     QPushButton *AddItemButton;
-    QWidget *widget;
+    QWidget *layoutWidget8;
     QGridLayout *gridLayout_6;
     QLabel *label_6;
     QTableWidget *tableWidgetAdmin;
     QSpacerItem *horizontalSpacer_12;
     QSpacerItem *horizontalSpacer_13;
     QLabel *label_27;
+    QWidget *widget;
+    QGridLayout *gridLayout_4;
+    QLabel *label_15;
+    QSpacerItem *horizontalSpacer_5;
+    QComboBox *RemoveItemCityCB;
+    QComboBox *RemoveItemCB;
+    QSpacerItem *horizontalSpacer_14;
+    QPushButton *RemoveItemButton;
     QWidget *stackedWidgetPage4;
     QWidget *layoutWidget9;
     QGridLayout *gridLayout_2;
@@ -503,42 +504,13 @@ public:
 
         layoutWidget7 = new QWidget(stackedWidgetPage3);
         layoutWidget7->setObjectName(QStringLiteral("layoutWidget7"));
-        layoutWidget7->setGeometry(QRect(10, 160, 251, 61));
-        gridLayout_4 = new QGridLayout(layoutWidget7);
-        gridLayout_4->setSpacing(6);
-        gridLayout_4->setContentsMargins(11, 11, 11, 11);
-        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        label_15 = new QLabel(layoutWidget7);
-        label_15->setObjectName(QStringLiteral("label_15"));
-
-        gridLayout_4->addWidget(label_15, 0, 0, 1, 1);
-
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_4->addItem(horizontalSpacer_5, 0, 1, 1, 1);
-
-        splitter_6 = new QSplitter(layoutWidget7);
-        splitter_6->setObjectName(QStringLiteral("splitter_6"));
-        splitter_6->setOrientation(Qt::Horizontal);
-        RemoveCity_CB = new QComboBox(splitter_6);
-        RemoveCity_CB->setObjectName(QStringLiteral("RemoveCity_CB"));
-        splitter_6->addWidget(RemoveCity_CB);
-        removeCityButton = new QPushButton(splitter_6);
-        removeCityButton->setObjectName(QStringLiteral("removeCityButton"));
-        splitter_6->addWidget(removeCityButton);
-
-        gridLayout_4->addWidget(splitter_6, 1, 0, 1, 2);
-
-        layoutWidget8 = new QWidget(stackedWidgetPage3);
-        layoutWidget8->setObjectName(QStringLiteral("layoutWidget8"));
-        layoutWidget8->setGeometry(QRect(20, 260, 241, 151));
-        gridLayout_5 = new QGridLayout(layoutWidget8);
+        layoutWidget7->setGeometry(QRect(10, 140, 251, 151));
+        gridLayout_5 = new QGridLayout(layoutWidget7);
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         gridLayout_5->setContentsMargins(0, 0, 0, 0);
-        label_18 = new QLabel(layoutWidget8);
+        label_18 = new QLabel(layoutWidget7);
         label_18->setObjectName(QStringLiteral("label_18"));
         label_18->setFont(font);
 
@@ -548,7 +520,7 @@ public:
 
         gridLayout_5->addItem(horizontalSpacer_6, 0, 1, 1, 1);
 
-        splitter_8 = new QSplitter(layoutWidget8);
+        splitter_8 = new QSplitter(layoutWidget7);
         splitter_8->setObjectName(QStringLiteral("splitter_8"));
         splitter_8->setOrientation(Qt::Horizontal);
         label_21 = new QLabel(splitter_8);
@@ -560,7 +532,7 @@ public:
 
         gridLayout_5->addWidget(splitter_8, 1, 0, 1, 2);
 
-        splitter_10 = new QSplitter(layoutWidget8);
+        splitter_10 = new QSplitter(layoutWidget7);
         splitter_10->setObjectName(QStringLiteral("splitter_10"));
         splitter_10->setOrientation(Qt::Horizontal);
         label_19 = new QLabel(splitter_10);
@@ -572,7 +544,7 @@ public:
 
         gridLayout_5->addWidget(splitter_10, 2, 0, 1, 2);
 
-        splitter_9 = new QSplitter(layoutWidget8);
+        splitter_9 = new QSplitter(layoutWidget7);
         splitter_9->setObjectName(QStringLiteral("splitter_9"));
         splitter_9->setOrientation(Qt::Horizontal);
         label_20 = new QLabel(splitter_9);
@@ -588,26 +560,26 @@ public:
 
         gridLayout_5->addItem(horizontalSpacer_7, 4, 0, 1, 1);
 
-        AddItemButton = new QPushButton(layoutWidget8);
+        AddItemButton = new QPushButton(layoutWidget7);
         AddItemButton->setObjectName(QStringLiteral("AddItemButton"));
 
         gridLayout_5->addWidget(AddItemButton, 4, 1, 1, 1);
 
-        widget = new QWidget(stackedWidgetPage3);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(298, 10, 258, 401));
-        gridLayout_6 = new QGridLayout(widget);
+        layoutWidget8 = new QWidget(stackedWidgetPage3);
+        layoutWidget8->setObjectName(QStringLiteral("layoutWidget8"));
+        layoutWidget8->setGeometry(QRect(298, 10, 258, 401));
+        gridLayout_6 = new QGridLayout(layoutWidget8);
         gridLayout_6->setSpacing(6);
         gridLayout_6->setContentsMargins(11, 11, 11, 11);
         gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
         gridLayout_6->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget);
+        label_6 = new QLabel(layoutWidget8);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setFont(font);
 
         gridLayout_6->addWidget(label_6, 1, 0, 1, 1);
 
-        tableWidgetAdmin = new QTableWidget(widget);
+        tableWidgetAdmin = new QTableWidget(layoutWidget8);
         tableWidgetAdmin->setObjectName(QStringLiteral("tableWidgetAdmin"));
         tableWidgetAdmin->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tableWidgetAdmin->setSelectionMode(QAbstractItemView::NoSelection);
@@ -623,10 +595,46 @@ public:
 
         gridLayout_6->addItem(horizontalSpacer_13, 1, 3, 1, 1);
 
-        label_27 = new QLabel(widget);
+        label_27 = new QLabel(layoutWidget8);
         label_27->setObjectName(QStringLiteral("label_27"));
 
         gridLayout_6->addWidget(label_27, 1, 2, 1, 1);
+
+        widget = new QWidget(stackedWidgetPage3);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 320, 251, 91));
+        gridLayout_4 = new QGridLayout(widget);
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setContentsMargins(11, 11, 11, 11);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        gridLayout_4->setContentsMargins(0, 0, 0, 0);
+        label_15 = new QLabel(widget);
+        label_15->setObjectName(QStringLiteral("label_15"));
+
+        gridLayout_4->addWidget(label_15, 0, 0, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_5, 0, 1, 1, 1);
+
+        RemoveItemCityCB = new QComboBox(widget);
+        RemoveItemCityCB->setObjectName(QStringLiteral("RemoveItemCityCB"));
+
+        gridLayout_4->addWidget(RemoveItemCityCB, 1, 0, 1, 1);
+
+        RemoveItemCB = new QComboBox(widget);
+        RemoveItemCB->setObjectName(QStringLiteral("RemoveItemCB"));
+
+        gridLayout_4->addWidget(RemoveItemCB, 1, 1, 1, 1);
+
+        horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_14, 2, 0, 1, 1);
+
+        RemoveItemButton = new QPushButton(widget);
+        RemoveItemButton->setObjectName(QStringLiteral("RemoveItemButton"));
+
+        gridLayout_4->addWidget(RemoveItemButton, 2, 1, 1, 1);
 
         stackedWidget->addWidget(stackedWidgetPage3);
         stackedWidgetPage4 = new QWidget();
@@ -823,8 +831,6 @@ public:
         label_14->setText(QApplication::translate("MainWindow", "Name:", Q_NULLPTR));
         label_16->setText(QApplication::translate("MainWindow", "Distance From Berlin", Q_NULLPTR));
         addCityButton->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
-        label_15->setText(QApplication::translate("MainWindow", "Remove City:", Q_NULLPTR));
-        removeCityButton->setText(QApplication::translate("MainWindow", "Remove", Q_NULLPTR));
         label_18->setText(QApplication::translate("MainWindow", "Add item/Update Price:", Q_NULLPTR));
         label_21->setText(QApplication::translate("MainWindow", "City Name: ", Q_NULLPTR));
         label_19->setText(QApplication::translate("MainWindow", "Name:", Q_NULLPTR));
@@ -832,6 +838,8 @@ public:
         AddItemButton->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
         label_6->setText(QApplication::translate("MainWindow", "View Data for City:", Q_NULLPTR));
         label_27->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
+        label_15->setText(QApplication::translate("MainWindow", "Remove Item:", Q_NULLPTR));
+        RemoveItemButton->setText(QApplication::translate("MainWindow", "Remove", Q_NULLPTR));
         label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Username:</span></p></body></html>", Q_NULLPTR));
         label_13->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Password:</span></p></body></html>", Q_NULLPTR));
         LogInButton->setText(QApplication::translate("MainWindow", "Log In", Q_NULLPTR));
