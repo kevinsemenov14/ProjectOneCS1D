@@ -515,7 +515,7 @@ void MainWindow::on_AddItemButton_clicked()
         ExistingBox.critical(0, "Item already exists!", "Price updated to new value");
         ExistingBox.setFixedSize(1200, 400);
     }
-
+//FIX THIS: isSpace()
     else if(nameToAdd.isEmpty() || (nameToAdd.size()==1 && nameToAdd.at(0).isSpace()))
     {
         QMessageBox msgBox;
