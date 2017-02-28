@@ -595,89 +595,6 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>251</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_17">
-         <property name="font">
-          <font>
-           <underline>true</underline>
-          </font>
-         </property>
-         <property name="text">
-          <string>Add City:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QSplitter" name="splitter_5">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Name:</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="AddCityName"/>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2">
-        <widget class="QSplitter" name="splitter_7">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string>Distance From Berlin</string>
-          </property>
-         </widget>
-         <widget class="QSpinBox" name="AddedCityBerlDist"/>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="addCityButton">
-         <property name="text">
-          <string>Add</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
         <y>140</y>
         <width>251</width>
         <height>151</height>
@@ -840,7 +757,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -895,6 +812,96 @@
           <string>Remove</string>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>11</y>
+        <width>251</width>
+        <height>106</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="0" colspan="3">
+        <widget class="QSplitter" name="splitter_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Name:</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="AddCityName"/>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QSplitter" name="splitter_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>Distance From Berlin</string>
+          </property>
+         </widget>
+         <widget class="QSpinBox" name="AddedCityBerlDist"/>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Add from DB</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="addCityButton">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="font">
+          <font>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>Add City:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1015,7 +1022,7 @@
         <x>380</x>
         <y>60</y>
         <width>291</width>
-        <height>161</height>
+        <height>191</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_10">
@@ -1073,7 +1080,7 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>321</width>
+        <width>341</width>
         <height>411</height>
        </rect>
       </property>
@@ -1102,17 +1109,12 @@
         <widget class="QTableWidget" name="tableWidget">
          <column>
           <property name="text">
-           <string>Items Bought</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
            <string>Location</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>Price</string>
+           <string>Amount Spent</string>
           </property>
          </column>
         </widget>
@@ -1138,6 +1140,17 @@
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; text-decoration: underline; color:#000000;&quot;&gt;Tour de Europe:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_12"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
