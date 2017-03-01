@@ -1,11 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-/*
- *
- */
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -27,6 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
+
+    ui->spinBox_2->clear();
+    ui->spinBox_2->setMinimum(1);
+    ui->spinBox_2->setMaximum(cityNames.size());
 }
 
 MainWindow::~MainWindow()
@@ -50,7 +49,6 @@ void MainWindow::on_normalTrip_clicked()
 void MainWindow::on_CustomTrip1_clicked()
 {
     tripnum = 2;
-    ui->comboBox->setBaseSize(1, 13);
 }
 
 
@@ -71,12 +69,12 @@ void MainWindow::on_startTrip_clicked()
     if(tripnum == 0)
     {
         QMessageBox errorBox;
-        errorBox.critical(0,"Invalid Selection","Please select a trip!");
+        errorBox.warning(0,"Invalid Selection","Please select a trip!");
         errorBox.setFixedSize(1200,400);
     }
     else
     {
-        ui->comboBox->hide();
+//        ui->comboBox->hide();
         ui->stackedWidget->setCurrentIndex(2);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
         FillItemMenu("Amsterdam");
@@ -94,58 +92,40 @@ void MainWindow::on_startTrip_clicked()
  */
 void MainWindow::FillTripTable()
 {
+
+    cityNames.clear();
+    berlDists.clear();
+
+    cityNames = db.getCityNames();
+    berlDists = db.getBerlinDist();
+
     ui->LocationsTableWidget->clear();    //Clear the table
+    ui->selectedCitiesTable->clear();
+
     int col = 0;                          //Initialize row and column to 0
     int row = 0;
 
     ui->LocationsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
     ui->LocationsTableWidget->insertColumn(col);
-    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names:"));
+    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Distance to Berlin(km)"));
+
+    ui->LocationsTableWidget->insertColumn(col);
+    ui->LocationsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("City Names"));
 
     ui->LocationsTableWidget->resizeColumnsToContents();
     ui->LocationsTableWidget->horizontalHeader()->setStretchLastSection(true);
 
     for(int i = 0; i < cityNames.size(); i++)
     {
-        ui->LocationsTableWidget->insertRow(row);
-        ui->LocationsTableWidget->setItem(row, 0, new QTableWidgetItem(cityNames.at(i)));
+        int numRows = ui->LocationsTableWidget->rowCount();
+        ui->LocationsTableWidget->insertRow(numRows);
+        ui->LocationsTableWidget->setItem(numRows, 0, new QTableWidgetItem(cityNames.at(i)));
+        ui->LocationsTableWidget->setItem(numRows, 1, new QTableWidgetItem(berlDists.at(i)));
     }
 
     ui->LocationsTableWidget->resizeColumnsToContents();
     ui->LocationsTableWidget->horizontalHeader()->setStretchLastSection(true);
-}
-
-
-
-
-/*
- * Function: FillBerlinTable
- * Task: To take the distance of each city from Berlin from the database
- *        and populate the TableWidget for the user to view in the UI.
- */
-void MainWindow::FillBerlinTable()
-{
-    ui->selectedCitiesTable->clear();
-    int col = 0;
-    int row = 0;
-
-    ui->selectedCitiesTable->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
-
-    ui->selectedCitiesTable->insertColumn(col);
-    ui->selectedCitiesTable->setHorizontalHeaderItem(col, new QTableWidgetItem("Distance From Berlin (km)"));
-
-    ui->selectedCitiesTable->resizeColumnsToContents();
-    ui->selectedCitiesTable->horizontalHeader()->setStretchLastSection(true);
-
-    for(int i = 0; i < berlDists.size(); i++)
-    {
-        ui->selectedCitiesTable->insertRow(row);
-        ui->selectedCitiesTable->setItem(row, 0, new QTableWidgetItem(berlDists.at(i)));
-    }
-
-    ui->selectedCitiesTable->resizeColumnsToContents();
-    ui->selectedCitiesTable->horizontalHeader()->setStretchLastSection(true);
 }
 
 
@@ -181,10 +161,11 @@ void MainWindow::FillItemMenu(QString CityName)
 
     for(int i = 0; i < cityfoodItems.size(); i++)
     {
-        ui->ItemsTableWidget->insertRow(row);
+        int numRows = ui->ItemsTableWidget->rowCount();
+        ui->ItemsTableWidget->insertRow(numRows);
 
-        ui->ItemsTableWidget->setItem(row, 0, new QTableWidgetItem(cityfoodItems.at(i)));
-        ui->ItemsTableWidget->setItem(row, 1, new QTableWidgetItem(db.getItemPrice(CityName, cityfoodItems.at(i))));
+        ui->ItemsTableWidget->setItem(numRows, 0, new QTableWidgetItem(cityfoodItems.at(i)));
+        ui->ItemsTableWidget->setItem(numRows, 1, new QTableWidgetItem(db.getItemPrice(CityName, cityfoodItems.at(i))));
 
         ui->ItemsComboBox->addItem(cityfoodItems.at(i));
     }
@@ -283,7 +264,6 @@ void MainWindow::on_LogInButton_clicked()
         clearItemsTable();
 
         FillTripTable();
-        FillBerlinTable();
 
         ui->LogOut_Button->setText("Log Out");
     }
@@ -407,25 +387,26 @@ void MainWindow::clearItemsTable()
  */
 void MainWindow::clearselectedCitiesTable()
 {
-    int currentRows = ui->selectedCitiesTable->rowCount();
-    int currentCol =  ui->selectedCitiesTable->columnCount();
+    ui->selectedCitiesTable->clear();
+//    int currentRows = ui->selectedCitiesTable->rowCount();
+//    int currentCol =  ui->selectedCitiesTable->columnCount();
 
-    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
-    {
-        ui->selectedCitiesTable->removeRow(0);
-    }
-    for(int colRemove = 0; colRemove < currentCol; colRemove++)
-    {
-        ui->selectedCitiesTable->removeColumn(0);
-    }
-    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
-    {
-        ui->selectedCitiesTable->removeRow(0);
-    }
-    for(int colRemove = 0; colRemove < currentCol; colRemove++)
-    {
-        ui->selectedCitiesTable->removeColumn(0);
-    }
+//    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+//    {
+//        ui->selectedCitiesTable->removeRow(0);
+//    }
+//    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+//    {
+//        ui->selectedCitiesTable->removeColumn(0);
+//    }
+//    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+//    {
+//        ui->selectedCitiesTable->removeRow(0);
+//    }
+//    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+//    {
+//        ui->selectedCitiesTable->removeColumn(0);
+//    }
 }
 
 
@@ -467,9 +448,85 @@ void MainWindow::ClearAdminTable()
  */
 void MainWindow::on_addCityButton_clicked()
 {
-    if((ui->AddCityName->text() != "") && (ui->AddedCityBerlDist->value() > 0))
-    {
+    QString cityToAdd;
+    int distToBerlin;
+    bool failed, allSpaces;
 
+    cityToAdd = ui->AddCityName->text();
+    distToBerlin = ui->AddedCityBerlDist->value();
+    failed = false;
+    allSpaces = true;
+
+    for(int i = 0; i < cityToAdd.size(); i++)
+    {
+        if(!cityToAdd.at(i).isSpace())
+        {
+            allSpaces = false;
+        }
+    }
+
+    for(int i = 0; i < cityToAdd.size(); i++)
+    {
+        if(cityToAdd.at(i).isNumber())
+        {
+            QMessageBox CityNumBox;
+            CityNumBox.critical(0, "Invalid Entry!", "Numbers are Prohibited");
+            CityNumBox.setFixedSize(1200, 400);
+            failed = true;
+            break;
+        }
+        else if(cityToAdd.at(i).isPunct())
+        {
+            QMessageBox CityPunctBox;
+            CityPunctBox.critical(0, "Invalid Entry!", "Punctuation is Prohibited");
+            CityPunctBox.setFixedSize(1200, 400);
+            failed = true;
+            break;
+        }
+        else if(cityToAdd.at(i).isSymbol())
+        {
+            QMessageBox CitySymbolBox;
+            CitySymbolBox.critical(0, "Invalid Entry!", "Symbols are Prohibited");
+            CitySymbolBox.setFixedSize(1200, 400);
+            failed = true;
+            break;
+        }
+        else
+        {
+            failed = false;
+        }
+    }
+    if(cityToAdd.isEmpty())
+    {
+        QMessageBox CityExistsBox;
+        CityExistsBox.critical(0, "Entry not found!", "Please Enter a Name!");
+        CityExistsBox.setFixedSize(1200, 400);
+        failed = true;
+    }
+    else if(allSpaces)
+    {
+        QMessageBox CityExistsBox;
+        CityExistsBox.critical(0, "Entry not found!", "Please Enter a Name!");
+        CityExistsBox.setFixedSize(1200, 400);
+        failed = true;
+    }
+    if(!failed)
+    {
+        if(db.cityExists(cityToAdd))
+        {
+            QMessageBox CityExistsBox;
+            CityExistsBox.critical(0, "City already exists!", "Can not add existing city");
+            CityExistsBox.setFixedSize(1200, 400);
+        }
+        else
+        {
+            QMessageBox CityExistsBox;
+            CityExistsBox.setText("Addition Successful!");
+            CityExistsBox.setInformativeText("The city has been added");
+            CityExistsBox.setStandardButtons(QMessageBox::Ok);
+            CityExistsBox.exec();
+//            db.addCity(cityToAdd, distToBerlin, "");
+        }
     }
 }
 
@@ -512,7 +569,7 @@ void MainWindow::on_AddItemButton_clicked()
         on_AI_CN_CB_currentIndexChanged(ui->AI_CN_CB->currentText());
 
         QMessageBox ExistingBox;
-        ExistingBox.critical(0, "Item already exists!", "Price updated to new value");
+        ExistingBox.information(0, "Item already exists!", "Price updated to new value");
         ExistingBox.setFixedSize(1200, 400);
     }
 //FIX THIS: isSpace()
@@ -563,6 +620,11 @@ void MainWindow::on_AddItemButton_clicked()
 }
 
 
+
+
+/*
+ *
+ */
 void MainWindow::on_RemoveItemButton_clicked()
 {
     QString cityforItemRemove = ui->RemoveItemCityCB->currentText();
@@ -573,7 +635,45 @@ void MainWindow::on_RemoveItemButton_clicked()
     on_RemoveItemCityCB_currentIndexChanged(ui->RemoveItemCityCB->currentText());
 
     QMessageBox pop;
-    pop.critical(0, "YOOO", "value deleted!");
+    pop.information(0, "DELETION SUCCESSFUL", "Value deleted!");
     pop.setFixedSize(1200, 400);
+}
 
+
+
+/*
+ *
+ */
+void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
+{
+    QString namesS = db.getCityNames().at(row);
+    ui->selectedCitiesTable->addItem(namesS);
+}
+
+
+
+
+QVector<int> MainWindow::distancestoStr(QString dist) {
+    /* * QVector<double> distDoubles;
+     * QString dist = db.getDistances("Chipotle");
+     * //get the distances for specified rest
+     * //qDebug() << dist;
+     * distDoubles= distancestoStr(dist);
+     * //parse the distances string out, then assign it to
+     * the object, qvector has the = operator overloaded
+     * qDebug() << distDoubles; */
+
+//    QVector<int> distDoubles;
+//    QStringList list = dist.split(' ');
+
+//    //qDebug() << list;
+//    for(int i = 0; i < list.size(); i++){
+//        QString temp= list.at(i);
+//        distDoubles.push_back(Distance(i, temp.toInt()));
+//    }
+
+//    qSort(distDoubles.begin(),distDoubles.end(), DistSort());
+
+
+//    return distDoubles;
 }

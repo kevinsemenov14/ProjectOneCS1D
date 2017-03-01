@@ -109,6 +109,16 @@ public:
 
 
     /*!
+     * \brief cityExists
+     *
+     * checks if a city exists
+     * \param CityName
+     * \return t/f if the city exists
+     */
+    bool cityExists(QString CityName);
+
+
+    /*!
      * \brief removeItem
      *
      * Removes a menu item
@@ -181,7 +191,7 @@ public:
      * \param distances
      * \return QString of distances
      */
-    QString distancesToString(QVector<double> distances); //converts the distances to a string to store in the db
+    QString distancesToString(QVector<int> distances); //converts the distances to a string to store in the db
 
 
     /*!

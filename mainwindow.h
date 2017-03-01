@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <iostream>
 #include "dbmanager.h"
 #include "QMessageBox"
 
@@ -27,8 +28,6 @@ private slots:
     void on_startTrip_clicked();
 
     void FillTripTable();
-
-    void FillBerlinTable();
 
     void FillItemMenu(QString CityName);
 
@@ -63,6 +62,12 @@ private slots:
     void on_AddItemButton_clicked();
 
     void on_RemoveItemButton_clicked();
+
+    void on_LocationsTableWidget_cellDoubleClicked(int row, int column);
+
+    QVector<int> distancestoStr(QString dist);
+
+
 
 private:
     Ui::MainWindow *ui;

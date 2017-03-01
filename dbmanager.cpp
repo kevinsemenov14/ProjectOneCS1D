@@ -27,7 +27,7 @@ QVector<QString> dbManager:: getCityNames()
     QVector<QString> names;
 
     //select in the order they are given
-    query.prepare("SELECT city FROM foodTable GROUP BY city");
+    query.prepare("SELECT name FROM Cities GROUP BY name");
 
     if(!query.exec())
     {
@@ -216,6 +216,34 @@ bool dbManager::Exists(QString CityName, QString itemName)
 
 
 
+bool dbManager::cityExists(QString CityName)
+{
+    QSqlQuery query(db);
+
+    query.prepare("SELECT name FROM Cities WHERE name = (:CityName)");
+    query.bindValue(":CityName", CityName);
+
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        qDebug() << query.lastError();
+        return false;
+    }
+}
+
+
+
+
 bool dbManager::removeItem(QString CityName, QString itemName)
 {
     QSqlQuery query(db);
@@ -354,33 +382,32 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
 
 bool dbManager::addCity(QString CityName, double berDist, QVector<double> distances)
 {
-    QSqlQuery query(db);
-    QString distancesStr = distancesToString(distances);
-    query.prepare("INSERT INTO Cities (name, Dist2Ber, Distances) VALUES (:CityName, :berDist, :distStr)");
-    query.bindValue(":CityName", CityName);
-    query.bindValue(":sadDist", berDist);
-    query.bindValue(":distStr", distancesStr +" " + "0.0");
-    if(query.exec())
-    {
-        //qDebug() << "should be added";
-        updateDistances(distances);
-        return true;
-    }
-    else
-    {
-        qDebug() << query.lastError();
-    }
+//    QSqlQuery query(db);
+//    QString distancesStr = distancesToString(distances);
+//    query.prepare("INSERT INTO Cities (name, Dist2Ber, Distances) VALUES (:CityName, :berDist, :distStr)");
+//    query.bindValue(":CityName", CityName);
+//    query.bindValue(":sadDist", berDist);
+//    query.bindValue(":distStr", distancesStr +" " + "0.0");
+//    if(query.exec())
+//    {
+//        //qDebug() << "should be added";
+//        updateDistances(distances);
+//        return true;
+//    }
+//    else
+//    {
+//        qDebug() << query.lastError();
+//    }
     return false;
 
 }
-QString dbManager::distancesToString(QVector<double> distances)
+QString dbManager::distancesToString(QVector<int> distances)
 {
-    QString distancesStr="";
+    QString distancesStr = "";
     for(int i = 0; i < distances.size(); i++)
     {
         distancesStr += QString::number(distances.at(i) )+ " ";
     }
-
     return distancesStr.trimmed(); //cut of the ending white space
 }
 
