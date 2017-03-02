@@ -91,7 +91,7 @@ void MainWindow::on_startTrip_clicked()
             ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
             FillItemMenu(defTrip.front());
             int col = 0;
-            int row = 0;
+//            int row = 0;
 
             ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
 
@@ -134,7 +134,7 @@ void MainWindow::FillTripTable()
     ui->selectedCitiesTable->clear();
 
     int col = 0;                          //Initialize row and column to 0
-    int row = 0;
+//    int row = 0;
 
     ui->LocationsTableWidget->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
 
@@ -246,9 +246,15 @@ void MainWindow::FillAdminTableView(QString CityName)
     ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
 }
 
+
+
+/*
+ * Function: FillAdminTableView
+ * Task: To take the items of a given city from the database and populate the
+ *        TableWidget for the admin to view in the UI.
+ */
 void MainWindow::FillAdminCB()
 {
-
     ui->RemoveItemCityCB->clear();
     ui->AI_CN_CB->clear();
 
@@ -257,7 +263,6 @@ void MainWindow::FillAdminCB()
         ui->RemoveItemCityCB->addItem(cityNames.at(i));
         ui->AI_CN_CB->addItem(cityNames.at(i));
     }
-
 }
 
 
@@ -595,66 +600,76 @@ void MainWindow::on_AddItemButton_clicked()
         }
     }
 
-    if(db.Exists(ui->AI_CN_CB->currentText(), nameToAdd))
+    for(int i = 0; i < nameToAdd.size(); i++)
     {
-//      Update the item price using following statement:
-        db.updateItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
-
-        on_AI_CN_CB_currentIndexChanged(ui->AI_CN_CB->currentText());
-
-        QMessageBox ExistingBox;
-        ExistingBox.information(0, "Item already exists!", "Price updated to new value");
-        ExistingBox.setFixedSize(1200, 400);
-        failed = true;
-    }
-    else if(nameToAdd.isEmpty() || nameToAdd.at(0).isNull())
-    {
-        QMessageBox msgBox;
-        msgBox.critical(0,"Name not found!","Enter a name");
-        msgBox.setFixedSize(1200,600);
-        failed = true;
-    }
-    else
-    {
-        for(int i = 0; i < nameToAdd.size(); i++)
+        if(nameToAdd.at(i).isNumber())
         {
-            if(nameToAdd.at(i).isDigit())
-            {
-                QMessageBox msgBox;
-                msgBox.critical(0,"Invalid Input","Numbers are prohibited");
-                msgBox.setFixedSize(1200,400);
-                failed = true;
-                break;
-            }
-            else if(nameToAdd.at(i).isPunct())
-            {
-                QMessageBox msgBox;
-                msgBox.critical(0,"Invalid Input","Punctuations are prohibited");
-                msgBox.setFixedSize(1200,400);
-                failed = true;
-                break;
-            }
-            else if(nameToAdd.at(i).isSymbol())
-            {
-                QMessageBox msgBox;
-                msgBox.critical(0,"Invalid Input","Symbols are prohibited");
-                msgBox.setFixedSize(1200,400);
-                failed = true;
-                break;
-            }
+            QMessageBox msgBox;
+            msgBox.critical(0,"Invalid Entry!","Numbers are prohibited");
+            msgBox.setFixedSize(1200,400);
+            failed = true;
+            break;
+        }
+        else if(nameToAdd.at(i).isPunct())
+        {
+            QMessageBox msgBox;
+            msgBox.critical(0,"Invalid Entry!","Punctuations are prohibited");
+            msgBox.setFixedSize(1200,400);
+            failed = true;
+            break;
+        }
+        else if(nameToAdd.at(i).isSymbol())
+        {
+            QMessageBox msgBox;
+            msgBox.critical(0,"Invalid Input","Symbols are prohibited");
+            msgBox.setFixedSize(1200,400);
+            failed = true;
+            break;
         }
     }
 
-    if(isSpace)
+    if(nameToAdd.isEmpty())
     {
-        failed = false;
+        QMessageBox msgBox;
+        msgBox.critical(0,"Entry not found!","Please Enter a Name!");
+        msgBox.setFixedSize(1200,600);
+        failed = true;
     }
+    else if(isSpace)
+    {
+        QMessageBox msgBox;
+        msgBox.critical(0,"Entry not found!","Please Enter a Name!");
+        msgBox.setFixedSize(1200,600);
+        failed = true;
+    }
+
     //If all tests for invalid input fail, then the input must be valid.
     //Add it to the database
-    if(!failed)
+    if(failed == false)
     {
-        //ADD ITEM using:
-        db.addItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+        if(db.Exists(ui->AI_CN_CB->currentText(), nameToAdd))
+        {
+    //      Update the item price using following statement:
+            db.updateItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+
+            on_AI_CN_CB_currentIndexChanged(ui->AI_CN_CB->currentText());
+
+            QMessageBox ExistingBox;
+            ExistingBox.information(0, "Item already exists!", "Price updated to new value");
+            ExistingBox.setFixedSize(1200, 400);
+            failed = true;
+        }
+        else
+        {
+            //ADD ITEM using:
+            db.addItem(ui->AI_CN_CB->currentText(), nameToAdd, ui->AddedItemPrice->value());
+            on_AI_CN_CB_currentIndexChanged(ui->AI_CN_CB->currentText());
+            QMessageBox ItemAddedBox;
+            ItemAddedBox.setText("Addition Successful!");
+            ItemAddedBox.setInformativeText("The city has been added");
+            ItemAddedBox.setStandardButtons(QMessageBox::Ok);
+            ItemAddedBox.exec();
+        }
     }
 }
 
