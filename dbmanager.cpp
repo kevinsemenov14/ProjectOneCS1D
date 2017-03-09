@@ -11,7 +11,7 @@
 dbManager::dbManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("Project1Database.sqlite");
+    db.setDatabaseName("Project1Database.db");
 //    db.open();
     if(!db.open())
         qDebug() << "Not connected to DB.";
