@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -188,7 +188,7 @@ public:
         stackedWidgetPage1->setObjectName(QStringLiteral("stackedWidgetPage1"));
         layoutWidget = new QWidget(stackedWidgetPage1);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 50, 104, 381));
+        layoutWidget->setGeometry(QRect(20, 50, 82, 381));
         gridLayout_7 = new QGridLayout(layoutWidget);
         gridLayout_7->setSpacing(6);
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
@@ -221,7 +221,7 @@ public:
 
         layoutWidget1 = new QWidget(stackedWidgetPage1);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(130, 20, 461, 411));
+        layoutWidget1->setGeometry(QRect(120, 20, 471, 411));
         gridLayout_8 = new QGridLayout(layoutWidget1);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -266,7 +266,7 @@ public:
 
         layoutWidget2 = new QWidget(stackedWidgetPage1);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(610, 50, 121, 381));
+        layoutWidget2->setGeometry(QRect(610, 50, 111, 381));
         gridLayout_9 = new QGridLayout(layoutWidget2);
         gridLayout_9->setSpacing(6);
         gridLayout_9->setContentsMargins(11, 11, 11, 11);
@@ -596,7 +596,7 @@ public:
 
         layoutWidget9 = new QWidget(stackedWidgetPage3);
         layoutWidget9->setObjectName(QStringLiteral("layoutWidget9"));
-        layoutWidget9->setGeometry(QRect(11, 11, 251, 121));
+        layoutWidget9->setGeometry(QRect(11, 11, 251, 107));
         gridLayout_3 = new QGridLayout(layoutWidget9);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -655,7 +655,7 @@ public:
         stackedWidgetPage4->setObjectName(QStringLiteral("stackedWidgetPage4"));
         layoutWidget10 = new QWidget(stackedWidgetPage4);
         layoutWidget10->setObjectName(QStringLiteral("layoutWidget10"));
-        layoutWidget10->setGeometry(QRect(229, 164, 261, 115));
+        layoutWidget10->setGeometry(QRect(229, 164, 261, 105));
         gridLayout_2 = new QGridLayout(layoutWidget10);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -787,7 +787,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 767, 22));
+        menuBar->setGeometry(QRect(0, 0, 767, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -798,7 +798,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

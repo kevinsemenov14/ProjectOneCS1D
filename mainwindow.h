@@ -83,13 +83,15 @@ private:
     int tripnum;                    //1 is Regular, 2 is custom, 3 is custom
     double totCityPurch;
     double grandTotSpent;
+    QString startingCity;
 
     QVector<QString> cityNames;     //Names of all cities
     QVector<QString> berlDists;     //Distance for all cities from berlin
     QVector<QString> cityfoodItems; //food items for a given city
     QQueue <QString> defTrip;       //the cities to visit for default trip
     QVector<ReceiptItem> receipt;   //a list of the total items purchased
-
+    QVector<QString> citiesToVisit;   //a list of the cities to visit
+    QVector<QString> citiesVisited;   //a list of the cities visited
 };
 
 #endif // MAINWINDOW_H
