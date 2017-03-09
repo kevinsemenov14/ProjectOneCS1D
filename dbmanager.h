@@ -53,7 +53,7 @@ public:
      * \param CityName
      * \return the citys distance to saddleback
      */
-    QString getSadDist(QString CityName);
+    int getDistfrom(QString startCity, QString endCity);
 
 
     /*!

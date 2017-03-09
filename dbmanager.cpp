@@ -48,6 +48,37 @@ QVector<QString> dbManager:: getCityNames()
 
 
 
+int dbManager::getDistfrom(QString StartingCity, QString EndingCity)
+{
+    QSqlQuery query(db);
+
+    //select in the order they are given
+    query.prepare("SELECT distance FROM Distances WHERE StartingCity = (:StartingCity) and EndingCity = (:EndingCity)");
+    query.bindValue(":StartingCity", StartingCity);
+    query.bindValue(":EndingCity", EndingCity);
+    if(query.exec())
+    {
+        if(query.next())
+        {
+            int distancefromDB = query.value(0).toInt();
+           // qDebug() << rev;
+            return distancefromDB;
+        }
+        else
+        {
+            qDebug() << "Error";
+        }
+
+    }
+    else
+    {
+        qDebug() << query.lastError();
+        qDebug() << "NO distance found";
+    }
+}
+
+
+
 QVector<QString> dbManager::getBerlinDist()
 {
     QSqlQuery query(db);

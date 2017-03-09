@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+//SELECT EndingCity, distance FROM Distances where StartingCity = "Berlin" order by distance ASC
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -31,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->spinBox_2->clear();
     ui->spinBox_2->setMinimum(1);
     ui->spinBox_2->setMaximum(cityNames.size());
+
+    double dist;
+    dist = db.getDistfrom("Amsterdam", "Berlin");
+    qDebug() << dist;
 }
 
 MainWindow::~MainWindow()
@@ -47,6 +54,14 @@ void MainWindow::on_normalTrip_clicked()
     tripnum = 1;
     totCityPurch = 0;
     grandTotSpent = 0;
+    citiesToVisit.clear();
+    citiesVisited.clear();
+    startingCity = "London";
+    cityNames = db.getCityNames();
+    citiesToVisit = db.getCityNames();
+    //LOOP:
+    //call funtion to find next closest city
+    //
 }
 
 
@@ -55,9 +70,18 @@ void MainWindow::on_normalTrip_clicked()
 // User gets to select number of cities they want to visit(including Paris).
 void MainWindow::on_CustomTrip1_clicked()
 {
+    int numberOfCities;
+
+    cityNames = db.getCityNames();
     tripnum = 2;
     totCityPurch = 0;
     grandTotSpent = 0;
+    numberOfCities = 0;
+    citiesToVisit.clear();
+    citiesVisited.clear();
+    startingCity = "Paris";
+    numberOfCities = ui->spinBox_2->value();
+
 }
 
 
@@ -70,6 +94,8 @@ void MainWindow::on_CustomTrip2_clicked()
     tripnum = 3;
     totCityPurch = 0;
     grandTotSpent = 0;
+    citiesToVisit.clear();
+    citiesVisited.clear();
 }
 
 
