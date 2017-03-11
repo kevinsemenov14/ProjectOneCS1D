@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="stackedWidgetPage1">
      <widget class="QWidget" name="layoutWidget">
@@ -38,7 +38,7 @@
        <rect>
         <x>20</x>
         <y>50</y>
-        <width>82</width>
+        <width>104</width>
         <height>381</height>
        </rect>
       </property>
@@ -189,7 +189,7 @@
        <rect>
         <x>610</x>
         <y>50</y>
-        <width>111</width>
+        <width>121</width>
         <height>381</height>
        </rect>
       </property>
@@ -771,7 +771,7 @@
         <x>11</x>
         <y>11</y>
         <width>251</width>
-        <height>107</height>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -876,12 +876,12 @@
          <height>139</height>
         </rect>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>191</width>
+          <width>196</width>
           <height>101</height>
          </rect>
         </property>
@@ -958,7 +958,7 @@
         <x>229</x>
         <y>164</y>
         <width>261</width>
-        <height>105</height>
+        <height>115</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -1193,7 +1193,7 @@
      <x>0</x>
      <y>0</y>
      <width>767</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

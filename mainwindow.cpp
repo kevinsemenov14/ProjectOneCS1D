@@ -54,19 +54,19 @@ void MainWindow::on_normalTrip_clicked()
     tripnum = 1;
     totCityPurch = 0;
     grandTotSpent = 0;
+    startingCity = "London";
+    cityNames = db.getCityNames();
+
     citiesToVisit.clear();
     citiesVisited.clear();
     sortedQueueToVisit.clear();
 
-    startingCity = "London";
-    cityNames = db.getCityNames();
     citiesToVisit.push_front(startingCity);
-
-    //LOOP:
-    //call funtion to find next closest city
     sortedQueueToVisit.push_back(startingCity);
     citiesVisited.push_back(startingCity);
 
+    //LOOP:
+    //call funtion to find next closest city
     QQueue<QString> temp = db.citiesToTisit(startingCity);
 
     while( i < cityNames.size() - 1)
@@ -99,6 +99,7 @@ void MainWindow::on_CustomTrip1_clicked()
     grandTotSpent = 0;
     citiesToVisit.clear();
     citiesVisited.clear();
+    sortedQueueToVisit.clear();
 
     startingCity = "Paris";
     numberOfCities = ui->spinBox_2->value();
@@ -135,8 +136,10 @@ void MainWindow::on_CustomTrip2_clicked()
     tripnum = 3;
     totCityPurch = 0;
     grandTotSpent = 0;
+
     citiesToVisit.clear();
     citiesVisited.clear();
+    sortedQueueToVisit.clear();
 }
 
 
@@ -150,31 +153,47 @@ void MainWindow::on_startTrip_clicked()
         errorBox.warning(0,"Invalid Selection","Please select a trip!");
         errorBox.setFixedSize(1200,400);
     }
+    else if(!sortedQueueToVisit.empty())
+    {
+        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
+        FillItemMenu(sortedQueueToVisit.front());
+        int col = 0;
+        int row = 0;
+
+        ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
+
+        ui->SelectedItemsTableWidget->insertColumn(col);
+        ui->SelectedItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
+
+        ui->SelectedItemsTableWidget->resizeColumnsToContents();
+        ui->SelectedItemsTableWidget->horizontalHeader()->setStretchLastSection(true);
+        ui->CurrentCityLabel->setText(sortedQueueToVisit.front());
+    }
     else
     {
-        if(!sortedQueueToVisit.empty())
+        QMessageBox errorBox;
+        errorBox.warning(0, "Invalid Selection","You've already taken this trip!");
+        errorBox.setFixedSize(1200,400);
+    }
+
+    int i = 0;
+    if(tripnum == 3)
+    {
+        QQueue<QString> temp = db.citiesToTisit(startingCity);
+
+        while( i < citiesToVisit.size() - 1)
         {
-            ui->stackedWidget->setCurrentIndex(2);
-            ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
-            FillItemMenu(sortedQueueToVisit.front());
-            int col = 0;
-            int row = 0;
+            SortTrip(temp, temp.at(0));
 
-            ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
-
-            ui->SelectedItemsTableWidget->insertColumn(col);
-            ui->SelectedItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
-
-            ui->SelectedItemsTableWidget->resizeColumnsToContents();
-            ui->SelectedItemsTableWidget->horizontalHeader()->setStretchLastSection(true);
-            ui->CurrentCityLabel->setText(sortedQueueToVisit.front());
+            temp.clear();
+            //calls the db method that gets the sorted queue of the next city with which the city
+            //that recently got added to the sortedQueue gets passed into the db method that uses that
+            //recently added city to return a new sorted list of the cities closest to THAT new city
+            temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
+            i++;
         }
-        else
-        {
-            QMessageBox errorBox;
-            errorBox.warning(0, "Invalid Selection","You've already taken this trip!");
-            errorBox.setFixedSize(1200,400);
-        }
+
     }
 }
 
@@ -802,6 +821,18 @@ void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
 {
     QString namesS = db.getCityNames().at(row);
     ui->selectedCitiesTable->addItem(namesS);
+
+    if(citiesToVisit.size() == 0)
+    {
+        startingCity = namesS;
+        citiesToVisit.push_front(startingCity);
+        citiesVisited.push_front(startingCity);
+        sortedQueueToVisit.push_front(startingCity);
+    }
+    else
+    {
+        citiesToVisit.push_back(namesS);
+    }
 }
 
 
@@ -818,8 +849,6 @@ void MainWindow::on_NextCity_pushButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(5);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage5);
-
-
     }
     ui->currPurchase_label->setText(QString::number(0.00));
 }

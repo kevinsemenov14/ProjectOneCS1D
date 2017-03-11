@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -140,7 +140,7 @@ public:
     QSpacerItem *horizontalSpacer_4;
     QScrollArea *AddNewCity_scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QWidget *widget;
+    QWidget *layoutWidget10;
     QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_4;
@@ -153,7 +153,7 @@ public:
     QSpacerItem *horizontalSpacer_15;
     QPushButton *NextCity_pushButton_2;
     QWidget *stackedWidgetPage4;
-    QWidget *layoutWidget10;
+    QWidget *layoutWidget11;
     QGridLayout *gridLayout_2;
     QSplitter *splitter_3;
     QLabel *label_3;
@@ -166,7 +166,7 @@ public:
     QPushButton *LogInButton;
     QWidget *stackedWidgetPage5;
     QPushButton *LogOut_Button_2;
-    QWidget *layoutWidget11;
+    QWidget *layoutWidget12;
     QGridLayout *gridLayout_10;
     QSplitter *splitter_11;
     QLabel *label_23;
@@ -175,13 +175,13 @@ public:
     QSplitter *splitter_12;
     QLabel *label_25;
     QLabel *label_26;
-    QWidget *layoutWidget12;
+    QWidget *layoutWidget13;
     QGridLayout *gridLayout_11;
     QLabel *label_22;
     QSpacerItem *horizontalSpacer_8;
     QTableWidget *tableWidget;
     QLabel *label;
-    QWidget *layoutWidget13;
+    QWidget *layoutWidget14;
     QGridLayout *gridLayout_12;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -203,7 +203,7 @@ public:
         stackedWidgetPage1->setObjectName(QStringLiteral("stackedWidgetPage1"));
         layoutWidget = new QWidget(stackedWidgetPage1);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 50, 82, 381));
+        layoutWidget->setGeometry(QRect(20, 50, 104, 381));
         gridLayout_7 = new QGridLayout(layoutWidget);
         gridLayout_7->setSpacing(6);
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
@@ -281,7 +281,7 @@ public:
 
         layoutWidget2 = new QWidget(stackedWidgetPage1);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(610, 50, 111, 381));
+        layoutWidget2->setGeometry(QRect(610, 50, 121, 381));
         gridLayout_9 = new QGridLayout(layoutWidget2);
         gridLayout_9->setSpacing(6);
         gridLayout_9->setContentsMargins(11, 11, 11, 11);
@@ -611,7 +611,7 @@ public:
 
         layoutWidget9 = new QWidget(stackedWidgetPage3);
         layoutWidget9->setObjectName(QStringLiteral("layoutWidget9"));
-        layoutWidget9->setGeometry(QRect(11, 11, 251, 107));
+        layoutWidget9->setGeometry(QRect(11, 11, 251, 121));
         gridLayout_3 = new QGridLayout(layoutWidget9);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -672,10 +672,10 @@ public:
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 209, 139));
-        widget = new QWidget(scrollAreaWidgetContents);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 20, 191, 101));
-        verticalLayout_4 = new QVBoxLayout(widget);
+        layoutWidget10 = new QWidget(scrollAreaWidgetContents);
+        layoutWidget10->setObjectName(QStringLiteral("layoutWidget10"));
+        layoutWidget10->setGeometry(QRect(10, 20, 196, 101));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget10);
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -686,12 +686,12 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        AddDistanceTo_label_9 = new QLabel(widget);
+        AddDistanceTo_label_9 = new QLabel(layoutWidget10);
         AddDistanceTo_label_9->setObjectName(QStringLiteral("AddDistanceTo_label_9"));
 
         horizontalLayout_4->addWidget(AddDistanceTo_label_9);
 
-        CityName_label_9 = new QLabel(widget);
+        CityName_label_9 = new QLabel(layoutWidget10);
         CityName_label_9->setObjectName(QStringLiteral("CityName_label_9"));
 
         horizontalLayout_4->addWidget(CityName_label_9);
@@ -702,12 +702,12 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        AddCity_Name_label_9 = new QLabel(widget);
+        AddCity_Name_label_9 = new QLabel(layoutWidget10);
         AddCity_Name_label_9->setObjectName(QStringLiteral("AddCity_Name_label_9"));
 
         horizontalLayout_3->addWidget(AddCity_Name_label_9);
 
-        NewDistance_lineEdit = new QLineEdit(widget);
+        NewDistance_lineEdit = new QLineEdit(layoutWidget10);
         NewDistance_lineEdit->setObjectName(QStringLiteral("NewDistance_lineEdit"));
 
         horizontalLayout_3->addWidget(NewDistance_lineEdit);
@@ -725,7 +725,7 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_15);
 
-        NextCity_pushButton_2 = new QPushButton(widget);
+        NextCity_pushButton_2 = new QPushButton(layoutWidget10);
         NextCity_pushButton_2->setObjectName(QStringLiteral("NextCity_pushButton_2"));
 
         horizontalLayout_5->addWidget(NextCity_pushButton_2);
@@ -737,15 +737,15 @@ public:
         stackedWidget->addWidget(stackedWidgetPage3);
         stackedWidgetPage4 = new QWidget();
         stackedWidgetPage4->setObjectName(QStringLiteral("stackedWidgetPage4"));
-        layoutWidget10 = new QWidget(stackedWidgetPage4);
-        layoutWidget10->setObjectName(QStringLiteral("layoutWidget10"));
-        layoutWidget10->setGeometry(QRect(229, 164, 261, 105));
-        gridLayout_2 = new QGridLayout(layoutWidget10);
+        layoutWidget11 = new QWidget(stackedWidgetPage4);
+        layoutWidget11->setObjectName(QStringLiteral("layoutWidget11"));
+        layoutWidget11->setGeometry(QRect(229, 164, 261, 115));
+        gridLayout_2 = new QGridLayout(layoutWidget11);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        splitter_3 = new QSplitter(layoutWidget10);
+        splitter_3 = new QSplitter(layoutWidget11);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
         label_3 = new QLabel(splitter_3);
@@ -762,7 +762,7 @@ public:
 
         gridLayout_2->addItem(horizontalSpacer, 1, 0, 1, 1);
 
-        splitter_2 = new QSplitter(layoutWidget10);
+        splitter_2 = new QSplitter(layoutWidget11);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Horizontal);
         label_13 = new QLabel(splitter_2);
@@ -780,7 +780,7 @@ public:
 
         gridLayout_2->addItem(horizontalSpacer_2, 3, 0, 1, 1);
 
-        LogInButton = new QPushButton(layoutWidget10);
+        LogInButton = new QPushButton(layoutWidget11);
         LogInButton->setObjectName(QStringLiteral("LogInButton"));
         LogInButton->setCursor(QCursor(Qt::PointingHandCursor));
         LogInButton->setStyleSheet(QStringLiteral(""));
@@ -795,15 +795,15 @@ public:
         LogOut_Button_2->setGeometry(QRect(630, 400, 61, 21));
         LogOut_Button_2->setCursor(QCursor(Qt::PointingHandCursor));
         LogOut_Button_2->setStyleSheet(QStringLiteral(""));
-        layoutWidget11 = new QWidget(stackedWidgetPage5);
-        layoutWidget11->setObjectName(QStringLiteral("layoutWidget11"));
-        layoutWidget11->setGeometry(QRect(380, 60, 291, 191));
-        gridLayout_10 = new QGridLayout(layoutWidget11);
+        layoutWidget12 = new QWidget(stackedWidgetPage5);
+        layoutWidget12->setObjectName(QStringLiteral("layoutWidget12"));
+        layoutWidget12->setGeometry(QRect(380, 60, 291, 191));
+        gridLayout_10 = new QGridLayout(layoutWidget12);
         gridLayout_10->setSpacing(6);
         gridLayout_10->setContentsMargins(11, 11, 11, 11);
         gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
         gridLayout_10->setContentsMargins(0, 0, 0, 0);
-        splitter_11 = new QSplitter(layoutWidget11);
+        splitter_11 = new QSplitter(layoutWidget12);
         splitter_11->setObjectName(QStringLiteral("splitter_11"));
         splitter_11->setOrientation(Qt::Horizontal);
         label_23 = new QLabel(splitter_11);
@@ -819,7 +819,7 @@ public:
 
         gridLayout_10->addItem(verticalSpacer_7, 1, 0, 1, 1);
 
-        splitter_12 = new QSplitter(layoutWidget11);
+        splitter_12 = new QSplitter(layoutWidget12);
         splitter_12->setObjectName(QStringLiteral("splitter_12"));
         splitter_12->setOrientation(Qt::Horizontal);
         label_25 = new QLabel(splitter_12);
@@ -831,15 +831,15 @@ public:
 
         gridLayout_10->addWidget(splitter_12, 2, 0, 1, 1);
 
-        layoutWidget12 = new QWidget(stackedWidgetPage5);
-        layoutWidget12->setObjectName(QStringLiteral("layoutWidget12"));
-        layoutWidget12->setGeometry(QRect(20, 20, 341, 411));
-        gridLayout_11 = new QGridLayout(layoutWidget12);
+        layoutWidget13 = new QWidget(stackedWidgetPage5);
+        layoutWidget13->setObjectName(QStringLiteral("layoutWidget13"));
+        layoutWidget13->setGeometry(QRect(20, 20, 341, 411));
+        gridLayout_11 = new QGridLayout(layoutWidget13);
         gridLayout_11->setSpacing(6);
         gridLayout_11->setContentsMargins(11, 11, 11, 11);
         gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
         gridLayout_11->setContentsMargins(0, 0, 0, 0);
-        label_22 = new QLabel(layoutWidget12);
+        label_22 = new QLabel(layoutWidget13);
         label_22->setObjectName(QStringLiteral("label_22"));
 
         gridLayout_11->addWidget(label_22, 0, 0, 1, 1);
@@ -848,7 +848,7 @@ public:
 
         gridLayout_11->addItem(horizontalSpacer_8, 0, 1, 1, 1);
 
-        tableWidget = new QTableWidget(layoutWidget12);
+        tableWidget = new QTableWidget(layoutWidget13);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
         gridLayout_11->addWidget(tableWidget, 1, 0, 1, 2);
@@ -860,10 +860,10 @@ public:
         QFont font1;
         font1.setFamily(QStringLiteral("Yu Gothic UI Light"));
         label->setFont(font1);
-        layoutWidget13 = new QWidget(centralWidget);
-        layoutWidget13->setObjectName(QStringLiteral("layoutWidget13"));
-        layoutWidget13->setGeometry(QRect(0, 0, 2, 2));
-        gridLayout_12 = new QGridLayout(layoutWidget13);
+        layoutWidget14 = new QWidget(centralWidget);
+        layoutWidget14->setObjectName(QStringLiteral("layoutWidget14"));
+        layoutWidget14->setGeometry(QRect(0, 0, 2, 2));
+        gridLayout_12 = new QGridLayout(layoutWidget14);
         gridLayout_12->setSpacing(6);
         gridLayout_12->setContentsMargins(11, 11, 11, 11);
         gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
@@ -871,7 +871,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 767, 20));
+        menuBar->setGeometry(QRect(0, 0, 767, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -882,7 +882,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
