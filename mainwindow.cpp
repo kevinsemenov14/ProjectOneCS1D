@@ -184,6 +184,7 @@ void MainWindow::on_startTrip_clicked()
 
         while( i < citiesToVisit.size() - 1)
         {
+
             SortTrip(temp, temp.at(0));
 
             temp.clear();
@@ -193,7 +194,6 @@ void MainWindow::on_startTrip_clicked()
             temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
             i++;
         }
-
     }
 }
 
@@ -820,20 +820,31 @@ void MainWindow::on_RemoveItemButton_clicked()
 void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
 {
     QString namesS = db.getCityNames().at(row);
-    ui->selectedCitiesTable->addItem(namesS);
-
-    if(citiesToVisit.size() == 0)
+//    qDebug() << "CITY: " << namesS;
+    if(isThisCitySelected(namesS))
     {
-        startingCity = namesS;
-        citiesToVisit.push_front(startingCity);
-        citiesVisited.push_front(startingCity);
-        sortedQueueToVisit.push_front(startingCity);
+        QMessageBox msgBox;
+        msgBox.critical(0,"Existing City!","Duplicate cities are not permitted");
+        msgBox.setFixedSize(1200,400);
     }
     else
     {
-        citiesToVisit.push_back(namesS);
+        qDebug() << "CITY: " << namesS;
+        ui->selectedCitiesTable->addItem(namesS);
+        if(citiesToVisit.size() == 0)
+        {
+            startingCity = namesS;
+            citiesToVisit.push_front(startingCity);
+            citiesVisited.push_front(startingCity);
+            sortedQueueToVisit.push_front(startingCity);
+        }
+        else
+        {
+            citiesToVisit.push_back(namesS);
+        }
     }
 }
+
 
 
 void MainWindow::on_NextCity_pushButton_clicked()
@@ -936,4 +947,19 @@ void MainWindow::on_NextCity_pushButton_2_clicked()
     {
          ui->NewDistance_lineEdit->clear();
     }
+}
+
+
+
+bool MainWindow::isThisCitySelected(QString cityToCheck)
+{
+    bool check = false;
+    for(int i = 0; i < citiesToVisit.size(); i++)
+    {
+        if(cityToCheck == citiesToVisit.at(i))
+            check = true;
+        else
+            check = false;
+    }
+    return check;
 }

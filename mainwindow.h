@@ -80,7 +80,7 @@ private slots:
 
     void on_NextCity_pushButton_2_clicked();
 
-    void on_pushButton_clicked();
+    bool isThisCitySelected(QString cityToCheck);
 
 private:
     Ui::MainWindow *ui;
