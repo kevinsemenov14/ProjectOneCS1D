@@ -76,10 +76,17 @@ private slots:
 
     void SortTrip(QQueue<QString> temp, QString currCity);
 
+    void sortCustom(QString value);
+
+//    void sortkev(QString value);
+
     bool Find(QString srchCity);
 
     void on_NextCity_pushButton_2_clicked();
 
+    bool isThisCitySelected(QString cityToCheck);
+
+    bool isThisCityVisited(QString cityToCheck);
 
 private:
     Ui::MainWindow *ui;
@@ -87,6 +94,7 @@ private:
 
     int tripnum;                    //1 is Regular, 2 is custom, 3 is custom
     int index = 0;
+    int count = 0;
     double totCityPurch;
     double grandTotSpent;
     QString startingCity;
@@ -100,6 +108,7 @@ private:
     QVector<QString> citiesToVisit;   //a list of the cities to visit
     QVector<QString> sortedQueueToVisit;
     QVector<QString> citiesVisited;   //a list of the cities visited
+    QVector<QString> closestCities;   //store the closest cities from any city
 };
 
 #endif // MAINWINDOW_H

@@ -54,19 +54,19 @@ void MainWindow::on_normalTrip_clicked()
     tripnum = 1;
     totCityPurch = 0;
     grandTotSpent = 0;
+    startingCity = "London";
+    cityNames = db.getCityNames();
+
     citiesToVisit.clear();
     citiesVisited.clear();
     sortedQueueToVisit.clear();
 
-    startingCity = "London";
-    cityNames = db.getCityNames();
     citiesToVisit.push_front(startingCity);
-
-    //LOOP:
-    //call funtion to find next closest city
     sortedQueueToVisit.push_back(startingCity);
     citiesVisited.push_back(startingCity);
 
+    //LOOP:
+    //call funtion to find next closest city
     QQueue<QString> temp = db.citiesToTisit(startingCity);
 
     while( i < cityNames.size() - 1)
@@ -99,6 +99,7 @@ void MainWindow::on_CustomTrip1_clicked()
     grandTotSpent = 0;
     citiesToVisit.clear();
     citiesVisited.clear();
+    sortedQueueToVisit.clear();
 
     startingCity = "Paris";
     numberOfCities = ui->spinBox_2->value();
@@ -135,8 +136,11 @@ void MainWindow::on_CustomTrip2_clicked()
     tripnum = 3;
     totCityPurch = 0;
     grandTotSpent = 0;
+
     citiesToVisit.clear();
     citiesVisited.clear();
+    sortedQueueToVisit.clear();
+    closestCities.clear();
 }
 
 
@@ -150,31 +154,48 @@ void MainWindow::on_startTrip_clicked()
         errorBox.warning(0,"Invalid Selection","Please select a trip!");
         errorBox.setFixedSize(1200,400);
     }
+    else if(!sortedQueueToVisit.empty())
+    {
+        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
+        FillItemMenu(sortedQueueToVisit.front());
+        int col = 0;
+        int row = 0;
+
+        ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
+
+        ui->SelectedItemsTableWidget->insertColumn(col);
+        ui->SelectedItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
+
+        ui->SelectedItemsTableWidget->resizeColumnsToContents();
+        ui->SelectedItemsTableWidget->horizontalHeader()->setStretchLastSection(true);
+        ui->CurrentCityLabel->setText(sortedQueueToVisit.front());
+    }
     else
     {
-        if(!sortedQueueToVisit.empty())
-        {
-            ui->stackedWidget->setCurrentIndex(2);
-            ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage2);
-            FillItemMenu(sortedQueueToVisit.front());
-            int col = 0;
-            int row = 0;
+        QMessageBox errorBox;
+        errorBox.warning(0, "Invalid Selection","You've already taken this trip!");
+        errorBox.setFixedSize(1200,400);
+    }
 
-            ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
+    int i = 0;
 
-            ui->SelectedItemsTableWidget->insertColumn(col);
-            ui->SelectedItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
+    if(tripnum == 3)
+    {
+        qDebug() << "STARTING CITY: " << startingCity;
+        sortCustom(startingCity);
+//        QQueue<QString> temp = db.citiesToTisit(startingCity);
+//        while( i < citiesToVisit.size() - 1)
+//        {
+//            SortTrip(temp, temp.at(0));
 
-            ui->SelectedItemsTableWidget->resizeColumnsToContents();
-            ui->SelectedItemsTableWidget->horizontalHeader()->setStretchLastSection(true);
-            ui->CurrentCityLabel->setText(sortedQueueToVisit.front());
-        }
-        else
-        {
-            QMessageBox errorBox;
-            errorBox.warning(0, "Invalid Selection","You've already taken this trip!");
-            errorBox.setFixedSize(1200,400);
-        }
+//            temp.clear();
+//            //calls the db method that gets the sorted queue of the next city with which the city
+//            //that recently got added to the sortedQueue gets passed into the db method that uses that
+//            //recently added city to return a new sorted list of the cities closest to THAT new city
+//            temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
+//            i++;
+//        }
     }
 }
 
@@ -204,6 +225,33 @@ void MainWindow::SortTrip(QQueue<QString> temp, QString currCity)
     }
 }
 
+void MainWindow::sortCustom(QString value)
+{
+
+    QQueue<QString> temp = db.citiesToTisit(value);
+    if(citiesToVisit.size() != 0){
+        for(int i = 0; i < temp.size(); i++)
+        {
+             for(int j = 0; j < citiesToVisit.size(); j++)
+             {
+                 if(temp.at(i) == citiesToVisit.at(j))
+                 {
+
+                     qDebug() << "FOUND:" << citiesToVisit.at(j);
+                    sortedQueueToVisit.push_back(temp.at(i));
+                    citiesVisited.push_back(temp.at(i));
+                    citiesToVisit.removeAt(j);
+                    sortCustom(sortedQueueToVisit.at(sortedQueueToVisit.size()-1));
+                 }
+
+             }
+
+       }
+   }// end recursive condition statement
+   temp.clear();
+}
+
+
 //Function 2:
 //takes in a QString.
 //return bool
@@ -215,15 +263,12 @@ bool MainWindow::Find(QString srchCity)
 
     while(!found && i < citiesVisited.size())
     {
-
         if(citiesVisited[i] == srchCity)
         {
             found = true;
         }
-
         i++;
     }
-
     return found;
 }
 
@@ -665,7 +710,7 @@ void MainWindow::on_addCityButton_clicked()
         }
         else
         {
-            db.addCity(cityToAdd, distToBerlin);
+//            db.addCity(cityToAdd, distToBerlin);
 
             ui->AddNewCity_scrollArea->show();
 
@@ -801,13 +846,44 @@ void MainWindow::on_RemoveItemButton_clicked()
 void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
 {
     QString namesS = db.getCityNames().at(row);
-    ui->selectedCitiesTable->addItem(namesS);
+//    qDebug() << "CITY: " << namesS;
+    if(isThisCitySelected(namesS))
+    {
+        QMessageBox msgBox;
+        msgBox.critical(0,"Existing City!","Duplicate cities are not permitted");
+        msgBox.setFixedSize(1200,400);
+    }
+    else
+    {
+        qDebug() << "CITY: " << namesS;
+        ui->selectedCitiesTable->addItem(namesS);
+        if(citiesToVisit.size() == 0)
+        {
+            startingCity = namesS;
+            citiesToVisit.push_front(startingCity);
+            citiesVisited.push_front(startingCity);
+            sortedQueueToVisit.push_front(startingCity);
+
+        }
+        else
+        {
+            citiesToVisit.push_back(namesS);
+
+
+        }
+        count++;
+    }
 }
+
 
 
 void MainWindow::on_NextCity_pushButton_clicked()
 {
     sortedQueueToVisit.pop_front();
+    if(tripnum == 3 && isThisCityVisited(sortedQueueToVisit.at(0)))
+    {
+        sortedQueueToVisit.pop_front();
+    }
 
     if(!sortedQueueToVisit.empty())
     {
@@ -818,8 +894,6 @@ void MainWindow::on_NextCity_pushButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(5);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage5);
-
-
     }
     ui->currPurchase_label->setText(QString::number(0.00));
 }
@@ -907,4 +981,32 @@ void MainWindow::on_NextCity_pushButton_2_clicked()
     {
          ui->NewDistance_lineEdit->clear();
     }
+}
+
+
+
+bool MainWindow::isThisCitySelected(QString cityToCheck)
+{
+    for(int i = 0; i < citiesToVisit.size(); i++)
+    {
+        if(cityToCheck == citiesToVisit.at(i))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool MainWindow::isThisCityVisited(QString cityToCheck)
+{
+    bool check = false;
+    for(int i = 0; i < citiesVisited.size(); i++)
+    {
+        if(cityToCheck == citiesVisited.at(i))
+            check = true;
+        else
+            check = false;
+    }
+    return check;
 }

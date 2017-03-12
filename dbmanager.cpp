@@ -457,21 +457,22 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
 
 bool dbManager::addCity(QString CityName, double berDist)
 {
-    QSqlQuery query(db);
-
-    query.prepare("INSERT INTO Cities (name, Dist2Ber) VALUES (:CityName, :berDist)");
-    query.bindValue(":name", CityName);
-    query.bindValue(":Dist2Ber", berDist);
-
-    if(query.exec())
-    {
-        //qDebug() << "should be added";
-        return true;
-    }
-    else
-    {
-        qDebug() << query.lastError();
-    }
+//    QSqlQuery query(db);
+//    QString distancesStr = distancesToString(distances);
+//    query.prepare("INSERT INTO Cities (name, Dist2Ber, Distances) VALUES (:CityName, :berDist, :distStr)");
+//    query.bindValue(":CityName", CityName);
+//    query.bindValue(":sadDist", berDist);
+//    query.bindValue(":distStr", distancesStr +" " + "0.0");
+//    if(query.exec())
+//    {
+//        //qDebug() << "should be added";
+//        updateDistances(distances);
+//        return true;
+//    }
+//    else
+//    {
+//        qDebug() << query.lastError();
+//    }
     return false;
 
 }
