@@ -140,6 +140,7 @@ void MainWindow::on_CustomTrip2_clicked()
     citiesToVisit.clear();
     citiesVisited.clear();
     sortedQueueToVisit.clear();
+    closestCities.clear();
 }
 
 
@@ -178,22 +179,23 @@ void MainWindow::on_startTrip_clicked()
     }
 
     int i = 0;
+
     if(tripnum == 3)
     {
-        QQueue<QString> temp = db.citiesToTisit(startingCity);
+        qDebug() << "STARTING CITY: " << startingCity;
+        sortCustom(startingCity);
+//        QQueue<QString> temp = db.citiesToTisit(startingCity);
+//        while( i < citiesToVisit.size() - 1)
+//        {
+//            SortTrip(temp, temp.at(0));
 
-        while( i < citiesToVisit.size() - 1)
-        {
-
-            SortTrip(temp, temp.at(0));
-
-            temp.clear();
-            //calls the db method that gets the sorted queue of the next city with which the city
-            //that recently got added to the sortedQueue gets passed into the db method that uses that
-            //recently added city to return a new sorted list of the cities closest to THAT new city
-            temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
-            i++;
-        }
+//            temp.clear();
+//            //calls the db method that gets the sorted queue of the next city with which the city
+//            //that recently got added to the sortedQueue gets passed into the db method that uses that
+//            //recently added city to return a new sorted list of the cities closest to THAT new city
+//            temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
+//            i++;
+//        }
     }
 }
 
@@ -223,6 +225,32 @@ void MainWindow::SortTrip(QQueue<QString> temp, QString currCity)
     }
 }
 
+void MainWindow::sortCustom(QString value)
+{
+
+    QQueue<QString> temp = db.citiesToTisit(value);
+    if(citiesToVisit.size() != 1){
+        for(int i = 0; i < temp.size(); i++)
+        {
+             for(int j = 0; j < citiesToVisit.size(); j++)
+             {
+                 if(temp.at(i) == citiesToVisit.at(j) && temp.at(i) != startingCity)
+                 {
+                     qDebug() << "FOUND:" << citiesToVisit.at(j);
+                    sortedQueueToVisit.push_back(temp.at(i));
+                    citiesVisited.push_back(temp.at(i));
+                    citiesToVisit.removeAt(j);
+                    sortCustom(sortedQueueToVisit.at(sortedQueueToVisit.size()-1));
+                 }
+
+             }
+
+       }
+   }// end recursive condition statement
+   temp.clear();
+}
+
+
 //Function 2:
 //takes in a QString.
 //return bool
@@ -234,15 +262,12 @@ bool MainWindow::Find(QString srchCity)
 
     while(!found && i < citiesVisited.size())
     {
-
         if(citiesVisited[i] == srchCity)
         {
             found = true;
         }
-
         i++;
     }
-
     return found;
 }
 
@@ -837,11 +862,15 @@ void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
             citiesToVisit.push_front(startingCity);
             citiesVisited.push_front(startingCity);
             sortedQueueToVisit.push_front(startingCity);
+
         }
         else
         {
             citiesToVisit.push_back(namesS);
+
+
         }
+        count++;
     }
 }
 
@@ -849,8 +878,8 @@ void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
 
 void MainWindow::on_NextCity_pushButton_clicked()
 {
+    qDebug() << "REMOVING: " << sortedQueueToVisit.front();
     sortedQueueToVisit.pop_front();
-
     if(!sortedQueueToVisit.empty())
     {
         FillItemMenu(sortedQueueToVisit.front());
@@ -953,10 +982,23 @@ void MainWindow::on_NextCity_pushButton_2_clicked()
 
 bool MainWindow::isThisCitySelected(QString cityToCheck)
 {
-    bool check = false;
     for(int i = 0; i < citiesToVisit.size(); i++)
     {
         if(cityToCheck == citiesToVisit.at(i))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool MainWindow::isThisCityVisited(QString cityToCheck)
+{
+    bool check = false;
+    for(int i = 0; i < citiesVisited.size(); i++)
+    {
+        if(cityToCheck == citiesVisited.at(i))
             check = true;
         else
             check = false;
