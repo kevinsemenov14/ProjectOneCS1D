@@ -34,6 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->spinBox_2->setMinimum(1);
     ui->spinBox_2->setMaximum(cityNames.size()-1);
 
+    ui->label_26->setText("0");
+    ui->label_10->setText("0");
+    ui->label_12->setText("0.00");
+    ui->currPurchase_label->setText("0.00");
+
     double dist;
     dist = db.getDistfrom("Amsterdam", "Berlin");
     qDebug() << dist;
@@ -164,12 +169,19 @@ void MainWindow::on_startTrip_clicked()
         int row = 0;
 
         ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
-
         ui->SelectedItemsTableWidget->insertColumn(col);
         ui->SelectedItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
-
         ui->SelectedItemsTableWidget->resizeColumnsToContents();
         ui->SelectedItemsTableWidget->horizontalHeader()->setStretchLastSection(true);
+
+        ui->tableWidget->horizontalHeader()->setVisible(true);
+        ui->tableWidget->insertColumn(col);
+        ui->tableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Bought:"));
+        ui->tableWidget->insertColumn(col);
+        ui->tableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Amount Name:"));
+        ui->tableWidget->resizeColumnsToContents();
+        ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+
         ui->CurrentCityLabel->setText(sortedQueueToVisit.front());
     }
     else
@@ -865,9 +877,18 @@ void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
     }
 }
 
-
+//7136
 void MainWindow::on_NextCity_pushButton_clicked()
 {
+    if(sortedQueueToVisit.size() > 1)
+    {
+        double distanceToNext = db.getDistfrom(sortedQueueToVisit.at(0), sortedQueueToVisit.at(1));
+        qDebug() << sortedQueueToVisit.at(0) << " to " << sortedQueueToVisit.at(1) << " is: " << distanceToNext;
+        distanceToNext += ui->label_26->text().toDouble();
+        ui->label_26->setText(QString::number(distanceToNext));
+        ui->label_10->setText(QString::number(distanceToNext));
+    }
+
     sortedQueueToVisit.pop_front();
 
     if(!sortedQueueToVisit.empty())
@@ -879,8 +900,6 @@ void MainWindow::on_NextCity_pushButton_clicked()
     {
         ui->stackedWidget->setCurrentIndex(5);
         ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage5);
-
-
     }
     ui->currPurchase_label->setText(QString::number(0.00));
 }
@@ -904,10 +923,10 @@ void MainWindow::on_Purchase_pushButton_clicked()
 
     int numRows2 = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(numRows2);
-    ui->tableWidget->setItem(numRows2,0,new QTableWidgetItem(item.itemName));
+    ui->tableWidget->setItem(numRows2, 0, new QTableWidgetItem(item.itemName));
+    ui->tableWidget->setItem(numRows2, 1, new QTableWidgetItem(QString::number(ui->AmountItems_spinBox->value())));
     ui->tableWidget->resizeColumnsToContents();
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-
 
     ui->label_12->setText("$" + QString::number(totCityPurch));
     ui->currPurchase_label->setText("$" + QString::number(currPurchase));
