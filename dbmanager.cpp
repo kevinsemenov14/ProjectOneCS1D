@@ -77,6 +77,8 @@ int dbManager::getDistfrom(QString StartingCity, QString EndingCity)
     }
 }
 
+
+
 //SELECT EndingCity, distance FROM Distances where StartingCity = "Berlin" order by distance ASC
 QQueue<QString> dbManager::citiesToTisit(QString StartingCity)
 {

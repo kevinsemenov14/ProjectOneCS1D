@@ -23,11 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
 
-    for(int i = berlDists.length() - 1; i >= 0; i--)
-    {
-        defTrip.push_back(cityNames[i]);
-    }
-
     ui->spinBox_2->clear();
     ui->spinBox_2->setMinimum(1);
     ui->spinBox_2->setMaximum(cityNames.size()-1);
@@ -193,9 +188,9 @@ void MainWindow::on_startTrip_clicked()
     {
         qDebug() << "STARTING CITY: " << startingCity;
         sortCustom(startingCity);
-        QDebug() << "Custom Trip 2:\n";
+        qDebug() << "Custom Trip 2:\n";
         for(int i = 0; i < sortedQueueToVisit.size(); i++)
-            QDebug() << sortedQueueToVisit.at(i);
+            qDebug() << sortedQueueToVisit.at(i);
     }
 }
 
