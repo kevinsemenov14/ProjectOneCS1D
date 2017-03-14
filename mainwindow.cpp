@@ -415,6 +415,9 @@ void MainWindow::FillAdminTableView(QString CityName)
 void MainWindow::FillAdminCB()
 {
 
+    cityNames.clear();
+    cityNames = db.getCityNames();
+
     ui->RemoveItemCityCB->clear();
     ui->AI_CN_CB->clear();
 
