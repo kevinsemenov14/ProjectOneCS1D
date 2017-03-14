@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-//SELECT EndingCity, distance FROM Distances where StartingCity = "Berlin" order by distance ASC
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -25,18 +23,14 @@ MainWindow::MainWindow(QWidget *parent) :
     cityNames = db.getCityNames();
     berlDists = db.getBerlinDist();
 
-    for(int i = berlDists.length() - 1; i >= 0; i--)
-    {
-        defTrip.push_back(cityNames[i]);
-    }
-
     ui->spinBox_2->clear();
     ui->spinBox_2->setMinimum(1);
     ui->spinBox_2->setMaximum(cityNames.size()-1);
 
-    double dist;
-    dist = db.getDistfrom("Amsterdam", "Berlin");
-    qDebug() << dist;
+    ui->label_26->setText("0");
+    ui->label_10->setText("0");
+    ui->label_12->setText("0.00");
+    ui->currPurchase_label->setText("0.00");
 }
 
 MainWindow::~MainWindow()
@@ -50,17 +44,22 @@ MainWindow::~MainWindow()
 //We will then visit all possible cities
 void MainWindow::on_normalTrip_clicked()
 {
+    //Variable's initialized to 0
     int i = 0;
     tripnum = 1;
     totCityPurch = 0;
     grandTotSpent = 0;
-    startingCity = "London";
-    cityNames = db.getCityNames();
 
+    //Vectors and Queues set to null values
     citiesToVisit.clear();
     citiesVisited.clear();
     sortedQueueToVisit.clear();
 
+    //Initialize starting city for said trip
+    startingCity = "London";
+    cityNames = db.getCityNames();
+
+    //Add first city to visit list, visited list and sorted list
     citiesToVisit.push_front(startingCity);
     sortedQueueToVisit.push_back(startingCity);
     citiesVisited.push_back(startingCity);
@@ -80,7 +79,8 @@ void MainWindow::on_normalTrip_clicked()
         temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
         i++;
     }
-
+    for(int i = 0; i < sortedQueueToVisit.size(); i++)
+        qDebug() << sortedQueueToVisit.at(i);
 }
 
 //Function: CustomTrip1
@@ -88,30 +88,30 @@ void MainWindow::on_normalTrip_clicked()
 // User gets to select number of cities they want to visit(including Paris).
 void MainWindow::on_CustomTrip1_clicked()
 {
+    //Initialize variables
     tripnum = 2;
-
     int numberOfCities = 0;
     int i = 0;
-
-    cityNames.clear();
-    cityNames = db.getCityNames();
     totCityPurch = 0;
     grandTotSpent = 0;
+
+    //Clear vectors and queues for current trip
+    cityNames.clear();
+    cityNames = db.getCityNames();
     citiesToVisit.clear();
     citiesVisited.clear();
-    sortedQueueToVisit.clear();
 
+    //Initialize starting city for said trip
     startingCity = "Paris";
     numberOfCities = ui->spinBox_2->value();
     citiesToVisit.push_front(startingCity);
 
-    //LOOP:
-    //call funtion to find next closest city
+    //Add first city to visit list, visited list and sorted list
     sortedQueueToVisit.push_back(startingCity);
     citiesVisited.push_back(startingCity);
 
+    //Loop to find next closest city
     QQueue<QString> temp = db.citiesToTisit(startingCity);
-
     while( i < numberOfCities)
     {
         SortTrip(temp, temp.at(0));
@@ -123,7 +123,8 @@ void MainWindow::on_CustomTrip1_clicked()
         temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
         i++;
     }
-
+    for(int i = 0; i < sortedQueueToVisit.size(); i++)
+        qDebug() << sortedQueueToVisit.at(i);
 }
 
 
@@ -133,10 +134,12 @@ void MainWindow::on_CustomTrip1_clicked()
 //All following cities will be calculated for nearest distance
 void MainWindow::on_CustomTrip2_clicked()
 {
+    //initialize variables
     tripnum = 3;
     totCityPurch = 0;
     grandTotSpent = 0;
 
+    //clear vectors to fill for this trip
     citiesToVisit.clear();
     citiesVisited.clear();
     sortedQueueToVisit.clear();
@@ -148,6 +151,9 @@ void MainWindow::on_CustomTrip2_clicked()
 //Pressing this button will start the selected trip.
 void MainWindow::on_startTrip_clicked()
 {
+    //error check if the user has selected a trip
+    // if they have, then take them on the trip.
+    // prompt them to select otherwise
     if(tripnum == 0)
     {
         QMessageBox errorBox;
@@ -163,46 +169,37 @@ void MainWindow::on_startTrip_clicked()
         int row = 0;
 
         ui->SelectedItemsTableWidget->horizontalHeader()->setVisible(true);
-
         ui->SelectedItemsTableWidget->insertColumn(col);
         ui->SelectedItemsTableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
-
         ui->SelectedItemsTableWidget->resizeColumnsToContents();
         ui->SelectedItemsTableWidget->horizontalHeader()->setStretchLastSection(true);
+
+        ui->tableWidget->horizontalHeader()->setVisible(true);
+        ui->tableWidget->insertColumn(col);
+        ui->tableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Bought:"));
+        ui->tableWidget->insertColumn(col);
+        ui->tableWidget->setHorizontalHeaderItem(col, new QTableWidgetItem("Amount Name:"));
+        ui->tableWidget->resizeColumnsToContents();
+        ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+
         ui->CurrentCityLabel->setText(sortedQueueToVisit.front());
     }
-    else
-    {
-        QMessageBox errorBox;
-        errorBox.warning(0, "Invalid Selection","You've already taken this trip!");
-        errorBox.setFixedSize(1200,400);
-    }
 
-    int i = 0;
-
+    //if they selected trip 3 then calculate the cities to visit
     if(tripnum == 3)
     {
         qDebug() << "STARTING CITY: " << startingCity;
         sortCustom(startingCity);
-//        QQueue<QString> temp = db.citiesToTisit(startingCity);
-//        while( i < citiesToVisit.size() - 1)
-//        {
-//            SortTrip(temp, temp.at(0));
-
-//            temp.clear();
-//            //calls the db method that gets the sorted queue of the next city with which the city
-//            //that recently got added to the sortedQueue gets passed into the db method that uses that
-//            //recently added city to return a new sorted list of the cities closest to THAT new city
-//            temp = db.citiesToTisit(sortedQueueToVisit.at(sortedQueueToVisit.size() - 1));
-//            i++;
-//        }
+        qDebug() << "Custom Trip 2:\n";
+        for(int i = 0; i < sortedQueueToVisit.size(); i++)
+            qDebug() << sortedQueueToVisit.at(i);
     }
 }
 
 
 
 
-//Function 1:
+//Function: SortTrip
 //get queue from sql function.
 //if(first value in queue NOT IN visited list)
 // add to SortedQueue.
@@ -214,9 +211,8 @@ void MainWindow::SortTrip(QQueue<QString> temp, QString currCity)
     if(!Find(currCity))
     {
         sortedQueueToVisit.push_back(temp.front());
-
-        qDebug() << temp.front();
         citiesVisited.push_back(temp.front());
+//        qDebug() << temp.front();
     }
     else
     {
@@ -225,18 +221,21 @@ void MainWindow::SortTrip(QQueue<QString> temp, QString currCity)
     }
 }
 
+//Function: SortCustom
+// This function will calculate the cities to visit for trip 3.
+// param: starting city
+// what it does: calculate next closest city that the user selected to visit
+// add the city to a vector for visiting.
 void MainWindow::sortCustom(QString value)
 {
-
     QQueue<QString> temp = db.citiesToTisit(value);
-    if(citiesToVisit.size() != 0){
+    if(citiesToVisit.size() != 1){
         for(int i = 0; i < temp.size(); i++)
         {
              for(int j = 0; j < citiesToVisit.size(); j++)
              {
-                 if(temp.at(i) == citiesToVisit.at(j))
+                 if(temp.at(i) == citiesToVisit.at(j) && temp.at(i) != startingCity)
                  {
-
                      qDebug() << "FOUND:" << citiesToVisit.at(j);
                     sortedQueueToVisit.push_back(temp.at(i));
                     citiesVisited.push_back(temp.at(i));
@@ -251,11 +250,10 @@ void MainWindow::sortCustom(QString value)
    temp.clear();
 }
 
-
-//Function 2:
-//takes in a QString.
-//return bool
-//checks if that QString is in the visited list vector.
+//Function: Fing
+//param: QString.
+//return: bool
+//what it does: checks if that QString is in the visited list vector.
 bool MainWindow::Find(QString srchCity)
 {
     bool found = false;
@@ -267,10 +265,14 @@ bool MainWindow::Find(QString srchCity)
         {
             found = true;
         }
+
         i++;
     }
     return found;
 }
+
+
+
 
 /*
  * Function: FillTripTable
@@ -402,6 +404,14 @@ void MainWindow::FillAdminTableView(QString CityName)
     ui->tableWidgetAdmin->horizontalHeader()->setStretchLastSection(true);
 }
 
+
+
+
+/*
+ * Function: FillAdminCB
+ * Task: To take the data from the database and populate the combo-box for
+ *          the Admin to view in the UI.
+ */
 void MainWindow::FillAdminCB()
 {
 
@@ -578,25 +588,6 @@ void MainWindow::clearItemsTable()
 void MainWindow::clearselectedCitiesTable()
 {
     ui->selectedCitiesTable->clear();
-//    int currentRows = ui->selectedCitiesTable->rowCount();
-//    int currentCol =  ui->selectedCitiesTable->columnCount();
-
-//    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
-//    {
-//        ui->selectedCitiesTable->removeRow(0);
-//    }
-//    for(int colRemove = 0; colRemove < currentCol; colRemove++)
-//    {
-//        ui->selectedCitiesTable->removeColumn(0);
-//    }
-//    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
-//    {
-//        ui->selectedCitiesTable->removeRow(0);
-//    }
-//    for(int colRemove = 0; colRemove < currentCol; colRemove++)
-//    {
-//        ui->selectedCitiesTable->removeColumn(0);
-//    }
 }
 
 
@@ -710,7 +701,7 @@ void MainWindow::on_addCityButton_clicked()
         }
         else
         {
-//            db.addCity(cityToAdd, distToBerlin);
+            db.addCity(cityToAdd, distToBerlin);
 
             ui->AddNewCity_scrollArea->show();
 
@@ -724,12 +715,19 @@ void MainWindow::on_addCityButton_clicked()
             CityExistsBox.setStandardButtons(QMessageBox::Ok);
             CityExistsBox.exec();
 
+            FillAdminCB();
             on_AI_CN_CB_currentIndexChanged(ui->RemoveItemCityCB->currentText());
         }
     }
 }
 
 
+
+
+/*
+ * Function: on_RemoveItemCityCB_currentIndexChanged
+ * Task: to refresh the tables and combo box's for the admin
+ */
 void MainWindow::on_RemoveItemCityCB_currentIndexChanged(const QString &arg1)
 {
     ClearAdminTable();
@@ -739,6 +737,12 @@ void MainWindow::on_RemoveItemCityCB_currentIndexChanged(const QString &arg1)
 
 
 
+
+
+/*
+ * Function: on_AI_CN_CB_currentIndexChanged
+ * Task: to refresh the tables and combo box's for the admin
+ */
 void MainWindow::on_AI_CN_CB_currentIndexChanged(const QString &arg1)
 {
     ClearAdminTable();
@@ -747,6 +751,12 @@ void MainWindow::on_AI_CN_CB_currentIndexChanged(const QString &arg1)
 }
 
 
+
+/*
+ * Function: on_AddItemButton_clicked
+ * Task: This function will add the given values into the database
+ *          It will error check for input before adding it in.
+ */
 void MainWindow::on_AddItemButton_clicked()
 {
     QString nameToAdd = ui->AddedItemName->text();
@@ -828,6 +838,10 @@ void MainWindow::on_AddItemButton_clicked()
 
 
 
+/*
+ * Function: on_RemoveItemButton_clicked
+ * Task: This function will remove the given values from the database.
+ */
 void MainWindow::on_RemoveItemButton_clicked()
 {
     QString cityforItemRemove = ui->RemoveItemCityCB->currentText();
@@ -843,6 +857,13 @@ void MainWindow::on_RemoveItemButton_clicked()
 }
 
 
+
+
+/*
+ * Function: on_LocationsTableWidget_cellDoubleClicked
+ * Task: This function will allow the traveller to select values from the table
+ *          Multiple selections of the same value will not be permitted
+ */
 void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
 {
     QString namesS = db.getCityNames().at(row);
@@ -877,13 +898,25 @@ void MainWindow::on_LocationsTableWidget_cellDoubleClicked(int row, int column)
 
 
 
+/*
+ * Function: on_NextCity_pushButton_clicked
+ * Task: This function will allow the traveller to select values from the table
+ *          for the current city. It will also update amount spent on food and
+ *          total distance travelled in real time.
+ */
+//Desk Check total distance: 7136
 void MainWindow::on_NextCity_pushButton_clicked()
 {
-    sortedQueueToVisit.pop_front();
-    if(tripnum == 3 && isThisCityVisited(sortedQueueToVisit.at(0)))
+    if(sortedQueueToVisit.size() > 1)
     {
-        sortedQueueToVisit.pop_front();
+        double distanceToNext = db.getDistfrom(sortedQueueToVisit.at(0), sortedQueueToVisit.at(1));
+        qDebug() << sortedQueueToVisit.at(0) << " to " << sortedQueueToVisit.at(1) << " is: " << distanceToNext;
+        distanceToNext += ui->label_26->text().toDouble();
+        ui->label_26->setText(QString::number(distanceToNext));
+        ui->label_10->setText(QString::number(distanceToNext));
     }
+
+    sortedQueueToVisit.pop_front();
 
     if(!sortedQueueToVisit.empty())
     {
@@ -898,11 +931,20 @@ void MainWindow::on_NextCity_pushButton_clicked()
     ui->currPurchase_label->setText(QString::number(0.00));
 }
 
+
+
+
+/*
+ * Function: on_Purchase_pushButton_clicked
+ * Task: This function will allow the traveller to select values from the table
+ *          for the current city and update the amount spent at current location
+ *          as well as on the trip(total amount for trip).
+ */
 void MainWindow::on_Purchase_pushButton_clicked()
 {
     double currPurchase;
 
-    currPurchase = (db.getItemPrice(defTrip.front(),ui->ItemsComboBox->currentText()).toDouble())
+    currPurchase = (db.getItemPrice(sortedQueueToVisit.front(),ui->ItemsComboBox->currentText()).toDouble())
                   * ui->AmountItems_spinBox->value();
     ReceiptItem item = {ui->ItemsComboBox->currentText(),ui->AmountItems_spinBox->value(), currPurchase};
     receipt.push_back(item);
@@ -917,16 +959,24 @@ void MainWindow::on_Purchase_pushButton_clicked()
 
     int numRows2 = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(numRows2);
-    ui->tableWidget->setItem(numRows2,0,new QTableWidgetItem(item.itemName));
+    ui->tableWidget->setItem(numRows2, 0, new QTableWidgetItem(item.itemName));
+    ui->tableWidget->setItem(numRows2, 1, new QTableWidgetItem(QString::number(ui->AmountItems_spinBox->value())));
     ui->tableWidget->resizeColumnsToContents();
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-
 
     ui->label_12->setText("$" + QString::number(totCityPurch));
     ui->currPurchase_label->setText("$" + QString::number(currPurchase));
     ui->label_24->setText("$" + QString::number(totCityPurch));
 }
 
+
+
+
+/*
+ * Function: on_NextCity_pushButton_2_clicked
+ * Task: This function will allow the admin to add new city and their distances
+ *         from the city to other cities.
+ */
 void MainWindow::on_NextCity_pushButton_2_clicked()
 {
     QString distance = ui->NewDistance_lineEdit->text();
@@ -985,6 +1035,12 @@ void MainWindow::on_NextCity_pushButton_2_clicked()
 
 
 
+
+
+/*
+ * Function: isThisCitySelected
+ * Task: This function will check whether given city have been selected for trip.
+ */
 bool MainWindow::isThisCitySelected(QString cityToCheck)
 {
     for(int i = 0; i < citiesToVisit.size(); i++)
@@ -998,6 +1054,10 @@ bool MainWindow::isThisCitySelected(QString cityToCheck)
 }
 
 
+/*
+ * Function: isThisCityVisited
+ * Task: This function will check whether given city has already been visited.
+ */
 bool MainWindow::isThisCityVisited(QString cityToCheck)
 {
     bool check = false;
@@ -1009,4 +1069,25 @@ bool MainWindow::isThisCityVisited(QString cityToCheck)
             check = false;
     }
     return check;
+}
+
+
+/*
+ * Function: on_AddFromDB_pushButton_clicked
+ * Task: This function will permit the admin to add unused cities to database.
+ */
+void MainWindow::on_AddFromDB_pushButton_clicked()
+{
+    db.addCitiesFromDatabase();
+
+    db.addCity("Stockholm", 1084);
+    db.addCity("Vienna", 640);
+
+    FillAdminCB();
+
+    QMessageBox CityAdded;
+    CityAdded.setText("Addition Successful!");
+    CityAdded.setInformativeText("Cities imported!");
+    CityAdded.setStandardButtons(QMessageBox::Ok);
+    CityAdded.exec();
 }

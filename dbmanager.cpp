@@ -77,6 +77,8 @@ int dbManager::getDistfrom(QString StartingCity, QString EndingCity)
     }
 }
 
+
+
 //SELECT EndingCity, distance FROM Distances where StartingCity = "Berlin" order by distance ASC
 QQueue<QString> dbManager::citiesToTisit(QString StartingCity)
 {
@@ -457,22 +459,26 @@ bool dbManager::addItem(QString CityName, QString itemName, double price)
 
 bool dbManager::addCity(QString CityName, double berDist)
 {
-//    QSqlQuery query(db);
-//    QString distancesStr = distancesToString(distances);
-//    query.prepare("INSERT INTO Cities (name, Dist2Ber, Distances) VALUES (:CityName, :berDist, :distStr)");
-//    query.bindValue(":CityName", CityName);
-//    query.bindValue(":sadDist", berDist);
-//    query.bindValue(":distStr", distancesStr +" " + "0.0");
-//    if(query.exec())
-//    {
-//        //qDebug() << "should be added";
-//        updateDistances(distances);
-//        return true;
-//    }
-//    else
-//    {
-//        qDebug() << query.lastError();
-//    }
+    QSqlQuery query(db);
+    QVector<QString> totNames = getCityNames();
+
+    int newSize = totNames.size() + 1;
+
+    query.prepare("INSERT INTO Cities (name, Dist2Ber, totRev, CityId) VALUES (:CityName, :berDist, :totRev, :newSize)");
+    query.bindValue(":CityName", CityName);
+    query.bindValue(":berDist", berDist);
+    query.bindValue(":totRev", 0);
+    query.bindValue(":newSize", newSize);
+
+    if(query.exec())
+    {
+        //qDebug() << "should be added";
+        return true;
+    }
+    else
+    {
+        qDebug() << query.lastError();
+    }
     return false;
 
 }
@@ -509,45 +515,45 @@ QString dbManager::distancesToString(QVector<int> distances)
 
 bool dbManager::updateDistances(QVector<double> distances)
 {
-    QSqlQuery query(db);
-    qDebug() << distances.size();
-     for(int i = 0; i < distances.size(); i++)
-     {
-         query.prepare("SELECT Distances FROM Cities WHERE CityId = (:iId)");
-         query.bindValue(":iId", i);
-         if(query.exec())
-         {
-             while(query.next())
-             {
-                QString dist = query.value(0).toString(); //get the current City string
-                QSqlQuery query2(db);
-              //  qDebug() << dist;
-               // qDebug() <<
-                query2.prepare("UPDATE Cities SET Distances = (:distStr) WHERE CityId = (:iId)");
-                query2.bindValue(":iId", i);
-                query2.bindValue(":distStr", (dist + " " + QString::number(distances.at(i))));
-                if(query2.exec())
-                {
+//    QSqlQuery query(db);
+//    qDebug() << distances.size();
+//     for(int i = 0; i < distances.size(); i++)
+//     {
+//         query.prepare("SELECT Distances FROM Cities WHERE CityId = (:iId)");
+//         query.bindValue(":iId", i);
+//         if(query.exec())
+//         {
+//             while(query.next())
+//             {
+//                QString dist = query.value(0).toString(); //get the current City string
+//                QSqlQuery query2(db);
+//              //  qDebug() << dist;
+//               // qDebug() <<
+//                query2.prepare("UPDATE Cities SET Distances = (:distStr) WHERE CityId = (:iId)");
+//                query2.bindValue(":iId", i);
+//                query2.bindValue(":distStr", (dist + " " + QString::number(distances.at(i))));
+//                if(query2.exec())
+//                {
 
-                    //qDebug() << "Updated";
-                }
-                else
-                {
-                    qDebug() << query2.lastError();
-                    return false;
-                }
+//                    //qDebug() << "Updated";
+//                }
+//                else
+//                {
+//                    qDebug() << query2.lastError();
+//                    return false;
+//                }
 
-             }
+//             }
 
-         }
+//         }
 
-         else{
-             query.lastError();
-             return false;
-         }
-     }
+//         else{
+//             query.lastError();
+//             return false;
+//         }
+//     }
 
-    return true;
+//    return true;
 }
 
 
@@ -576,6 +582,7 @@ QString dbManager::getDistances(QString CityName)
         }
 
 }
+
 
 bool dbManager::updateTotRev(QString CityName, double value)
 {

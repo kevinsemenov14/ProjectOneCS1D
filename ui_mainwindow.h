@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -77,7 +77,7 @@ public:
     QLabel *label_7;
     QTableWidget *ItemsTableWidget;
     QWidget *layoutWidget5;
-    QGridLayout *gridLayout;
+    QGridLayout *gridLayout_13;
     QSplitter *splitter_4;
     QComboBox *ItemsComboBox;
     QSpinBox *AmountItems_spinBox;
@@ -92,6 +92,10 @@ public:
     QLabel *totalPurchases_label;
     QLabel *label_12;
     QSpacerItem *verticalSpacer_4;
+    QGridLayout *gridLayout;
+    QLabel *label_9;
+    QLabel *label_10;
+    QSpacerItem *verticalSpacer_8;
     QPushButton *NextCity_pushButton;
     QWidget *stackedWidgetPage3;
     QPushButton *LogOut_Button;
@@ -133,7 +137,7 @@ public:
     QSplitter *splitter_7;
     QLabel *label_16;
     QSpinBox *AddedCityBerlDist;
-    QPushButton *pushButton;
+    QPushButton *AddFromDB_pushButton;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *addCityButton;
     QLabel *label_17;
@@ -203,7 +207,7 @@ public:
         stackedWidgetPage1->setObjectName(QStringLiteral("stackedWidgetPage1"));
         layoutWidget = new QWidget(stackedWidgetPage1);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 50, 104, 381));
+        layoutWidget->setGeometry(QRect(20, 50, 82, 381));
         gridLayout_7 = new QGridLayout(layoutWidget);
         gridLayout_7->setSpacing(6);
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
@@ -281,7 +285,7 @@ public:
 
         layoutWidget2 = new QWidget(stackedWidgetPage1);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(610, 50, 121, 381));
+        layoutWidget2->setGeometry(QRect(610, 50, 111, 381));
         gridLayout_9 = new QGridLayout(layoutWidget2);
         gridLayout_9->setSpacing(6);
         gridLayout_9->setContentsMargins(11, 11, 11, 11);
@@ -374,12 +378,12 @@ public:
 
         layoutWidget5 = new QWidget(stackedWidgetPage2);
         layoutWidget5->setObjectName(QStringLiteral("layoutWidget5"));
-        layoutWidget5->setGeometry(QRect(500, 71, 211, 331));
-        gridLayout = new QGridLayout(layoutWidget5);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
+        layoutWidget5->setGeometry(QRect(510, 71, 201, 341));
+        gridLayout_13 = new QGridLayout(layoutWidget5);
+        gridLayout_13->setSpacing(6);
+        gridLayout_13->setContentsMargins(11, 11, 11, 11);
+        gridLayout_13->setObjectName(QStringLiteral("gridLayout_13"));
+        gridLayout_13->setContentsMargins(0, 0, 0, 0);
         splitter_4 = new QSplitter(layoutWidget5);
         splitter_4->setObjectName(QStringLiteral("splitter_4"));
         splitter_4->setOrientation(Qt::Horizontal);
@@ -394,11 +398,11 @@ public:
         AmountItems_spinBox->setStyleSheet(QStringLiteral(""));
         splitter_4->addWidget(AmountItems_spinBox);
 
-        gridLayout->addWidget(splitter_4, 0, 0, 1, 1);
+        gridLayout_13->addWidget(splitter_4, 0, 0, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 28, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer, 1, 0, 1, 1);
+        gridLayout_13->addItem(verticalSpacer, 1, 0, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -416,22 +420,22 @@ public:
         horizontalLayout_2->addWidget(currPurchase_label);
 
 
-        gridLayout->addLayout(horizontalLayout_2, 2, 0, 1, 1);
+        gridLayout_13->addLayout(horizontalLayout_2, 2, 0, 1, 1);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 28, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer_2, 3, 0, 1, 1);
+        gridLayout_13->addItem(verticalSpacer_2, 3, 0, 1, 1);
 
         Purchase_pushButton = new QPushButton(layoutWidget5);
         Purchase_pushButton->setObjectName(QStringLiteral("Purchase_pushButton"));
         Purchase_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
         Purchase_pushButton->setStyleSheet(QStringLiteral(""));
 
-        gridLayout->addWidget(Purchase_pushButton, 4, 0, 1, 1);
+        gridLayout_13->addWidget(Purchase_pushButton, 4, 0, 1, 1);
 
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_3 = new QSpacerItem(20, 28, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer_3, 5, 0, 1, 1);
+        gridLayout_13->addItem(verticalSpacer_3, 5, 0, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
@@ -449,18 +453,38 @@ public:
         horizontalLayout->addWidget(label_12);
 
 
-        gridLayout->addLayout(horizontalLayout, 6, 0, 1, 1);
+        gridLayout_13->addLayout(horizontalLayout, 6, 0, 1, 1);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_4 = new QSpacerItem(20, 28, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer_4, 7, 0, 1, 1);
+        gridLayout_13->addItem(verticalSpacer_4, 7, 0, 1, 1);
+
+        gridLayout = new QGridLayout();
+        gridLayout->setSpacing(6);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        label_9 = new QLabel(layoutWidget5);
+        label_9->setObjectName(QStringLiteral("label_9"));
+
+        gridLayout->addWidget(label_9, 0, 0, 1, 1);
+
+        label_10 = new QLabel(layoutWidget5);
+        label_10->setObjectName(QStringLiteral("label_10"));
+
+        gridLayout->addWidget(label_10, 0, 1, 1, 1);
+
+
+        gridLayout_13->addLayout(gridLayout, 8, 0, 1, 1);
+
+        verticalSpacer_8 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_13->addItem(verticalSpacer_8, 9, 0, 1, 1);
 
         NextCity_pushButton = new QPushButton(layoutWidget5);
         NextCity_pushButton->setObjectName(QStringLiteral("NextCity_pushButton"));
         NextCity_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
         NextCity_pushButton->setStyleSheet(QStringLiteral(""));
 
-        gridLayout->addWidget(NextCity_pushButton, 8, 0, 1, 1);
+        gridLayout_13->addWidget(NextCity_pushButton, 10, 0, 1, 1);
 
         stackedWidget->addWidget(stackedWidgetPage2);
         stackedWidgetPage3 = new QWidget();
@@ -611,7 +635,7 @@ public:
 
         layoutWidget9 = new QWidget(stackedWidgetPage3);
         layoutWidget9->setObjectName(QStringLiteral("layoutWidget9"));
-        layoutWidget9->setGeometry(QRect(11, 11, 251, 121));
+        layoutWidget9->setGeometry(QRect(11, 11, 251, 107));
         gridLayout_3 = new QGridLayout(layoutWidget9);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -641,10 +665,10 @@ public:
 
         gridLayout_3->addWidget(splitter_7, 2, 0, 1, 3);
 
-        pushButton = new QPushButton(layoutWidget9);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        AddFromDB_pushButton = new QPushButton(layoutWidget9);
+        AddFromDB_pushButton->setObjectName(QStringLiteral("AddFromDB_pushButton"));
 
-        gridLayout_3->addWidget(pushButton, 0, 2, 1, 1);
+        gridLayout_3->addWidget(AddFromDB_pushButton, 0, 2, 1, 1);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -674,7 +698,7 @@ public:
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 209, 139));
         layoutWidget10 = new QWidget(scrollAreaWidgetContents);
         layoutWidget10->setObjectName(QStringLiteral("layoutWidget10"));
-        layoutWidget10->setGeometry(QRect(10, 20, 196, 101));
+        layoutWidget10->setGeometry(QRect(10, 20, 191, 101));
         verticalLayout_4 = new QVBoxLayout(layoutWidget10);
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -739,7 +763,7 @@ public:
         stackedWidgetPage4->setObjectName(QStringLiteral("stackedWidgetPage4"));
         layoutWidget11 = new QWidget(stackedWidgetPage4);
         layoutWidget11->setObjectName(QStringLiteral("layoutWidget11"));
-        layoutWidget11->setGeometry(QRect(229, 164, 261, 115));
+        layoutWidget11->setGeometry(QRect(229, 164, 261, 105));
         gridLayout_2 = new QGridLayout(layoutWidget11);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -871,7 +895,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 767, 22));
+        menuBar->setGeometry(QRect(0, 0, 767, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -882,7 +906,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -902,11 +926,13 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Location: </span></p></body></html>", 0));
         CurrentCityLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">NameOfCity</span></p></body></html>", 0));
         label_7->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Menu:</span></p></body></html>", 0));
-        CurrentPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Purchase:</span></p></body></html>", 0));
-        currPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">$</span></p></body></html>", 0));
+        CurrentPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Purchase($):</span></p></body></html>", 0));
+        currPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">amount_spent</span></p></body></html>", 0));
         Purchase_pushButton->setText(QApplication::translate("MainWindow", "Purchase", 0));
-        totalPurchases_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Total Purchase:</span></p></body></html>", 0));
-        label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">$</span></p></body></html>", 0));
+        totalPurchases_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Total Purchase($):</span></p></body></html>", 0));
+        label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p>total_spent</p></body></html>", 0));
+        label_9->setText(QApplication::translate("MainWindow", "Distance Travelled(km):", 0));
+        label_10->setText(QApplication::translate("MainWindow", "TextLabel", 0));
         NextCity_pushButton->setText(QApplication::translate("MainWindow", "Next City", 0));
         LogOut_Button->setText(QApplication::translate("MainWindow", "Log Out", 0));
         label_18->setText(QApplication::translate("MainWindow", "Add item/Update Price:", 0));
@@ -920,7 +946,7 @@ public:
         RemoveItemButton->setText(QApplication::translate("MainWindow", "Remove", 0));
         label_14->setText(QApplication::translate("MainWindow", "Name:", 0));
         label_16->setText(QApplication::translate("MainWindow", "Distance From Berlin", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Add from DB", 0));
+        AddFromDB_pushButton->setText(QApplication::translate("MainWindow", "Add from DB", 0));
         addCityButton->setText(QApplication::translate("MainWindow", "Add", 0));
         label_17->setText(QApplication::translate("MainWindow", "Add City:", 0));
         AddDistanceTo_label_9->setText(QApplication::translate("MainWindow", "Add Distance To: ", 0));

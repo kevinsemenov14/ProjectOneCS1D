@@ -47,11 +47,12 @@ public:
 
 
     /*!
-     * \brief getSadDist
+     * \brief getDistFrom
      *
-     * Gets the specified citys distance to saddleback
-     * \param CityName
-     * \return the citys distance to saddleback
+     * Gets the specified citys distance from start city to endcity
+     * \param startCity
+     * \param endCity
+     * \return city distances from start city to end city
      */
     int getDistfrom(QString startCity, QString endCity);
 
@@ -77,9 +78,9 @@ public:
 
 
     /*!
-     * \brief getItemPrice
+     * \brief getItemPrice:Returns the price of a certain item
      *
-     * Returns the price of a certain item
+     *
      * \param CityName
      * \param itemName
      * \return item price
@@ -88,9 +89,7 @@ public:
 
 
     /*!
-     * \brief getMenuItems
-     *
-     * Returns the names of all menu items for a city
+     * \brief getMenuItems: Returns the names of all menu items for a city
      * \param CityName
      * \return menu item names
      */
@@ -98,9 +97,7 @@ public:
 
 
     /*!
-     * \brief Exists
-     *
-     * checks if a menu item exists
+     * \brief Exists:  checks if a menu item exists
      * \param CityName
      * \param itemName
      * \return t/f if the item exists
@@ -109,9 +106,7 @@ public:
 
 
     /*!
-     * \brief cityExists
-     *
-     * checks if a city exists
+     * \brief cityExists:checks if a city exists
      * \param CityName
      * \return t/f if the city exists
      */
@@ -119,9 +114,7 @@ public:
 
 
     /*!
-     * \brief removeItem
-     *
-     * Removes a menu item
+     * \brief removeItem: Removes a menu item
      * \param CityName
      * \param itemName
      * \return t/f result of the operation
@@ -130,9 +123,7 @@ public:
 
 
     /*!
-     * \brief updateItem
-     *
-     * Updates a menu item's price
+     * \brief updateItem:Updates a menu item's price
      * \param CityName
      * \param itemName
      * \param price
@@ -142,9 +133,7 @@ public:
 
 
     /*!
-     * \brief addItem
-     *
-     * Adds a new menu item
+     * \brief addItem:Adds a new menu item
      * \param CityName
      * \param itemName
      * \return t/f result of the operation
@@ -153,9 +142,7 @@ public:
 
 
     /*!
-     * \brief addCity
-     *
-     * Adds a new city
+     * \brief addCity: Adds a new city
      * \param CityName
      * \param sadDist
      * \param distances
@@ -165,9 +152,7 @@ public:
 
 
     /*!
-     * \brief getCityName
-     *
-     * Gets a city name based on id
+     * \brief getCityName: Gets a city name based on id
      * \param id
      * \return city name
      */
@@ -175,9 +160,7 @@ public:
 
 
     /*!
-     * \brief updateDistances
-     *
-     * Updates distances of previous citys when adding a new city
+     * \brief updateDistances:Updates distances of previous citys when adding a new city
      * \param distances
      * \return t/f result of the operation
      */
@@ -185,9 +168,7 @@ public:
 
 
     /*!
-     * \brief distancesToString
-     *
-     * Parses a QVector of doubles into a single string for storage in the database
+     * \brief distancesToString: Parses a QVector of doubles into a single string for storage in the database
      * \param distances
      * \return QString of distances
      */
@@ -195,9 +176,7 @@ public:
 
 
     /*!
-     * \brief getDistances
-     *
-     * Gets the distances to other citys for a city
+     * \brief getDistances: Gets the distances to other citys for a city
      * \param CityName
      * \return distances in string form
      */
@@ -205,9 +184,7 @@ public:
 
 
     /*!
-     * \brief updateTotRev
-     *
-     * Accumulates the total revenue for a city
+     * \brief updateTotRev: Accumulates the total revenue for a city
      * \param CityName
      * \param value
      * \return t/f result of the operation
@@ -215,18 +192,14 @@ public:
     bool updateTotRev(QString CityName, double value);
 
     /*!
-     * \brief updateTotRev
-     *
-     * Accumulates each city's distance to Berlin
+     * \brief updateTotRev:  Accumulates each city's distance to Berlin
      * \return t/f result of the operation
      */
     QVector<QString> getBerlinDist();
 
 
     /*!
-     * \brief citiesToTisit
-     *
-     * Accumulates a queue of cities ordered by distance in ascending order
+     * \brief citiesToTisit: Accumulates a queue of cities ordered by distance in ascending order
      * \param StartingCity
      * \return t/f result of the operation
      */
