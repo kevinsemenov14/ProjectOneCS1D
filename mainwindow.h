@@ -26,7 +26,6 @@ public:
     ~MainWindow();
 
 private slots:
-
     void on_normalTrip_clicked();
 
     void on_CustomTrip1_clicked();
@@ -40,7 +39,6 @@ private slots:
      *
      * fill up menu items used at current city
      */
-
     void FillTripTable();
 
     /*!
@@ -57,7 +55,6 @@ private slots:
      * of any given city
      */
     void FillAdminTableView(QString CityName);
-
 
     /*!
      * \brief FillAdminComboBox
@@ -77,26 +74,24 @@ private slots:
      * \brief clearCityTable
      *  clears all data when the traveler completes the trip
      */
-
     void clearCityTable();
 
     /*!
      * \brief clearItemsTable
      * clears all data from the items table when the traveler completes the trip
      */
-
     void clearItemsTable();
+
     /*!
      * \brief clearselectedCitiesTable
      * clears all data from the city table in the user mainPage
      */
-
     void clearselectedCitiesTable();
+
     /*!
      * \brief ClearAdminTable
      * clears all data from the Admin table
      */
-
     void ClearAdminTable();
 
     void on_addCityButton_clicked();
@@ -121,7 +116,6 @@ private slots:
 
     void on_Purchase_pushButton_clicked();
 
-
     /*!
      * \brief SortTrip
      *  \param temp
@@ -133,7 +127,6 @@ private slots:
      * popfirst item in the queue
      * recursively call function 1 (this time the 1st value in queue is the next closes place)
      */
-
     void SortTrip(QQueue<QString> temp, QString currCity);
 
     bool Find(QString srchCity);
@@ -146,9 +139,7 @@ private slots:
      * used to sort the users chosen cities for trip 3
      * using recursion
      */
-
     void sortCustom(QString value);
-
 
     /*!
      * \brief isThisCitySelected

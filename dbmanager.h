@@ -78,9 +78,9 @@ public:
 
 
     /*!
-     * \brief getItemPrice:Returns the price of a certain item
+     * \brief getItemPrice: Returns the price of a certain item
      *
-     *
+     * Returns the price of a certain item
      * \param CityName
      * \param itemName
      * \return item price
@@ -97,7 +97,7 @@ public:
 
 
     /*!
-     * \brief Exists:  checks if a menu item exists
+     * \brief Exists: checks if a menu item exists
      * \param CityName
      * \param itemName
      * \return t/f if the item exists
@@ -106,7 +106,7 @@ public:
 
 
     /*!
-     * \brief cityExists:checks if a city exists
+     * \brief cityExists: checks if a city exists
      * \param CityName
      * \return t/f if the city exists
      */
@@ -123,7 +123,7 @@ public:
 
 
     /*!
-     * \brief updateItem:Updates a menu item's price
+     * \brief updateItem: Updates a menu item's price
      * \param CityName
      * \param itemName
      * \param price
@@ -133,7 +133,7 @@ public:
 
 
     /*!
-     * \brief addItem:Adds a new menu item
+     * \brief addItem: Adds a new menu item
      * \param CityName
      * \param itemName
      * \return t/f result of the operation
@@ -160,7 +160,7 @@ public:
 
 
     /*!
-     * \brief updateDistances:Updates distances of previous citys when adding a new city
+     * \brief updateDistances: Updates distances of previous citys when adding a new city
      * \param distances
      * \return t/f result of the operation
      */
@@ -192,7 +192,7 @@ public:
     bool updateTotRev(QString CityName, double value);
 
     /*!
-     * \brief updateTotRev:  Accumulates each city's distance to Berlin
+     * \brief getBerlinDist: Accumulates each city's distance to Berlin
      * \return t/f result of the operation
      */
     QVector<QString> getBerlinDist();
@@ -207,14 +207,16 @@ public:
 
 
     /*!
-     * \brief citiesToTisit
-     *
-     * Accumulates a queue of cities ordered by distance in ascending order
-     * \param StartingCity
-     * \return t/f result of the operation
+     * \brief citiesToTisit: Accumulates a queue of cities ordered by distance in ascending order
      */
     void addCitiesFromDatabase();
 
+
+    /*!
+     * \brief AddDistance: Adds a distance between two given cities
+     * \param StartingCity
+     * \return t/f whether the distance was added
+     */
     bool AddDistance(QString startCity, QString endCity,double newDist);
 
 private:
