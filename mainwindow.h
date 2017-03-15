@@ -159,6 +159,16 @@ private slots:
 
     void on_AddFromDB_pushButton_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void clearViewItemsExtraTable();
+
+    void fillViewItemsExtraTable(QString cityitemstoview);
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     dbManager db;                   //Instance of the database
