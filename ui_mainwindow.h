@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -64,6 +64,7 @@ public:
     QSpacerItem *verticalSpacer_6;
     QPushButton *startTrip;
     QSpinBox *spinBox_2;
+    QPushButton *pushButton;
     QWidget *stackedWidgetPage2;
     QWidget *layoutWidget3;
     QVBoxLayout *verticalLayout_2;
@@ -184,6 +185,10 @@ public:
     QLabel *label_22;
     QSpacerItem *horizontalSpacer_8;
     QTableWidget *tableWidget;
+    QWidget *stackedWidgetPage6;
+    QTableWidget *tableWidget_2;
+    QComboBox *comboBox;
+    QPushButton *pushButton_2;
     QLabel *label;
     QWidget *layoutWidget14;
     QGridLayout *gridLayout_12;
@@ -318,6 +323,9 @@ public:
 
         gridLayout_9->addWidget(spinBox_2, 1, 0, 1, 1);
 
+        pushButton = new QPushButton(stackedWidgetPage1);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(610, 20, 111, 23));
         stackedWidget->addWidget(stackedWidgetPage1);
         stackedWidgetPage2 = new QWidget();
         stackedWidgetPage2->setObjectName(QStringLiteral("stackedWidgetPage2"));
@@ -878,6 +886,18 @@ public:
         gridLayout_11->addWidget(tableWidget, 1, 0, 1, 2);
 
         stackedWidget->addWidget(stackedWidgetPage5);
+        stackedWidgetPage6 = new QWidget();
+        stackedWidgetPage6->setObjectName(QStringLiteral("stackedWidgetPage6"));
+        tableWidget_2 = new QTableWidget(stackedWidgetPage6);
+        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
+        tableWidget_2->setGeometry(QRect(435, 30, 261, 401));
+        comboBox = new QComboBox(stackedWidgetPage6);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(60, 100, 251, 22));
+        pushButton_2 = new QPushButton(stackedWidgetPage6);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(50, 390, 75, 23));
+        stackedWidget->addWidget(stackedWidgetPage6);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 10, 221, 31));
@@ -906,7 +926,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -922,6 +942,7 @@ public:
         Selected_Locations_Label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Selected Cities:</span></p></body></html>", Q_NULLPTR));
         label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Number of Cities:</span></p></body></html>", Q_NULLPTR));
         startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "View Items", Q_NULLPTR));
         label_8->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Selected Food Items:</span></p></body></html>", Q_NULLPTR));
         label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Location: </span></p></body></html>", Q_NULLPTR));
         CurrentCityLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">NameOfCity</span></p></body></html>", Q_NULLPTR));
@@ -962,6 +983,7 @@ public:
         label_25->setText(QApplication::translate("MainWindow", "Total Distance Travelled(km):", Q_NULLPTR));
         label_26->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
         label_22->setText(QApplication::translate("MainWindow", "Items Bought:", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Log out", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; text-decoration: underline; color:#000000;\">Tour de Europe:</span></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 

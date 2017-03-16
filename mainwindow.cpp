@@ -31,6 +31,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->label_10->setText("0");
     ui->label_12->setText("0.00");
     ui->currPurchase_label->setText("0.00");
+
+    for(int i = 0; i < cityNames.size(); i++)
+    {
+        ui->comboBox->addItem(cityNames.at(i));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -1093,4 +1098,93 @@ void MainWindow::on_AddFromDB_pushButton_clicked()
     CityAdded.setInformativeText("Cities imported!");
     CityAdded.setStandardButtons(QMessageBox::Ok);
     CityAdded.exec();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if(ui->stackedWidget->currentIndex() == 6)
+    {
+        fillViewItemsExtraTable(ui->comboBox->itemText(0));
+//        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage4);
+    }
+    else
+    {
+//        ui->stackedWidget->setCurrentIndex(6);
+        ui->stackedWidget->setCurrentWidget(ui->stackedWidgetPage6);
+
+    }
+}
+
+void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
+{
+    clearViewItemsExtraTable();
+    fillViewItemsExtraTable(arg1);
+}
+
+void MainWindow::clearViewItemsExtraTable()
+{
+    int currentRows = ui->tableWidget_2->rowCount();
+    int currentCol =  ui->tableWidget_2->columnCount();
+
+    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+    {
+        ui->tableWidget_2->removeRow(0);
+    }
+    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+    {
+        ui->tableWidget_2->removeColumn(0);
+    }
+    for(int rowRemove = 0; rowRemove < currentRows; rowRemove++)
+    {
+        ui->tableWidget_2->removeRow(0);
+    }
+    for(int colRemove = 0; colRemove < currentCol; colRemove++)
+    {
+        ui->tableWidget_2->removeColumn(0);
+    }
+}
+
+void MainWindow::fillViewItemsExtraTable(QString citysItems)
+{
+    clearViewItemsExtraTable();
+
+    cityfoodItems.clear();
+    cityfoodItems = db.getCityItems(citysItems);
+
+    ui->tableWidget_2->setRowCount(0);
+    ui->tableWidget_2->setColumnCount(0);
+
+    int col = 0;
+    int row = 0;
+
+    ui->tableWidget_2->horizontalHeader()->setVisible(true);  //Open up the header to represent the columns
+
+    ui->tableWidget_2->insertColumn(col);
+    ui->tableWidget_2->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Price:"));
+
+
+    ui->tableWidget_2->insertColumn(col);
+    ui->tableWidget_2->setHorizontalHeaderItem(col, new QTableWidgetItem("Item Name:"));
+
+
+    ui->tableWidget_2->resizeColumnsToContents();
+    ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
+
+    for(int i = 0; i < cityfoodItems.size(); i++)
+    {
+        int numRows = ui->tableWidget_2->rowCount();
+        ui->tableWidget_2->insertRow(numRows);
+
+        ui->tableWidget_2->setItem(numRows, 0, new QTableWidgetItem(cityfoodItems.at(i)));
+        ui->tableWidget_2->setItem(numRows, 1, new QTableWidgetItem(db.getItemPrice(citysItems, cityfoodItems.at(i))));
+    }
+
+    ui->tableWidget_2->resizeColumnsToContents();
+    ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    on_LogOut_Button_2_clicked();
 }
