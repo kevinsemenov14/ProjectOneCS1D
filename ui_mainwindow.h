@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.8.0
+** Created by: Qt User Interface Compiler version 5.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -64,7 +64,6 @@ public:
     QSpacerItem *verticalSpacer_6;
     QPushButton *startTrip;
     QSpinBox *spinBox_2;
-    QPushButton *pushButton;
     QWidget *stackedWidgetPage2;
     QWidget *layoutWidget3;
     QVBoxLayout *verticalLayout_2;
@@ -185,10 +184,6 @@ public:
     QLabel *label_22;
     QSpacerItem *horizontalSpacer_8;
     QTableWidget *tableWidget;
-    QWidget *stackedWidgetPage6;
-    QTableWidget *tableWidget_2;
-    QComboBox *comboBox;
-    QPushButton *pushButton_2;
     QLabel *label;
     QWidget *layoutWidget14;
     QGridLayout *gridLayout_12;
@@ -323,9 +318,6 @@ public:
 
         gridLayout_9->addWidget(spinBox_2, 1, 0, 1, 1);
 
-        pushButton = new QPushButton(stackedWidgetPage1);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(610, 20, 111, 23));
         stackedWidget->addWidget(stackedWidgetPage1);
         stackedWidgetPage2 = new QWidget();
         stackedWidgetPage2->setObjectName(QStringLiteral("stackedWidgetPage2"));
@@ -886,18 +878,6 @@ public:
         gridLayout_11->addWidget(tableWidget, 1, 0, 1, 2);
 
         stackedWidget->addWidget(stackedWidgetPage5);
-        stackedWidgetPage6 = new QWidget();
-        stackedWidgetPage6->setObjectName(QStringLiteral("stackedWidgetPage6"));
-        tableWidget_2 = new QTableWidget(stackedWidgetPage6);
-        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
-        tableWidget_2->setGeometry(QRect(435, 30, 261, 401));
-        comboBox = new QComboBox(stackedWidgetPage6);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(60, 100, 251, 22));
-        pushButton_2 = new QPushButton(stackedWidgetPage6);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(50, 390, 75, 23));
-        stackedWidget->addWidget(stackedWidgetPage6);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 10, 221, 31));
@@ -926,7 +906,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -934,57 +914,55 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        normalTrip->setText(QApplication::translate("MainWindow", "Regular Trip", Q_NULLPTR));
-        CustomTrip1->setText(QApplication::translate("MainWindow", "Custom Trip 1", Q_NULLPTR));
-        CustomTrip2->setText(QApplication::translate("MainWindow", "Custom Trip 2", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Locations:</span></p></body></html>", Q_NULLPTR));
-        Selected_Locations_Label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Selected Cities:</span></p></body></html>", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Number of Cities:</span></p></body></html>", Q_NULLPTR));
-        startTrip->setText(QApplication::translate("MainWindow", "Start Trip", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "View Items", Q_NULLPTR));
-        label_8->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Selected Food Items:</span></p></body></html>", Q_NULLPTR));
-        label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Location: </span></p></body></html>", Q_NULLPTR));
-        CurrentCityLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">NameOfCity</span></p></body></html>", Q_NULLPTR));
-        label_7->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Menu:</span></p></body></html>", Q_NULLPTR));
-        CurrentPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Purchase($):</span></p></body></html>", Q_NULLPTR));
-        currPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">amount_spent</span></p></body></html>", Q_NULLPTR));
-        Purchase_pushButton->setText(QApplication::translate("MainWindow", "Purchase", Q_NULLPTR));
-        totalPurchases_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Total Purchase($):</span></p></body></html>", Q_NULLPTR));
-        label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p>total_spent</p></body></html>", Q_NULLPTR));
-        label_9->setText(QApplication::translate("MainWindow", "Distance Travelled(km):", Q_NULLPTR));
-        label_10->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        NextCity_pushButton->setText(QApplication::translate("MainWindow", "Next City", Q_NULLPTR));
-        LogOut_Button->setText(QApplication::translate("MainWindow", "Log Out", Q_NULLPTR));
-        label_18->setText(QApplication::translate("MainWindow", "Add item/Update Price:", Q_NULLPTR));
-        AddItemButton->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
-        label_21->setText(QApplication::translate("MainWindow", "City Name: ", Q_NULLPTR));
-        label_20->setText(QApplication::translate("MainWindow", "Price:", Q_NULLPTR));
-        label_19->setText(QApplication::translate("MainWindow", "Name:", Q_NULLPTR));
-        label_27->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        label_6->setText(QApplication::translate("MainWindow", "View Data for City:", Q_NULLPTR));
-        label_15->setText(QApplication::translate("MainWindow", "Remove Item:", Q_NULLPTR));
-        RemoveItemButton->setText(QApplication::translate("MainWindow", "Remove", Q_NULLPTR));
-        label_14->setText(QApplication::translate("MainWindow", "Name:", Q_NULLPTR));
-        label_16->setText(QApplication::translate("MainWindow", "Distance From Berlin", Q_NULLPTR));
-        AddFromDB_pushButton->setText(QApplication::translate("MainWindow", "Add from DB", Q_NULLPTR));
-        addCityButton->setText(QApplication::translate("MainWindow", "Add", Q_NULLPTR));
-        label_17->setText(QApplication::translate("MainWindow", "Add City:", Q_NULLPTR));
-        AddDistanceTo_label_9->setText(QApplication::translate("MainWindow", "Add Distance To: ", Q_NULLPTR));
-        CityName_label_9->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        AddCity_Name_label_9->setText(QApplication::translate("MainWindow", "Distance:", Q_NULLPTR));
-        NextCity_pushButton_2->setText(QApplication::translate("MainWindow", "Next City", Q_NULLPTR));
-        label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Username:</span></p></body></html>", Q_NULLPTR));
-        label_13->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Password:</span></p></body></html>", Q_NULLPTR));
-        LogInButton->setText(QApplication::translate("MainWindow", "Log In", Q_NULLPTR));
-        LogOut_Button_2->setText(QApplication::translate("MainWindow", "Log Out", Q_NULLPTR));
-        label_23->setText(QApplication::translate("MainWindow", "Total Amount Spent ($):", Q_NULLPTR));
-        label_24->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        label_25->setText(QApplication::translate("MainWindow", "Total Distance Travelled(km):", Q_NULLPTR));
-        label_26->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-        label_22->setText(QApplication::translate("MainWindow", "Items Bought:", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Log out", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; text-decoration: underline; color:#000000;\">Tour de Europe:</span></p></body></html>", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        normalTrip->setText(QApplication::translate("MainWindow", "Regular Trip", 0));
+        CustomTrip1->setText(QApplication::translate("MainWindow", "Custom Trip 1", 0));
+        CustomTrip2->setText(QApplication::translate("MainWindow", "Custom Trip 2", 0));
+        label_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Locations:</span></p></body></html>", 0));
+        Selected_Locations_Label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; color:#000000;\">Selected Cities:</span></p></body></html>", 0));
+        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Number of Cities:</span></p></body></html>", 0));
+        startTrip->setText(QApplication::translate("MainWindow", "Start Trip", 0));
+        label_8->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Selected Food Items:</span></p></body></html>", 0));
+        label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Location: </span></p></body></html>", 0));
+        CurrentCityLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">NameOfCity</span></p></body></html>", 0));
+        label_7->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Menu:</span></p></body></html>", 0));
+        CurrentPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Current Purchase($):</span></p></body></html>", 0));
+        currPurchase_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">amount_spent</span></p></body></html>", 0));
+        Purchase_pushButton->setText(QApplication::translate("MainWindow", "Purchase", 0));
+        totalPurchases_label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Total Purchase($):</span></p></body></html>", 0));
+        label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p>total_spent</p></body></html>", 0));
+        label_9->setText(QApplication::translate("MainWindow", "Distance Travelled(km):", 0));
+        label_10->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        NextCity_pushButton->setText(QApplication::translate("MainWindow", "Next City", 0));
+        LogOut_Button->setText(QApplication::translate("MainWindow", "Log Out", 0));
+        label_18->setText(QApplication::translate("MainWindow", "Add item/Update Price:", 0));
+        AddItemButton->setText(QApplication::translate("MainWindow", "Add", 0));
+        label_21->setText(QApplication::translate("MainWindow", "City Name: ", 0));
+        label_20->setText(QApplication::translate("MainWindow", "Price:", 0));
+        label_19->setText(QApplication::translate("MainWindow", "Name:", 0));
+        label_27->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        label_6->setText(QApplication::translate("MainWindow", "View Data for City:", 0));
+        label_15->setText(QApplication::translate("MainWindow", "Remove Item:", 0));
+        RemoveItemButton->setText(QApplication::translate("MainWindow", "Remove", 0));
+        label_14->setText(QApplication::translate("MainWindow", "Name:", 0));
+        label_16->setText(QApplication::translate("MainWindow", "Distance From Berlin", 0));
+        AddFromDB_pushButton->setText(QApplication::translate("MainWindow", "Add from DB", 0));
+        addCityButton->setText(QApplication::translate("MainWindow", "Add", 0));
+        label_17->setText(QApplication::translate("MainWindow", "Add City:", 0));
+        AddDistanceTo_label_9->setText(QApplication::translate("MainWindow", "Add Distance To: ", 0));
+        CityName_label_9->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        AddCity_Name_label_9->setText(QApplication::translate("MainWindow", "Distance:", 0));
+        NextCity_pushButton_2->setText(QApplication::translate("MainWindow", "Next City", 0));
+        label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Username:</span></p></body></html>", 0));
+        label_13->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Password:</span></p></body></html>", 0));
+        LogInButton->setText(QApplication::translate("MainWindow", "Log In", 0));
+        LogOut_Button_2->setText(QApplication::translate("MainWindow", "Log Out", 0));
+        label_23->setText(QApplication::translate("MainWindow", "Total Amount Spent ($):", 0));
+        label_24->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        label_25->setText(QApplication::translate("MainWindow", "Total Distance Travelled(km):", 0));
+        label_26->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        label_22->setText(QApplication::translate("MainWindow", "Items Bought:", 0));
+        label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt; text-decoration: underline; color:#000000;\">Tour de Europe:</span></p></body></html>", 0));
     } // retranslateUi
 
 };

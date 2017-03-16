@@ -30,7 +30,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="stackedWidgetPage1">
      <widget class="QWidget" name="layoutWidget">
@@ -251,19 +251,6 @@
         </widget>
        </item>
       </layout>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>610</x>
-        <y>20</y>
-        <width>111</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>View Items</string>
-      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="stackedWidgetPage2">
@@ -1198,41 +1185,6 @@
         <widget class="QTableWidget" name="tableWidget"/>
        </item>
       </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="stackedWidgetPage6">
-     <widget class="QTableWidget" name="tableWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>435</x>
-        <y>30</y>
-        <width>261</width>
-        <height>401</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>100</y>
-        <width>251</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>390</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Log out</string>
-      </property>
      </widget>
     </widget>
    </widget>
